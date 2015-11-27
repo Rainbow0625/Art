@@ -3,6 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
+	
 	<!--设置自动加载spring配置文件-->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -36,6 +37,7 @@
 			<param-value>true</param-value>
 		</init-param>
 	</filter>
+	
 	<!--设置encodingFilter所要拦截的页面为.html的所有页面-->
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
