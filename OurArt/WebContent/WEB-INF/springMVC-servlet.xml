@@ -31,16 +31,19 @@
 			<ref bean="dataSource" />
 		</property>
 		
+		<!-- spring  创建类，在这里吗？ -->
 		<property name="annotatedClasses">
 			<list>
 				<value>entity.User</value>
+				<value>entity.Artist</value>
 			</list>
 		</property>
 		
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>				
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>	
+				<prop key="hibernate.hbm2ddl.auto">update</prop>			
 			</props>
 		</property>
 	</bean>

@@ -9,13 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name="user")
 public class User 
 {
 	@Id
-	@GeneratedValue(strategy =GenerationType.IDENTITY) //Increase auto
+	@GeneratedValue(strategy =GenerationType.AUTO) //Increase auto
 	@Column(name="id",nullable=false)
 	private int id;
 	
@@ -28,7 +27,7 @@ public class User
 	@Column(name="gender",nullable=false)
 	private String gender;
 	
-	@Column(name="birthday")
+	@Column(name="birthday",nullable=false)
 	private Date birthday;
 	
 	@Column(name="tel",nullable=false)

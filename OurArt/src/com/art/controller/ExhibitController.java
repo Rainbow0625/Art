@@ -1,5 +1,6 @@
 package com.art.controller;
 
-public class ExhibitController {
+public class ExhibitController 
+{
 
 }

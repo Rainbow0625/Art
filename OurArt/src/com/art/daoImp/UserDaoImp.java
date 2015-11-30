@@ -1,27 +1,20 @@
 package com.art.daoImp;
 
 import java.util.ArrayList;
-import javax.annotation.Resource;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.art.dao.UserDao;
 import com.art.entity.User;
 
-
-@Service
-@Transactional(propagation = Propagation.SUPPORTS)   //@Transactional : mean£¿
 public class UserDaoImp implements UserDao
 {
-	@Resource 
+	
 	private SessionFactory sessionFactory;
-	
-	
 
 	@Override
 	public ArrayList<User> getAllUser() 

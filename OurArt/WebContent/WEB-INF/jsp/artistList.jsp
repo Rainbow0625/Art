@@ -4,26 +4,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>艺术家列表</title>
 </head>
 <body>
 
 <table>
 		<th>序号</th>
-		<th>姓名</th>
-		<th>年龄</th>
+		<th>真实姓名</th>
+		<th>昵称</th>
+		<th>头像</th>
 		<th>性别</th>
 		<th>生日</th>
+		<th>电话号码</th>		
+		<th>邮箱</th>	
+		<th>艺术家类型</th>
+		<th>个人介绍</th>
 	<tr/>
-	<c:if test="${! empty user_list}">
-	<c:forEach var="user" items="${user_list}">
+	<c:if test="${! empty artist_list}">
+	<c:forEach var="user" items="${artist_list}">
 		<tr>
-			<td><c:out value="${user.id}"/></td>
-			<td><c:out value="${user.username}"/></td>
-			<td><c:out value="${user.age}"/></td>
-			<td><c:out value="${user.sex}"/></td>
-			<td><c:out value="${user.birthday}"/></td>
-			<td><a href="user/del.html?id=${user.id}">删除</a></td>
+			<td><c:out value="${artist.id}"/></td>
+			<td><c:out value="${artist.realName}"/></td>
+			<td><c:out value="${artist.nickName}"/></td>
+			<td><c:out value="${artist.photo}"/></td>
+			<td><c:out value="${artist.gender}"/></td>
+			<td><c:out value="${artist.birthday}"/></td>
+			<td><c:out value="${artist.tel}"/></td>
+			<td><c:out value="${artist.email}"/></td>
+			<td><c:out value="${artist.artistType}"/></td>
+			<td><c:out value="${artist.introduction}"/></td>
 		</tr>
 	</c:forEach>
 	</c:if>
