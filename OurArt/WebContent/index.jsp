@@ -8,8 +8,7 @@
   <body>
     <h1>首页</h1>
   
-    <a href="user.html">用户列表</a>
-    <a href="user/add.html">增加用户</a>
+    <a href="user/add.html">注册</a>
     
     
   </body>

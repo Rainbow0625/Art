@@ -15,7 +15,7 @@ import com.art.entity.User;
 
 
 @Service
-@Transactional(propagation = Propagation.SUPPORTS)   //@Transactional : mean£¿
+@Transactional(propagation = Propagation.SUPPORTS)   //@Transactional : meanï¿½ï¿½
 public class UserDaoImp implements UserDao
 {
 	@Resource 
@@ -36,7 +36,7 @@ public class UserDaoImp implements UserDao
 	
 	
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED)  //mean£¿
+	@Transactional(propagation=Propagation.REQUIRED)  
 	public void updateUser(User user) {
 
 		this.sessionFactory.getCurrentSession().update(user);
@@ -44,10 +44,10 @@ public class UserDaoImp implements UserDao
 	}
 
 	@Override
-	//¿Õ
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void addUser(User user) 
 	{
-		
+		((UserDao) this.sessionFactory.getCurrentSession()).addUser(user);
 	}
 
 	

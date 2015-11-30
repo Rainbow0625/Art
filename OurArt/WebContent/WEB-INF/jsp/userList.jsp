@@ -10,10 +10,13 @@
 
 <table>
 		<th>序号</th>
-		<th>姓名</th>
-		<th>年龄</th>
+		<th>真实姓名</th>
+		<th>昵称</th>
 		<th>性别</th>
+		<th>电话</th>
+		<th>邮箱</th>
 		<th>生日</th>
+		<th>密码</th>
 	<tr/>
 	<c:if test="${! empty user_list}">
 	<c:forEach var="user" items="${user_list}">
@@ -22,13 +25,14 @@
 			<td><c:out value="${user.realName}"/></td>
 			<td><c:out value="${user.nickName}"/></td>
 			<td><c:out value="${user.gender}"/></td>
+			<td><c:out value="${user.tel}"/></td>
+			<td><c:out value="${user.email}"/></td>
 			<td><c:out value="${user.birthday}"/></td>
-			<td><c:out value="${user.birthday}"/></td>
-			<td><a href="user/del.html?id=${user.id}">删除</a></td>
+			<td><c:out value="${user.password}"/></td>
 		</tr>
 	</c:forEach>
 	</c:if>
 </table>
-<a href="user/add.html">增加用户</a>
+<a href="user/add.html">注册</a>
 </body>
 </html>
