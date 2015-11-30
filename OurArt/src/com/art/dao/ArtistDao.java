@@ -1,5 +1,11 @@
 package com.art.dao;
 
-public interface ArtistDao {
+import java.util.ArrayList;
 
+import com.art.entity.Artist;
+
+
+public interface ArtistDao 
+{
+	public ArrayList<Artist> getAllArtist();
 }

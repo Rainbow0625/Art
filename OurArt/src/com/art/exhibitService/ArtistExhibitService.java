@@ -1,5 +1,12 @@
 package com.art.exhibitService;
 
-public interface ArtistExhibitService {
+import java.util.ArrayList;
+import com.art.entity.Artist;
+
+
+
+public interface ArtistExhibitService 
+{
+	public ArrayList<Artist> getAllUser();
 
 }
