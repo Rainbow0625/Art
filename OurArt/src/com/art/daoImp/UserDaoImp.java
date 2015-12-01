@@ -1,6 +1,7 @@
 package com.art.daoImp;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -24,12 +25,12 @@ public class UserDaoImp implements UserDao
 	
 
 	@Override
-	public ArrayList<User> getAllUser() 
+	public List<User> getAllUser() 
 	{
 		String hql = "from User";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
-		ArrayList<User> user_list = (ArrayList<User>)query.list();
+		List<User> user_list = query.list();
 		return user_list;
 	}
 

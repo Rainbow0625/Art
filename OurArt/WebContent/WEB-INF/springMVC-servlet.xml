@@ -15,7 +15,7 @@
 
 
 	<!-- 配置数据源数据 -->
-	<context:property-placeholder location="classpath:db.properties" />
+	<context:property-placeholder location="WEB-INF/db.properties" />
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${database.driver}" />
@@ -34,8 +34,8 @@
 		<!-- spring  创建类，在这里吗？ -->
 		<property name="annotatedClasses">
 			<list>
-				<value>entity.User</value>
-				<value>entity.Artist</value>
+				<value>com.art.entity.User</value>
+				<value>com.art.entity.Artist</value>
 			</list>
 		</property>
 		

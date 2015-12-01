@@ -1,6 +1,7 @@
 package com.art.backstageServiceImp;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -20,9 +21,9 @@ public class ManageUserServiceImp implements ManageUserService
 	private UserDao userDao;
 	
 	@Override
-	public ArrayList<User> getAllUser() 
+	public List<User> getAllUser() 
 	{
-		ArrayList<User> user_list = userDao.getAllUser();
+		List<User> user_list = userDao.getAllUser();
 		return user_list;
 	}
 	

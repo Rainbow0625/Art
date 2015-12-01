@@ -1,6 +1,7 @@
 package com.art.exhibitServiceImp;
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -17,8 +18,8 @@ public class ArtistExhibitServiceImp implements ArtistExhibitService
 	private ArtistDao artistDao;
 	
 	@Override
-	public ArrayList<Artist> getAllUser() {
-		ArrayList<Artist> artist_list = artistDao.getAllArtist();
+	public List<Artist> getAllArtist() {
+		List<Artist> artist_list = artistDao.getAllArtist();
 		return artist_list;
 	}
 

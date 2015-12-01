@@ -18,7 +18,7 @@ import com.art.entity.User;
 
 @Service
 @RequestMapping("/User")
-public class SignUpService {
+public class SignupService {
 	
 	@Resource
 	private UserDao userDao;
@@ -39,7 +39,7 @@ public class SignUpService {
 		try {			
 			birthday = sf.parse(str);
 		} catch (ParseException e) {
-			System.out.println("输入日期类型不符合规范");
+			System.out.println("输入日期类型不符合规�?");
 			return new ModelAndView("redirect:/user/add.html");
 		}//还需要增加对邮箱电话等的正则表达式的判断
 		

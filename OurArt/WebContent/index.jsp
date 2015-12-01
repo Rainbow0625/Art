@@ -8,7 +8,10 @@
   <body>
     <h1>首页</h1>
   
-    <a href="user/add.html">注册</a>
+  	<a href="artistList">拍卖品列表</a>
+  	<a href="artistList">定制品列表</a>
+  	<a href="artistList">艺术成品列表（商城）</a>
+    <a href="artistList">艺术家列表</a>
     
     
   </body>

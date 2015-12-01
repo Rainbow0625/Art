@@ -1,6 +1,7 @@
 package com.art.dao;
 
-import java.util.ArrayList;
+import java.util.List;
+
 import com.art.entity.User;
 
 public interface UserDao 
@@ -9,7 +10,7 @@ public interface UserDao
 	
 	public void addUser(User user);
 	
-	public ArrayList<User> getAllUser();
+	public List<User> getAllUser();
 	
 	public User getUserByRealName(String realName);
 	

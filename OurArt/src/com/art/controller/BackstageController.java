@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,8 @@ import com.art.backstageService.ManageUserService;
 import com.art.dao.UserDao;
 import com.art.entity.User;
 
+@Controller
+@RequestMapping(value = "/backstage")
 public class BackstageController 
 {
 	@Resource
