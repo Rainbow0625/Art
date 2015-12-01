@@ -1,5 +1,5 @@
-#Mon Nov 30 20:14:08 CST 2015
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/jsp/artistList.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/product.jsp=UTF-8
 encoding//src/com/art/controller/BackstageController.java=UTF-8
 encoding//src/com/art/controller/UserPersonalController.java=UTF-8

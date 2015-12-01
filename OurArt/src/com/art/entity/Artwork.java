@@ -35,6 +35,18 @@ public class Artwork
 	
 	@Column(name="artworkInformation")
 	private String artworkInformation;
+	
+	@Column(name="images",nullable=false)
+	private  String images;
+	
+	public String getImages() 
+   	{
+           return this.images;
+   	}  
+    public void setImages(String images) 
+	{
+    	this.images = images;
+	}
 
 	public int getartworkId() {
 		return artworkId;
