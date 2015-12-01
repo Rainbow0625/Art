@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.art.dao.UserDao;
 import com.art.entity.User;
+import com.art.personalService.SignupService;
 
 
 @Controller
@@ -22,7 +23,7 @@ import com.art.entity.User;
 public class UserPersonalController 
 {
 	@Resource
-	private UserDao userDao;
+	private SignupService signupService;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView saveUser1(HttpServletRequest request,ModelMap model)
@@ -53,7 +54,9 @@ public class UserPersonalController
 		user.setEmail(email);
 		user.setBirthday(birthday);
 		
-		userDao.addUser(user);
+
+		signupService.addUser1(user);
+
 		return new ModelAndView("redirect:/user.html");//此处的跳转页面待修改
 	}
 }
