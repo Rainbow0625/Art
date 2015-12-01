@@ -3,9 +3,12 @@ package com.art.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.art.dao.UserDao;
 import com.art.entity.User;
+import com.art.personalService.LoginService;
 import com.art.personalService.SignupService;
 
 
@@ -24,7 +28,8 @@ public class UserPersonalController
 {
 	@Resource
 	private SignupService signupService;
-	
+	private LoginService loginService;
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView saveUser1(HttpServletRequest request,ModelMap model)
 	{
@@ -44,7 +49,7 @@ public class UserPersonalController
 			System.out.println("输入日期类型不符合规范");
 			return new ModelAndView("redirect:/user/add.html");
 		}//还需要增加对邮箱电话等的正则表达式的判断
-		
+
 		User user = new User();
 		user.setRealName(realName);
 		user.setNickName(nickName);
@@ -53,10 +58,54 @@ public class UserPersonalController
 		user.setTel(tel);
 		user.setEmail(email);
 		user.setBirthday(birthday);
-		
+
 
 		signupService.addUser(user);
 
 		return new ModelAndView("redirect:/user.html");//此处的跳转页面待修改
+	}
+
+	@RequestMapping(value = "/loginValidate", method = RequestMethod.POST)
+	public ModelAndView loginValidate(HttpServletRequest request, HttpServletResponse response) throws Exception
+	{
+
+		String username=request.getParameter("nickName");
+		String password=request.getParameter("password");
+		String message=null;
+
+		if(username==null||password==null||username.trim().equals("")||password.trim().equals(""))
+		{
+			message=" 用户名或者密码为空";
+			Map<String,String> model=new HashMap<String,String>();
+			model.put("msg", message);
+			return new ModelAndView(getErrorPage(),model);
+		}
+		if(!loginService.exisitUser(username)){
+			message=username+"不存在";
+			Map<String,String> model=new HashMap<String,String>();
+			model.put("msg", message);
+			return new ModelAndView(getErrorPage(),model);
+		}
+		if(!loginService.confirmPassword(username,password)){
+			message=username+"密码不正确";
+			Map<String,String> model=new HashMap<String,String>();
+			model.put("msg", message);
+			return new ModelAndView(getErrorPage(),model);
+		}
+
+		else
+		{
+			Map<String, String> model=new HashMap<String,String>();
+			model.put("username",username);
+			return new ModelAndView(getSuccessPage(),model);
+		}
+	}
+	private String getSuccessPage() {
+		return "redirect:/success.html";
+	}
+
+
+	private String getErrorPage() {
+		return "redirect:/error.html";
 	}
 }
