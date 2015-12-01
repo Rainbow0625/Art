@@ -18,6 +18,7 @@ import com.art.dao.ArtistDao;
 import com.art.dao.ProductDao;
 import com.art.entity.Artwork;
 import com.art.exhibitService.ArtistExhibitService;
+import com.art.exhibitService.ProductExhibitService;
 
 @Controller
 @RequestMapping(value = "/exhibit")
@@ -25,52 +26,17 @@ public class ExhibitController {
 	
 	@Resource
 	private ArtistExhibitService artistExhibitService;
-	private ProductDao productDao;  //Èï¾ý£¬Õâ¸ö²»¶Ô £¬Ó¦¸Ãµ÷ÓÃµÄÊÇservice£¬¶øÇÒÏÂÃæµÄ·½ÃæÃûÄãÒª¸ÄÒ»ÏÂ
-	
-	/* ²úÆ·µÄcontroller */
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView saveProduct1(HttpServletRequest request,
-			ModelMap model){
-		int productId =  Integer.valueOf(request.getParameter("artworkId"));
-		String productName = request.getParameter("artworkName");
-		String productKind = request.getParameter("artworkKind");
-		int productPrice =  Integer.valueOf(request.getParameter("artworkPrice"));
-		int productType =  Integer.valueOf(request.getParameter("productType"));
-		String productInformation = request.getParameter("artworkInformation");
-		int artistsId =  Integer.valueOf(request.getParameter("artistsId"));
-	
-		Artwork product = new Artwork();
-		product.setartistsId(artistsId);
-		product.setartworkPrice(productPrice);
-		product.setartworkkind(productKind);
-		product.setartworkInformation(productInformation);
-		product.setartworkName(productName);
-		productDao.save(product);
-		return new ModelAndView("redirect:/product.html");
-	}
+	private ProductExhibitService productExhibitService;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ó¦ï¿½Ãµï¿½ï¿½Ãµï¿½ï¿½ï¿½serviceï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½Ò»ï¿½ï¿½
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView listAllProduct(){
+	public ModelAndView listAllProduct()
+	{
 		Map<String,Object> model = new HashMap<String,Object>();
-		model.put("product_list", productDao.getAllProduct());
+		model.put("product_list", productExhibitService.getAllProduct());
 		return new ModelAndView("productList",model);
 	}
 	
-	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public ModelAndView addProduct(@ModelAttribute("product") Artwork product,
-			BindingResult result){
-		return new ModelAndView("addproduct");
-	}
-	
-	
-	@RequestMapping(value="/del",method=RequestMethod.GET)
-	public ModelAndView delProduct(@ModelAttribute("product") Artwork product){
-		productDao.deleteById(product.getartworkId());		
-		return new ModelAndView("redirect:/product.html");
-	}
-	
-	
-	/* ÒÕÊõ¼ÒµÄcontroller */
+	/* ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½controller */
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listAllArtist()
 	{

@@ -1,5 +1,11 @@
 package com.art.exhibitService;
 
-public interface ProductExhibitService {
+import java.util.List;
 
+import com.art.entity.Artwork;
+
+
+
+public interface ProductExhibitService {
+	public List<Artwork> getAllProduct();
 }
