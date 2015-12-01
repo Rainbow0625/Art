@@ -36,6 +36,7 @@
 			<list>
 				<value>com.art.entity.User</value>
 				<value>com.art.entity.Artist</value>
+				<value>com.art.entity.Artwork</value>
 			</list>
 		</property>
 		

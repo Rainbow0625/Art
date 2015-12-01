@@ -55,7 +55,7 @@ public class UserPersonalController
 		user.setBirthday(birthday);
 		
 
-		signupService.addUser1(user);
+		signupService.addUser(user);
 
 		return new ModelAndView("redirect:/user.html");//此处的跳转页面待修改
 	}
