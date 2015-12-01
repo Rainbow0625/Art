@@ -94,7 +94,7 @@ h6{font-family:Open Sans, sans-serif; font-weight:600; }
         <div class="sp-column ">
           <ul>
             <li><a class="btn btn-primary btn-submit-item hidden-sm hidden-xs" href="/login">Start Selling</a></li>
-            <li><a class="btn btn-success btn-login hidden-sm hidden-xs" href="/login">Login</a></li>
+            <li><a class="btn btn-success btn-login hidden-sm hidden-xs" href="/user/save">Login</a></li>
             <li><a class="btn btn-link btn-login visible-sm visible-xs" href="/login"><i class="fa fa-user"></i></a></li>
             <li><a class="btn btn-default btn-registration hidden-sm hidden-xs" href="/login?view=registration">Create an Account</a></li>
             <li><a class="btn btn-link btn-login visible-sm visible-xs" id="offcanvas-toggler" href="#"><i class="fa fa-bars"></i></a></li>
