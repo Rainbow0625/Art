@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name="artwork")
 public class Artwork 
@@ -20,7 +19,7 @@ public class Artwork
 	
 	@Column(name="artworkName",nullable=false)
 	private String artworkName;
-	//artworkType设置成int型，1是成品2是订制品3是拍卖品
+	//artworkType璁剧疆鎴恑nt鍨嬶紝1鏄垚鍝�2鏄鍒跺搧3鏄媿鍗栧搧
 	@Column(name="artworkType",nullable=false)
 	private int artworkType;
 	

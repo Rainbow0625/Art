@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity
@@ -40,7 +39,6 @@ public class User
 	private String email;
 	
 	@Column(name="password",nullable=false)
-	@NotEmpty(message="密码不能为空！")
 	private String password;
 	
 	public int getId() 

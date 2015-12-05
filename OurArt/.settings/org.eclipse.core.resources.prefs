@@ -3,3 +3,5 @@ encoding//WebContent/WEB-INF/jsp/artistList.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/product.jsp=UTF-8
 encoding//src/com/art/controller/BackstageController.java=UTF-8
 encoding//src/com/art/controller/UserPersonalController.java=UTF-8
+encoding//src/com/art/entity/Artwork.java=UTF-8
+encoding//src/com/art/entity/User.java=UTF-8
