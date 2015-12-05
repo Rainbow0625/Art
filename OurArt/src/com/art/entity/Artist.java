@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Table(name="artist")
 public class Artist extends User
 {
+	private static final long serialVersionUID = 1L;
 	
 	@Column(name="artistType",nullable=false)
 	@Enumerated(EnumType.STRING)
@@ -21,6 +22,8 @@ public class Artist extends User
 	@Column(name="password",nullable=false)
 	private String introduction;
 	
+	public Artist(){}
+	//public Artist(){}
 	public ARTISTTYPE getArtistType() 
    	{
            return this.artistType;

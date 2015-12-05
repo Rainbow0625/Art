@@ -13,8 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="user")
-public class User 
+public class User implements java.io.Serializable
 {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY) //Increase auto
 	@Column(name="id",nullable=false)
@@ -23,7 +24,7 @@ public class User
 	@Column(name="realName",nullable=false)
 	private String realName;
 	
-	@Column(name="nickName",nullable=false)
+	@Column(name="nickName",unique=true)
 	private String nickName;
 	
 	@Column(name="gender",nullable=false)
@@ -35,11 +36,21 @@ public class User
 	@Column(name="tel",nullable=false)
 	private String tel;
 	
-	@Column(name="email",nullable=false)
+	@Column(name="email")
 	private String email;
 	
 	@Column(name="password",nullable=false)
 	private String password;
+	
+	public User(){}
+	public User(String realName,String gender,String tel,String password) //注册时填写的就这四项
+	{
+		setRealName(realName);
+		setGender(gender);
+		setTel(tel);
+		setPassword(password);
+	}
+
 	
 	public int getId() 
 	{

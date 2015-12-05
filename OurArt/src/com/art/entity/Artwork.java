@@ -1,6 +1,4 @@
 package com.art.entity;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +8,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="artwork")
-public class Artwork 
+public class Artwork implements java.io.Serializable
 {
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
 	@Column(name="artworkId",nullable=false)
@@ -19,17 +18,18 @@ public class Artwork
 	
 	@Column(name="artworkName",nullable=false)
 	private String artworkName;
-	//artworkType璁剧疆鎴恑nt鍨嬶紝1鏄垚鍝�2鏄鍒跺搧3鏄媿鍗栧搧
+	
+	//artworkType   1 product  2 customization 3 auction
 	@Column(name="artworkType",nullable=false)
 	private int artworkType;
 	
-	@Column(name="artworkKind",nullable=false)
+	@Column(name="artworkKind",nullable=false,updatable=false)
 	private String artworkKind;
 	
 	@Column(name="artworkPrice")
 	private int artworkPrice;
 	
-	@Column(name="artistsId")
+	@Column(name="artistsId",updatable=false)
 	private int artistsId;
 	
 	@Column(name="artworkInformation")
@@ -37,6 +37,8 @@ public class Artwork
 	
 	@Column(name="images",nullable=false)
 	private  String images;
+	
+	public Artwork(){}
 	
 	public String getImages() 
    	{
