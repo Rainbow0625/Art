@@ -26,7 +26,7 @@ public class ExhibitController {
 	
 	@Resource
 	private ArtistExhibitService artistExhibitService;
-	private ProductExhibitService productExhibitService;  //���������� ��Ӧ�õ��õ���service����������ķ�������Ҫ��һ��
+	private ProductExhibitService productExhibitService; 
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listAllProduct()
