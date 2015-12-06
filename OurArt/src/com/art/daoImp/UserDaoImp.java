@@ -15,13 +15,11 @@ import com.art.dao.UserDao;
 import com.art.entity.Artist;
 import com.art.entity.User;
 
-
-@Service
 @Repository("UserDao")
 @Transactional(propagation = Propagation.SUPPORTS)   //@Transactional : mean��
 public class UserDaoImp implements UserDao
 {
-	@Resource 
+	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 
 	public void setSessionFactory(SessionFactory sessionFactory) {
