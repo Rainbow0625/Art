@@ -1,18 +1,30 @@
 package com.art.entity;
 
 import java.util.Date;
-
+import javax.persistence.*;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 
 
 @Entity
-@Table(name="user")
+@DynamicInsert
+@DynamicUpdate
+@Table(name="userAndArtist")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)  
+@DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)  
+@DiscriminatorValue("user")
 public class User implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;

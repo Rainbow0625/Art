@@ -1,14 +1,20 @@
 package com.art.entity;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 
 @Entity
-@Table(name="artist")
-public class Artist extends User
+@DynamicInsert
+@DynamicUpdate
+@DiscriminatorValue("artist")
+public class Artist extends User 
 {
 	private static final long serialVersionUID = 1L;
 	
