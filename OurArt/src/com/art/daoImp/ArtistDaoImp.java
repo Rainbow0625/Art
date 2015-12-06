@@ -2,14 +2,20 @@ package com.art.daoImp;
 
 
 import java.util.List;
+
+import javax.annotation.Resource;
+
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+
 import com.art.dao.ArtistDao;
 import com.art.entity.Artist;
 
-
+@Repository("artistDao")
 public class ArtistDaoImp implements ArtistDao
 {
+	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
 	@Override

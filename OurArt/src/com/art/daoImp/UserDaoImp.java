@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,13 +16,16 @@ import com.art.dao.UserDao;
 import com.art.entity.User;
 
 
-@Service
-@Transactional(propagation = Propagation.SUPPORTS)   //@Transactional : mean��
+
+@Repository("userDao")
 public class UserDaoImp implements UserDao
 {
-	@Resource 
+	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 
 	@Override
