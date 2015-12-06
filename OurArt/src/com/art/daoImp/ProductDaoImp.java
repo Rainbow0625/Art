@@ -12,6 +12,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,10 +21,9 @@ import com.art.dao.ProductDao;
 import com.art.entity.Artwork;
 import com.art.entity.User;
 
-@Service
-@Transactional(propagation = Propagation.SUPPORTS)
+@Repository("productDao")
 public class ProductDaoImp implements ProductDao{
-	@Resource 
+	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
 	@Override
