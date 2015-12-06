@@ -1,20 +1,14 @@
 package com.art.entity;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-
+import javax.persistence.Table;
 
 @Entity
-@DynamicInsert
-@DynamicUpdate
-@DiscriminatorValue("artist")
-public class Artist extends User 
+@Table(name="artist")
+public class Artist extends User
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +19,7 @@ public class Artist extends User
 	@Column(name="photo",nullable=false)
 	private  String photo;
 	
-	@Column(name="password",nullable=false)
+	@Column(name="introduction",nullable=false)
 	private String introduction;
 	
 	public Artist(){}
@@ -55,11 +49,5 @@ public class Artist extends User
     public void setIntroduction(String introduction) 
 	{
     	this.introduction = introduction;
-	}
-	
-	
-	
-	
-		
-	
+	}	
 }

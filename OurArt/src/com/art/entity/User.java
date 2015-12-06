@@ -1,30 +1,18 @@
 package com.art.entity;
 
 import java.util.Date;
-import javax.persistence.*;
+
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 
 
 @Entity
-@DynamicInsert
-@DynamicUpdate
-@Table(name="userAndArtist")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)  
-@DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)  
-@DiscriminatorValue("user")
+@Table(name="user")
 public class User implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -33,32 +21,31 @@ public class User implements java.io.Serializable
 	@Column(name="id",nullable=false)
 	private int id;
 	
-	@Column(name="realName",nullable=false)
-	private String realName;
-	
-	@Column(name="nickName",unique=true)
+	@Column(name="nickName",nullable=true)
 	private String nickName;
 	
-	@Column(name="gender",nullable=false)
+	@Column(name="password",nullable=false)
+	private String password;	
+	
+	@Column(name="gender",nullable=true)
 	private String gender;
 	
-	@Column(name="birthday")
+	@Column(name="birthday",nullable=true)
 	private Date birthday;
 	
 	@Column(name="tel",nullable=false)
 	private String tel;
 	
-	@Column(name="email")
+	@Column(name="email",nullable=true)
 	private String email;
 	
-	@Column(name="password",nullable=false)
-	private String password;
+	@Column(name="userType",nullable=false)
+	private String userType;
+		
 	
 	public User(){}
-	public User(String realName,String gender,String tel,String password) //注册时填写的就这四项
+	public User(String tel,String password) //two parameters must be filled while registering
 	{
-		setRealName(realName);
-		setGender(gender);
 		setTel(tel);
 		setPassword(password);
 	}
@@ -73,25 +60,13 @@ public class User implements java.io.Serializable
         this.id = id;
     }
     
-    public String getRealName() 
-	{
-        return this.realName;
-    }
-    public void setRealName(String realName) 
-    {
-        this.realName = realName;
-    }
-    
-    public String getNickName() 
-	{
-        return this.nickName;
-    }
-    public void setNickName(String nickName) 
-    {
-        this.nickName = nickName;
-    }
-    
-    public String getGender() 
+    public String getNickName() {
+		return nickName;
+	}
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+	public String getGender() 
    	{
            return this.gender;
    	}  
@@ -136,4 +111,10 @@ public class User implements java.io.Serializable
     	this.birthday = birthday;
 	}
 
+    public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 }

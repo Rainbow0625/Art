@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,84 +29,42 @@ public class UserPersonalController
 {
 	@Resource
 	private SignupService signupService;
-	private LoginService loginService;
-
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ModelAndView saveUser1(HttpServletRequest request,ModelMap model)
-	{
-		//int id = 0;
-		String realName = request.getParameter("realName");
-		String nickName = request.getParameter("nickName");
-		String gender = request.getParameter("gender");
-		String password= request.getParameter("password");
-		String tel = request.getParameter("tel");
-		String email = request.getParameter("email");
-		String str = request.getParameter("birthday");
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-		Date birthday=null;
-		try {			
-			birthday = sf.parse(str);
-		} catch (ParseException e) {
-			System.out.println("输入日期类型不符合规范");
-			return new ModelAndView("redirect:/user/add.html");
-		}//还需要增加对邮箱电话等的正则表达式的判断
-
-		User user = new User();
-		user.setRealName(realName);
-		user.setNickName(nickName);
-		user.setGender(gender);
-		user.setPassword(password);
-		user.setTel(tel);
-		user.setEmail(email);
-		user.setBirthday(birthday);
-
-
-		signupService.addUser(user);
-
-		return new ModelAndView("redirect:/user.html");//此处的跳转页面待修改
+	//private LoginService loginService;
+	private User user;
+	
+	@RequestMapping("/lala")
+	public ModelAndView register(HttpServletRequest request,Model model){
+		return new ModelAndView("login");
 	}
-
-	@RequestMapping(value = "/loginValidate", method = RequestMethod.POST)
-	public ModelAndView loginValidate(HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-
-		String username=request.getParameter("nickName");
+	
+	@RequestMapping("/userRegister")
+	public ModelAndView userRegister(HttpServletRequest request,Model model){
+		String tel=request.getParameter("tel");
 		String password=request.getParameter("password");
-		String message=null;
-
-		if(username==null||password==null||username.trim().equals("")||password.trim().equals(""))
-		{
-			message=" 用户名或者密码为空";
-			Map<String,String> model=new HashMap<String,String>();
-			model.put("msg", message);
-			return new ModelAndView(getErrorPage(),model);
-		}
-		if(!loginService.exisitUser(username)){
-			message=username+"不存在";
-			Map<String,String> model=new HashMap<String,String>();
-			model.put("msg", message);
-			return new ModelAndView(getErrorPage(),model);
-		}
-		if(!loginService.confirmPassword(username,password)){
-			message=username+"密码不正确";
-			Map<String,String> model=new HashMap<String,String>();
-			model.put("msg", message);
-			return new ModelAndView(getErrorPage(),model);
-		}
-
-		else
-		{
-			Map<String, String> model=new HashMap<String,String>();
-			model.put("username",username);
-			return new ModelAndView(getSuccessPage(),model);
-		}
+		String comfirmPassword=request.getParameter("comfirmPassword");
+		if(!comfirmPassword.equals(password))System.out.println("password not valid!");
+		ModelAndView modelAndView=new ModelAndView("user");
+		user=signupService.userRegister(tel, password);
+		model.addAttribute("user", user);
+		request.getSession().setAttribute("user", user);
+		return modelAndView;
 	}
-	private String getSuccessPage() {
-		return "redirect:/success.html";
-	}
-
-
-	private String getErrorPage() {
-		return "redirect:/error.html";
+	
+	@RequestMapping ("/userLogin")
+	public ModelAndView userLogin(HttpServletRequest request)
+	{
+		String tel=request.getParameter("tel");
+		String password=request.getParameter("password");
+		User user=signupService.userLogin(tel, password);
+		ModelAndView modelAndView;
+		if(user==null)
+		{
+			modelAndView =new ModelAndView("invalidLogin");
+			return modelAndView;
+		}
+		else 
+			modelAndView =new ModelAndView(user.getUserType());
+		request.getSession().setAttribute("user", user);
+		return modelAndView;
 	}
 }

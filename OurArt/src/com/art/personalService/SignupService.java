@@ -4,5 +4,6 @@ import com.art.entity.User;
 
 public interface SignupService {
 
-	public void addUser(User user);
+	public User userRegister(String tel,String password);
+	public User userLogin(String tel,String password);
 }
