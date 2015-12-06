@@ -998,6 +998,7 @@ body.offcanvas .offcanvas-overlay {
   top: 0;
   opacity: 0;
   z-index: 99999;
+  background-color:#e83258;
 }
 .offcanvas-menu .offcanvas-inner {
   padding: 20px;
@@ -1006,9 +1007,11 @@ body.offcanvas .offcanvas-overlay {
   margin-top: 20px;
 }
 .offcanvas-menu .offcanvas-inner .sp-module .sp-module-title {
-  font-size: 16px;
+  font-size: 25px;
   line-height: 1;
-  text-transform: uppercase;
+}
+.offcanvas-menu .offcanvas-inner .sp-module h3{
+    color: #ffffff;
 }
 .offcanvas-menu .offcanvas-inner .sp-module ul > li {
   border: 0;
@@ -1152,7 +1155,7 @@ body.offcanvas .offcanvas-overlay {
   cursor: pointer;
 }
 .sp-module .product-categories >li ul >li >a:hover {
-  background: #119d55;
+  background: #e8394a;
   color: #fff;
 }
 .sp-module .product-categories >li ul >li.active>a {
@@ -1221,7 +1224,7 @@ body.offcanvas .offcanvas-overlay {
   }
 }
 a {
-  color: #119d55;
+  color: #e83258;
   -webkit-transition: color 400ms, background-color 400ms;
   -o-transition: color 400ms, background-color 400ms;
   transition: color 400ms, background-color 400ms;
@@ -1278,7 +1281,7 @@ img {
 }
 .btn-primary,
 .sppb-btn-primary {
-  background-color: #0072bc;
+  background-color: #e83258;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -1314,7 +1317,7 @@ img {
 }
 .btn-danger,
 .sppb-btn-danger {
-  background-color: #c9302c;
+  background-color: #979696;
 }
 .btn-danger:hover,
 .btn-danger:focus,
@@ -2218,8 +2221,7 @@ input[type="color"].control-facebook::before,
 }
 .sp-module .sp-module-title {
   margin: 0 0 20px;
-  font-size: 14px;
-  text-transform: uppercase;
+  font-size: 20px;
   line-height: 1;
 }
 .sp-module ul {
@@ -2316,7 +2318,7 @@ input[type="color"].control-facebook::before,
 }
 .form-links ul >li {
   display: inline-block;
-  margin: 0 5px;
+  margin: 0 35px;
 }
 .btn-register {
   margin-top: 30px;

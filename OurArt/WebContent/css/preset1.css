@@ -12,16 +12,16 @@
   color: #119d55;
 }
 .offcanvas-menu {
-  background: #119d55;
+  background: #ec3748;
 }
 .offcanvas-menu .offcanvas-inner .sp-module ul > li a {
   color: #fff;
 }
 .offcanvas-menu .offcanvas-inner .sp-module ul > li a:hover {
-  background: rgba(0,0,0,0.2);
+  background: #ec3748;
 }
 ul.social-icons >li a:hover {
-  color: #119d55;
+  color: #e83258;
 }
 .layout-boxed .body-innerwrapper {
   background: #e5e5e5;
