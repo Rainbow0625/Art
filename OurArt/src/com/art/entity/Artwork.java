@@ -40,18 +40,28 @@ public class Artwork implements java.io.Serializable
 	@Column(name="artworkInformation")
 	private String artworkInformation;
 	
-	@Column(name="images",nullable=false)
-	private  String images;
+	@Column(name="imagesURL",nullable=false)
+	private  String imagesURL;
 	
 	public Artwork(){}
-	
-	public String getImages() 
-   	{
-           return this.images;
-   	}  
-    public void setImages(String images) 
+	public Artwork(int artworkId,String artworkName,int artworkType,String artworkKind,int artworkPrice,int artistsId,String artworkInformation,String imagesURL)
 	{
-    	this.images = images;
+		setartworkId(artworkId);
+		setartworkName(artworkName);
+		setartworkType(artworkType);
+		setartworkKind(artworkKind);
+		setartworkPrice(artworkPrice);
+		setartistsId(artistsId);
+		setartworkInformation(artworkInformation);
+		setimagesURL(imagesURL);
+	}
+	public String getimagesURL() 
+   	{
+           return this.imagesURL;
+   	}  
+    public void setimagesURL(String imagesURL) 
+	{
+    	this.imagesURL = imagesURL;
 	}
 
 	public int getartworkId() {
@@ -82,7 +92,7 @@ public class Artwork implements java.io.Serializable
 		return artworkKind;
 	}
 
-	public void setartworkkind(String artworkKind) {
+	public void setartworkKind(String artworkKind) {
 		this.artworkKind = artworkKind;
 	}
 
