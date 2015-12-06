@@ -21,7 +21,7 @@
 .admin-main-r-wrapper{ width: 834px; position: relative; float: right; padding:30px 5px 0;}
 
 .admin-main-r-wrapper h3{font-size: 20px; color: #2B6AB8; margin-bottom: 10px;}
-.admin-main-r-wrapper input[type="submit"],.admin-main-r-wrapper input[type="button"]{ background-color: #2B6AB8; color: #fff; border-radius: 3px; padding: 0 10px; border: none; height: 22px; line-height: 22px; font-size: 14px; cursor: pointer; }
+.admin-main-r-wrapper input[type="submit"],.admin-main-r-wrapper input[type="button"]{ background-color: #2B6AB8; color: #fff; border-radius: 3px; padding: 0 10px; border: none; height: 22px; line-height: 22px; font-size: 12px; cursor: pointer; }
 
 
 .admin-nav{ width: 500px; float: left;}

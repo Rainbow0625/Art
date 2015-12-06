@@ -48,7 +48,8 @@ src: url('../font/Microsoft_YaHei.eot?#iefix') format('embedded-opentype'),
 #loginentry p{ display: inline-block; }
 
 .header{ height: 115px;}
-.header .logo{float: left; background: url(../images/logo.png) no-repeat 0 0px ; background-size: 100% 100%; width: 370px; height: 85px; text-indent: -9999px; margin-top: 0;}
+.header .logo{float: left; background: url(../images/logo.png) no-repeat 0 0px ; background-size: 100% 100%; width: 370px; height: 85px; text-indent: -9999px; margin-top: 10px;}
+.logo{margin-top:10px;}
 .header .slogan{ float: right; text-indent: -9999px;  background: url(../images/slogan-index.jpg) no-repeat; width: 290px; height: 115px; }
 
 .main-nav-bg{ width: 100%; z-index: -1; position: absolute;  background: #2b6ab8; top: 165px; height: 44px; border-top: 1px solid #0b53ad; border-bottom: 1px solid #0b53ad; }
@@ -139,13 +140,16 @@ src: url('../font/Microsoft_YaHei.eot?#iefix') format('embedded-opentype'),
 .show{ display: block; }
 /*----==============table==============----*/
 table{
-  font-size:14px;
+  font-size:12px;
 }
 table th{
-  font-size:20px;
+  font-size:15px;
+  font-weight:normal;
   color:#2B6AB8;
 }
 table td{
   padding:15px;
 }
-
+.userlist-btn{
+font-size:12px;
+}

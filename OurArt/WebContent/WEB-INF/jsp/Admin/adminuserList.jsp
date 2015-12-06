@@ -13,11 +13,10 @@
 		<style>
 		 h3{
 		 font-weight:bold;}
-		 th{
-		 font-weight:normal;
-		 }
+		
 		 .lc_prolist input[type="button"]{
-		 margin-left:4px;}
+		 margin-left:4px;
+		 }
 	
 		</style>		
 	</head>
@@ -46,6 +45,7 @@
 		<li class="navhasul"><a href="#" class="firstnav">用户管理</a>
 			<ul class="secondnav">
 				<li><a href="#">用户列表</a></li>
+				<li><a href="#">艺术家列表</a></li>
 				<li><a href="#">增加用户</a></li>
 			</ul>
 		</li>
@@ -90,20 +90,25 @@
 			   	 	<table class="lc_prolist">
 			   	 		<thead>
 			   	 		<tr>
-			   
 			   	 			<th>用户名</th>
+							<th>性别</th>
 			   	 			<th>手机</th>
-			   	 		    <th>姓名</th>			   	 	
+							<th>生日</th>
+							<th>邮箱</th>
+			   	 		    <th>用户类型</th>			   	 	
 			   	 		    <th>操作</th>
 							<th>认证</th>
 			   	 		</tr>
 			   	 		</thead>
 			   	 		<volist name="users" id="vo" key="k">
 			   	 			<tr>
-			   	 				<td>{$vo.username}</td>
+			   	 				<td>{$v.name}</td>
 			   	 				<td>{$vo.phone}</td>		   	 			
-			   	 				<td>{$vo.real_name}</td>
-			   	 				<td><input type="button" value="重置密码"/><input type="button" value="删除用户"/></a>
+			   	 				<td>{$vo.rn}</td>
+								<td>{$v.name}</td>
+			   	 				<td>{$vo.phone}</td>		   	 			
+			   	 				<td>{$vo.rn}</td>
+			   	 				<td><input type="button" value="重置密码"/><input type="button" value="删除用户" /></a>
 			   	 			   	<td><input type="button" value="艺术家认证"/></a>
 			   	 			</tr>
 			   	 		</volist>
@@ -126,4 +131,5 @@
 	})
 </script>
 	</body>		
+	
 
