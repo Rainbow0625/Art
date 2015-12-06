@@ -12,7 +12,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,16 +20,12 @@ import com.art.dao.ProductDao;
 import com.art.entity.Artwork;
 import com.art.entity.User;
 
-
-@Repository("productDao")
-
+@Service
+@Transactional(propagation = Propagation.SUPPORTS)
 public class ProductDaoImp implements ProductDao{
-	
+	@Resource 
 	private SessionFactory sessionFactory;
-	@Resource(name="sessionFactory")
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+	
 	@Override
 	public void deleteById(int productid) {
 		// TODO Auto-generated method stub

@@ -13,18 +13,14 @@
 	<bean id="secureService" class="cn.edu.xmu.artworkauction.service.impl.SecureServiceImpl">
 		<property name="userDAO" ref="userDAO"></property>
 	</bean>
-	<bean id="productDao" class="com.art.daoImp.ProductDaoImp">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-		<bean name="tempSecureService" parent="transactionProxy">
-		<property name="target" ref="BidService"></property>
-	</bean>	
 	-->
 	<!--  why  -->
 	
 	
-	
-
-	
+	<!--
+	<bean name="tempSecureService" parent="transactionProxy">
+		<property name="target" ref="BidService"></property>
+	</bean>	
+	 此处为代理 -->
 	
 </beans>

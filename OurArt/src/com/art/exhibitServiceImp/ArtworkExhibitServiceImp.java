@@ -13,7 +13,7 @@ import com.art.exhibitService.ProductExhibitService;
 
 
 
-@Service("ProductExhibitService")
+@Service
 public class ArtworkExhibitServiceImp implements ProductExhibitService{
 	@Resource
 	private ProductDao productDao;
