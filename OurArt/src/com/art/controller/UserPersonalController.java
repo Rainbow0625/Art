@@ -24,7 +24,7 @@ import com.art.personalService.SignupService;
 
 
 @Controller
-@RequestMapping("/User")
+
 public class UserPersonalController 
 {
 	@Resource

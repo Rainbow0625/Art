@@ -18,6 +18,10 @@ public class ArtistDaoImp implements ArtistDao
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 	@Override
 	public List<Artist> getAllArtist() 
 	{

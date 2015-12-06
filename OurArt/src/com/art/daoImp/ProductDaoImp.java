@@ -26,6 +26,10 @@ public class ProductDaoImp implements ProductDao{
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+	
 	@Override
 	public void deleteById(int productid) {
 		// TODO Auto-generated method stub

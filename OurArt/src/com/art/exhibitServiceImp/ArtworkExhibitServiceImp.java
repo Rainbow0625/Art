@@ -18,6 +18,10 @@ public class ArtworkExhibitServiceImp implements ProductExhibitService{
 	@Resource
 	private ProductDao productDao;
 	
+	public void setProductDao(ProductDao productDao){
+		this.productDao=productDao;
+	}
+	
 	@Override
 	public List<Artwork> getAllProduct() {
 		List<Artwork> product_list = productDao.getAllProduct();

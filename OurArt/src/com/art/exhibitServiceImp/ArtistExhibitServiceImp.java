@@ -17,6 +17,10 @@ public class ArtistExhibitServiceImp implements ArtistExhibitService
 	@Resource
 	private ArtistDao artistDao;
 	
+	public void setArtistDao(ArtistDao artistDao){
+		this.artistDao=artistDao;
+	}
+	
 	@Override
 	public List<Artist> getAllArtist() {
 		List<Artist> artist_list = artistDao.getAllArtist();
