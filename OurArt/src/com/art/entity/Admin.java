@@ -1,5 +1,5 @@
 package com.art.entity;
 
-public class PurchaseCar {
+public class Admin {
 
 }
