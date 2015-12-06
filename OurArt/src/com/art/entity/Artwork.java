@@ -1,18 +1,27 @@
 package com.art.entity;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+/**
+ * @author Administrator
+ *
+ */
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name="artwork")
+
+@Table(name="tb_artwork")
 public class Artwork implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -27,7 +36,7 @@ public class Artwork implements java.io.Serializable
 	//artworkType   1 product  2 customization 3 auction
 	@Column(name="artworkType",nullable=false)
 	private int artworkType;
-	
+	//zhonglei
 	@Column(name="artworkKind",nullable=false,updatable=false)
 	private String artworkKind;
 	
@@ -40,18 +49,29 @@ public class Artwork implements java.io.Serializable
 	@Column(name="artworkInformation")
 	private String artworkInformation;
 	
-	@Column(name="images",nullable=false)
-	private  String images;
+	@Column(name="imagesURL",nullable=false)
+	private  String imagesURL;
 	
 	public Artwork(){}
 	
-	public String getImages() 
-   	{
-           return this.images;
-   	}  
-    public void setImages(String images) 
+	public Artwork(int artworkId,String artworkName,int artworkType,String artworkKind,int artworkPrice,int artistsId,String artworkInformation,String imagesURL)
 	{
-    	this.images = images;
+		setartworkId(artworkId);
+		setartworkName(artworkName);
+		setartworkType(artworkType);
+		setartworkKind(artworkKind);
+		setartworkPrice(artworkPrice);
+		setartistsId(artistsId);
+		setartworkInformation(artworkInformation);
+		setImagesURL(imagesURL);
+	}
+	public String getImagesURL() 
+   	{
+           return this.imagesURL;
+   	}  
+    public void setImagesURL(String imagesURL) 
+	{
+    	this.imagesURL = imagesURL;
 	}
 
 	public int getartworkId() {
@@ -82,7 +102,7 @@ public class Artwork implements java.io.Serializable
 		return artworkKind;
 	}
 
-	public void setartworkkind(String artworkKind) {
+	public void setartworkKind(String artworkKind) {
 		this.artworkKind = artworkKind;
 	}
 
