@@ -48,7 +48,7 @@ public class ExhibitController {
 		return new ModelAndView("product",model);
 	}
 	
-	/* �����ҵ�controller */
+
 	@RequestMapping(value = "/getAllArtistList")
 	public ModelAndView listAllArtist(HttpServletRequest request)
 	{
