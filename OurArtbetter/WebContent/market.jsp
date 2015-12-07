@@ -8,17 +8,17 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Joomla! - Open Source Content Management" />
 <title>drinkArt</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="../../css/animate.min.css" type="text/css" />
-<link rel="stylesheet" href="../../css/sppagebuilder.css" type="text/css" />
-<link rel="stylesheet" href="../../css/magnific-popup.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/animate.min.css" type="text/css" />
+<link rel="stylesheet" href="css/sppagebuilder.css" type="text/css" />
+<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,700,600&amp;latin" type="text/css" />
-<link rel="stylesheet" href="../../css/font-awesome.min.css" type="text/css" />
-<link rel="stylesheet" href="../../css/shapebootstrap.icon.css" type="text/css" />
-<link rel="stylesheet" href="../../css/template.css" type="text/css" />
-<link rel="stylesheet" href="../../css/preset1.css" type="text/css" class="preset" />
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="css/shapebootstrap.icon.css" type="text/css" />
+<link rel="stylesheet" href="css/template.css" type="text/css" />
+<link rel="stylesheet" href="css/preset1.css" type="text/css" class="preset" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css">
 <!-- skin -->
 <link rel="stylesheet" href="skin/default.css">
 <style type="text/css">

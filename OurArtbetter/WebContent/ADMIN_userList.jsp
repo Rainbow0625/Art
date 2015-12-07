@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel = "Shortcut Icon" href="../../../images/favicon.ico">
+		<link rel = "Shortcut Icon" href="images/favicon.ico">
 		<title>DrinkArt</title>
-		<link rel="stylesheet" type="text/css" href="../../../css/admin_style.css" />
-		<link rel="stylesheet" type="text/css" href="../../../css/admin.css" />
+		<link rel="stylesheet" type="text/css" href="css/admin_style.css" />
+		<link rel="stylesheet" type="text/css" href="css/admin.css" />
 
-		<script type="text/javascript" src="../../../js/jquery.1.10.2.js"></script>      
+		<script type="text/javascript" src="js/jquery.1.10.2.js"></script>      
 		<style>
 		 h3{
 		 font-weight:bold;}
@@ -76,10 +75,11 @@
 		</li>
 	</ul>
 </div>
+
   <div class="admin-main-r-wrapper">
 			   	
 			   	 <div class="search" style="float:right;">			   	 	
-                    <form action="__APP__/UserManage/search" method="post">                	
+                    <form action="#" method="post">                	
                     	<input type="text" name="searchname" placeholder="请输入您要搜索的姓名" />
                     	<input type="submit"  value="搜索" />
                     </form>
@@ -100,7 +100,7 @@
 							<th>认证</th>
 			   	 		</tr>
 			   	 		</thead>
-			   	 		<volist name="users" id="vo" key="k">
+			   	 		<volist name="users" id="">
 			   	 			<tr>
 			   	 				<td>{$v.name}</td>
 			   	 				<td>{$vo.phone}</td>		   	 			
@@ -109,8 +109,7 @@
 			   	 				<td>{$vo.phone}</td>		   	 			
 			   	 				<td>{$vo.rn}</td>
 			   	 				<td><input type="button" value="重置密码"/><input type="button" value="删除用户" /></a>
-			   	 			   	<td><input type="button" value="艺术家认证"/></a>
-			   	 			</tr>
+		   	 			   	<td><input type="button" value="艺术家认证"/></a>			   	 			</tr>
 			   	 		</volist>
 			   	 		<tr>
 			   	 			<td colspan=10>{$page}</td>
@@ -131,5 +130,3 @@
 	})
 </script>
 	</body>		
-	
-
