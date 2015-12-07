@@ -1,12 +1,19 @@
 package com.art.entity;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
+@DynamicInsert
+@DynamicUpdate
+@DiscriminatorValue("artist")
 @Table(name="artist")
 public class Artist extends User
 {

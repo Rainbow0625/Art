@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -21,15 +22,26 @@ import com.art.exhibitService.ArtistExhibitService;
 import com.art.exhibitService.ProductExhibitService;
 
 @Controller
-@RequestMapping(value = "/exhibit")
+@RequestMapping(value = "/ExhibitController")
 public class ExhibitController {
 	
 	@Resource
 	private ArtistExhibitService artistExhibitService;
 	private ProductExhibitService productExhibitService; 
 	
+	@Autowired
+	public ExhibitController(ArtistExhibitService artistExhibitService,ProductExhibitService productExhibitService)
+	{
+		this.artistExhibitService=artistExhibitService;
+		this.productExhibitService=productExhibitService;
+		
+	}
+	
+	
+	
+	
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView listAllProduct()
+	public ModelAndView listAllProduct(HttpServletRequest request)
 	{
 		Map<String,Object> model = new HashMap<String,Object>();
 		model.put("product_list", productExhibitService.getAllProduct());
@@ -37,8 +49,8 @@ public class ExhibitController {
 	}
 	
 	/* �����ҵ�controller */
-	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView listAllArtist()
+	@RequestMapping(value = "/getAllArtistList")
+	public ModelAndView listAllArtist(HttpServletRequest request)
 	{
 		Map<String,Object> model = new HashMap<String,Object>();
 		model.put("artist_list", artistExhibitService.getAllArtist());
