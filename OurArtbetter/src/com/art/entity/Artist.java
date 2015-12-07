@@ -10,14 +10,14 @@ import javax.persistence.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-///@Entity
-//@DynamicInsert
-//@DynamicUpdate
-//@DiscriminatorValue("artist")
-//@Table(name="artist")
+@Entity
+@DynamicInsert
+@DynamicUpdate
+@DiscriminatorValue("artist")
+
 public class Artist extends User
 {
-	/*private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	@Column(name="artistType",nullable=false)
 	@Enumerated(EnumType.STRING)
@@ -25,6 +25,9 @@ public class Artist extends User
 	
 	@Column(name="photo",nullable=false)
 	private  String photo;
+	
+	@Column(name="realName",nullable=true)
+	private String realName;
 	
 	@Column(name="introduction",nullable=false)
 	private String introduction;
@@ -56,5 +59,5 @@ public class Artist extends User
     public void setIntroduction(String introduction) 
 	{
     	this.introduction = introduction;
-	}	*/
+	}	
 }

@@ -22,7 +22,6 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicUpdate
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)  
-@DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)  
 @DiscriminatorValue("user")
 @Table(name="user")
 public class User implements java.io.Serializable
