@@ -40,7 +40,7 @@ public class ProductDaoImp implements ProductDao{
 	public List<Artwork> getAllProduct() {
 		// TODO Auto-generated method stub
 		//String hql = "from User";
-		Query query = this.sessionFactory.getCurrentSession().createQuery("select *from Artwork where artworkType=1");
+		Query query = this.sessionFactory.getCurrentSession().createQuery("select * from Artwork where artworkType=1");
 		@SuppressWarnings("unchecked")
 		List<Artwork> product_list = query.list();
 		return product_list;

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,12 +22,12 @@
 	<c:if test="${! empty artist_list}">
 	<c:forEach var="artist" items="${artist_list}">
 		<tr>
-			<td><c:out value="${artist.id}"/></td>
-			<td><c:out value="${artist.realName}"/></td>
-			<td><c:out value="${artist.nickName}"/></td>
-			<td><c:out value="${artist.photo}"/></td>
-			<td><c:out value="${artist.gender}"/></td>
-			<td><c:out value="${artist.birthday}"/></td>
+			<td>${artist.id}</td>
+			<td>${artist.realName}</td>
+			<td>${artist.nickName}</td>
+			<td>${artist.photo}</td>
+			<td>${artist.gender}</td>
+			<td>${artist.birthday}</td>
 			<td><c:out value="${artist.tel}"/></td>
 			<td><c:out value="${artist.email}"/></td>
 			<td><c:out value="${artist.artistType}"/></td>
@@ -35,6 +35,7 @@
 		</tr>
 	</c:forEach>
 	</c:if>
+	
 </table>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class ArtistDaoImp implements ArtistDao
 	@Override
 	public List<Artist> getAllArtist() 
 	{
-		String hql = "from Artist";
+		String hql = "from User";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Artist> artist_list = query.list();

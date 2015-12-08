@@ -26,7 +26,7 @@ public class Artist extends User
 	@Column(name="photo",nullable=false)
 	private  String photo;
 	
-	@Column(name="realName",nullable=true)
+	@Column(name="realName",nullable=false)
 	private String realName;
 	
 	@Column(name="introduction",nullable=false)
@@ -34,6 +34,16 @@ public class Artist extends User
 	
 	public Artist(){}
 	//public Artist(){}
+	
+	public String getRealName() 
+   	{
+           return this.realName;
+   	}  
+    public void setRealName(String realName) 
+	{
+    	this.realName = realName;
+	}
+	
 	public ARTISTTYPE getArtistType() 
    	{
            return this.artistType;
