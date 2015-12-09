@@ -23,34 +23,47 @@ import com.art.dao.ProductDao;
 import com.art.entity.Artist;
 import com.art.entity.Artwork;
 import com.art.exhibitService.ArtistExhibitService;
+import com.art.exhibitService.AuctionExhibitService;
 import com.art.exhibitService.ProductExhibitService;
 
 @Controller
-@RequestMapping(value = "/ExhibitController")
+
 public class ExhibitController {
 	
 	@Resource
 	private ArtistExhibitService artistExhibitService;
 	private ProductExhibitService productExhibitService; 
-	
+	private AuctionExhibitService auctionExhibitService; 
 	@Autowired
-	public ExhibitController(ArtistExhibitService artistExhibitService,ProductExhibitService productExhibitService)
+	public ExhibitController(ArtistExhibitService artistExhibitService,ProductExhibitService productExhibitService,AuctionExhibitService auctionExhibitService)
 	{
 		this.artistExhibitService=artistExhibitService;
 		this.productExhibitService=productExhibitService;
+		this.auctionExhibitService=auctionExhibitService;
 	}
 	
 	
 	
-	/*
-	@RequestMapping
+	
+	@RequestMapping(value = "/productList")
+	public ModelAndView listAllAuction(HttpServletRequest request)
+	{
+		List<Artwork> auctionList = auctionExhibitService.getAllAuction();
+		
+		ModelAndView modelAndView=new ModelAndView("productList","auction_list",auctionList);
+		return modelAndView;
+
+	}
+
+	@RequestMapping("/")
 	public ModelAndView listAllProduct(HttpServletRequest request)
 	{
-		Map<String,Object> model = new HashMap<String,Object>();
-		model.put("product_list", productExhibitService.getAllProduct());
-		return new ModelAndView("product",model);
+		List<Artwork> productList = productExhibitService.getAllProduct();
+		ModelAndView modelAndView=new ModelAndView("index","product_list",productList);
+		
+		return modelAndView;
+
 	}
-	*/
 	
 
 	@RequestMapping(value = "/artistList")

@@ -83,7 +83,11 @@ section.section {
 <meta content="https://shapebootstrap.net/og-image.png" property="og:image" />
 <meta content="All items are open source for any use, personal or commercial websites. Search and download what you like and get started!" property="og:description" />
 <meta name="google-site-verification" content="vRFNCRSLlIhragUEpvDvFs0gK3kHISFZqPF6VNe-a8k" />
- 
+ function ajaxTest(){  
+        $.ajax({         
+        url:"OurArtbutter/index",  
+        });  
+    }  
 </head>
 <body class="site com-sppagebuilder view-page no-layout no-task itemid-101 en-gb ltr  sticky-header layout-fluid">
 <div class="body-innerwrapper">

@@ -1,9 +1,4 @@
 package com.art.daoImp;
-
-/**
- * @author Administrator
- *
- */
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,51 +12,51 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.art.dao.ProductDao;
+import com.art.dao.AuctionDao;
 import com.art.entity.Artwork;
-import com.art.entity.User;
 
-@Repository("productDao")
-public class ProductDaoImp implements ProductDao{
+@Repository("AuctionDao")
+public class AuctionDaoImp implements AuctionDao{
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
-	public void deleteById(int productid) {
+	public void deleteAuctionById(int AuctionId) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public List<Artwork> getAllProduct() {
+	public List<Artwork> getAllAuction() {
 		// TODO Auto-generated method stub
-		String hql = "from Artwork where artworkType=1";
-		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-		@SuppressWarnings("unchecked")
-		List<Artwork> product_list = query.list();
-		return product_list;
+				String hql = "from Artwork where artworkType=3";
+				Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+				@SuppressWarnings("unchecked")
+				List<Artwork> auction_list = query.list();
+				return auction_list;// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void save(Artwork product) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void update(Artwork product) {
+	public void saveAuction(Artwork Auction) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Artwork getProductByname(String Productname) {
+	public void updateAuction(Artwork Auction) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Artwork getAuctionByname(String AuctionName) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 
 }
