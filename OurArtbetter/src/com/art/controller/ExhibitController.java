@@ -19,51 +19,53 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.art.dao.ArtistDao;
-import com.art.dao.ProductDao;
 import com.art.entity.Artist;
 import com.art.entity.Artwork;
 import com.art.exhibitService.ArtistExhibitService;
-import com.art.exhibitService.AuctionExhibitService;
-import com.art.exhibitService.ProductExhibitService;
-
+import com.art.exhibitService.ArtworkExhibitService;
 @Controller
 
 public class ExhibitController {
 	
 	@Resource
 	private ArtistExhibitService artistExhibitService;
-	private ProductExhibitService productExhibitService; 
-	private AuctionExhibitService auctionExhibitService; 
+	private ArtworkExhibitService artworkExhibitService; 
 	@Autowired
-	public ExhibitController(ArtistExhibitService artistExhibitService,ProductExhibitService productExhibitService,AuctionExhibitService auctionExhibitService)
+	public ExhibitController(ArtistExhibitService artistExhibitService,ArtworkExhibitService artworkExhibitService)
 	{
 		this.artistExhibitService=artistExhibitService;
-		this.productExhibitService=productExhibitService;
-		this.auctionExhibitService=auctionExhibitService;
+		this.artworkExhibitService=artworkExhibitService;
 	}
 	
 	
 	
 	
 	@RequestMapping(value = "/productList")
-	public ModelAndView listAllAuction(HttpServletRequest request)
+	public ModelAndView listAllArtwork(HttpServletRequest request)
 	{
-		List<Artwork> auctionList = auctionExhibitService.getAllAuction();
-		
-		ModelAndView modelAndView=new ModelAndView("productList","auction_list",auctionList);
+		List<Artwork> artworkList = artworkExhibitService.getAllArtwork();
+		ModelAndView modelAndView=new ModelAndView("productList","artwork_list",artworkList);
 		return modelAndView;
 
 	}
 
 	@RequestMapping("/")
-	public ModelAndView listAllProduct(HttpServletRequest request)
+	public String listAllIndex(ModelMap model)
 	{
-		List<Artwork> productList = productExhibitService.getAllProduct();
-		ModelAndView modelAndView=new ModelAndView("index","product_list",productList);
-		
-		return modelAndView;
+		List<Artist> artistList = artistExhibitService.getAllArtist();
+		List<Artwork> productList = artworkExhibitService.getAllProduct();
+		List<Artwork> auctionList = artworkExhibitService.getAllAuction();
+		List<Artwork> custommadeList = artworkExhibitService.getAllCustommade();
+		model.addAttribute("product_list", productList);
+		model.addAttribute("auction_list", auctionList);
+		model.addAttribute("custommade_list", custommadeList);
+		model.addAttribute("artist_list", artistList);
+		System.out.println("11111111111111");
+		 return "index";
 
 	}
+	
+	
 	
 
 	@RequestMapping(value = "/artistList")

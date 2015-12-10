@@ -82,12 +82,7 @@ section.section {
 <meta content="Premium & Free Bootstrap Templates" property="og:title" />
 <meta content="https://shapebootstrap.net/og-image.png" property="og:image" />
 <meta content="All items are open source for any use, personal or commercial websites. Search and download what you like and get started!" property="og:description" />
-<meta name="google-site-verification" content="vRFNCRSLlIhragUEpvDvFs0gK3kHISFZqPF6VNe-a8k" />
- function ajaxTest(){  
-        $.ajax({         
-        url:"OurArtbutter/index",  
-        });  
-    }  
+<meta name="google-site-verification" content="vRFNCRSLlIhragUEpvDvFs0gK3kHISFZqPF6VNe-a8k" /> 
 </head>
 <body class="site com-sppagebuilder view-page no-layout no-task itemid-101 en-gb ltr  sticky-header layout-fluid">
 <div class="body-innerwrapper">
@@ -234,42 +229,20 @@ section.section {
                     </div>
                   </div>
                 </div>
+                <c:forEach var="artist" items="${artist_list}">
                 <div class="row align-center mar-bot40">
                   <div class="col-md-3">
                     <div class="team-member">
-                      <figure class="member-photo"><img src="images/member1.jpg" alt="" /></figure>
+                      <figure class="member-photo"><img src="${artist.photo}" alt="" /></figure>
                       <div class="team-detail">
-                        <h4>白玉明</h4>
-                        <span>40年代知名书法家s</span> </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="team-member">
-                      <figure class="member-photo"><img src="images/member2.jpg" alt="" /></figure>
-                      <div class="team-detail">
-                        <h4>陈选国</h4>
-                        <span>60年代篆刻家</span> </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="team-member">
-                      <figure class="member-photo"><img src="images/member3.jpg" alt="" /></figure>
-                      <div class="team-detail">
-                        <h4>李自白</h4>
-                        <span>当代油画家</span> </div>
-                    </div>
-                  </div>
-                  <div class="col-md-3">
-                    <div class="team-member">
-                      <figure class="member-photo"><img src="images/member4.jpg" alt="" /></figure>
-                      <div class="team-detail">
-                        <h4>刘鹤鸣</h4>
-                        <span>当代知名插画家</span> </div>
+                        <h4>${artist.realName}</h4>
+                        <span>${artist.introduction}</span> </div>
                     </div>
                   </div>
                 </div>
-              </div>
+                </c:forEach>
             </section>
+              
             <!-- /about -->
             <!-- 艺术品商城 -->
             <section id="section-works" class="section appear clearfix" style="background-color:#ffffff;">
@@ -318,60 +291,16 @@ section.section {
                     </div>
                   </div>
                 </div>
+                <c:forEach var="custommade" items="${custommade_list}">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="row">
                       <div class="portfolio-items isotopeWrapper clearfix" id="3">
-                        <article class="col-md-4 isotopeItem webdesign">
-                          <div class="portfolio-item"> <img src="images/beauty.jpg" alt="找不到图片" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/art1.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
                         <article class="col-md-4 isotopeItem photography">
-                          <div class="portfolio-item"> <img src="images/beauty2.png" alt="" />
+                          <div class="portfolio-item"> <img src="${custommade.imagesURL}" alt="" />
                             <div class="portfolio-desc align-center">
                               <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img3.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                          <div class="portfolio-item"> <img src="images/art.jpg" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img2.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                          <div class="portfolio-item"> <img src="images/beauty.jpg" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img3.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem print">
-                          <div class="portfolio-item"> <img src="images/beauty2.png" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img4.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                          <div class="portfolio-item"> <img src="images/art2.jpg" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
+                                <h5><a href="#">${custommade.artworkName}</a></h5>
                                 <a href="img/portfolio/img5.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
                             </div>
                           </div>
@@ -380,6 +309,7 @@ section.section {
                     </div>
                   </div>
                 </div>
+                </c:forEach>
               </div>
             </section>
             <!--end-->
@@ -394,60 +324,16 @@ section.section {
                     </div>
                   </div>
                 </div>
+                <c:forEach var="auction" items="${auction_list}">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="row">
                       <div class="portfolio-items isotopeWrapper clearfix" id="3">
-                        <article class="col-md-4 isotopeItem photography">
-                          <div class="portfolio-item"> <img src="images/art2.jpg" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img5.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem webdesign">
-                          <div class="portfolio-item"> <img src="images/art.jpg" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img6.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                          <div class="portfolio-item"> <img src="images/art2.jpg" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img3.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
                         <article class="col-md-4 isotopeItem print">
-                          <div class="portfolio-item"> <img src="images/art2.jpg" alt="" />
+                          <div class="portfolio-item"> <img src="${auction.imagesURL}" alt="" />
                             <div class="portfolio-desc align-center">
                               <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img7.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem photography">
-                          <div class="portfolio-item"> <img src="images/art.jpg" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/img8.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
-                            </div>
-                          </div>
-                        </article>
-                        <article class="col-md-4 isotopeItem print">
-                          <div class="portfolio-item"> <img src="images/art2.jpg" alt="" />
-                            <div class="portfolio-desc align-center">
-                              <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
+                                <h5><a href="#">${auction.artworkName}</a></h5>
                                 <a href="img/portfolio/img9.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
                             </div>
                           </div>
@@ -456,6 +342,7 @@ section.section {
                     </div>
                   </div>
                 </div>
+                </c:forEach>
               </div>
             </section>
           <!--end 拍卖-->

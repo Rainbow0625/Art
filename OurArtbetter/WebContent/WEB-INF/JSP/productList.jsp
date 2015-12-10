@@ -181,8 +181,8 @@ font-size:20px;
    <a href="#"><img src="images/shoppingcart.png" alt="找不到图片" style="width:100%;height:100%;"></a>
 </div>
             <!-- 艺术品商城 -->
-             <c:if test="${! empty product_list}">
-                    	<c:forEach var="product" items="${product_list}">
+             <c:if test="${! empty artwork_list}">
+                    	<c:forEach var="artwork" items="${artwork_list}">
             <section id="section-works" class="section appear clearfix" style="background-color:#e5e5e5;">
               <div class="container">
                 <div class="row mar-bot40">
@@ -197,17 +197,17 @@ font-size:20px;
                        
 						<article class="col-md-4 isotopeItem webdesign" style="border:1px solid #000000;border-radius:10px;background-color:#ffffff;padding-left:0;padding-right:0;">
                           <div class="portfolio-item" style="width:100%;height:85%;"> 
-						   <img src="${product.imagesURL}" alt="" style="border:1px solid #d6d3d3;border-radius:10px;"/>
+						   <img src="${artwork.imagesURL}" alt="" style="border:1px solid #d6d3d3;border-radius:10px;"/>
                             <div class="portfolio-desc align-center">
                               <div class="folio-info">
                                 <h5><a href="#">Portfolio name</a></h5>
                                 <a href="img/portfolio/art1.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
                             </div>
                           </div>
-						  <div class="${product.imagesURL}"style="">
-						    <p style="color:#000000;">${product.artworkName}</p>
-							<p>作者 :<span>${product.artworkName}</span></p>
-							<p>价格 :<span>￥</span><span class="shop-itemprice">${product.artworkPrice}</span></p>
+						  <div class="${artwork.imagesURL}"style="">
+						    <p style="color:#000000;">${artwork.artworkName}</p>
+							<p>作者 :<span>${artwork.artworkName}</span></p>
+							<p>价格 :<span>￥</span><span class="shop-itemprice">${artwork.artworkPrice}</span></p>
 						  </div>
                         </article>
 					   

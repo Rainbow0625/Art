@@ -1,9 +1,0 @@
-package com.art.exhibitService;
-
-import java.util.List;
-
-import com.art.entity.Artwork;
-
-public interface AuctionExhibitService {
-	public List<Artwork> getAllAuction();
-}
