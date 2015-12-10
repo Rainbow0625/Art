@@ -1,36 +1,45 @@
 package com.art.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
+import java.util.Date;
+
 import javax.persistence.*;
+
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-
-//@Entity
-//@DynamicInsert
-//@DynamicUpdate
-//@Table(name="order")
-//@Inheritance(strategy=InheritanceType.JOINED) 
-public class Order 
-{
-	/*private int id;  //auto +1 
+/*
+@Entity
+@DynamicInsert
+@DynamicUpdate
+@Table(name="order")
+@Inheritance(strategy=InheritanceType.JOINED) */
+public class Order implements java.io.Serializable
+{/*
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy =GenerationType.IDENTITY) //Increase auto
+	@Column(name="orderId",nullable=false)
+	private int orderId;  //auto +1 
+	
+	//1为成品、2为订制品、3为拍卖品
+	@Column(name="orderType",nullable=false)
+	private int orderType;
 	
 	private int artworkId;
 	private int artistId;
 	private int userId;
 	private double total;  // total money need to pay
-	
+	private Date OrderDate;
 
 	public Order(){}
 	
 	
-	public int getId() 
+	public int getorderId() 
 	{
-        return this.id;
+        return this.orderId;
     }
-    public void setId(int id) 
+    public void setorderId(int orderId) 
     {
-        this.id = id;
+        this.orderId = orderId;
     }
     
     public int getArtworkId() 
@@ -70,6 +79,6 @@ public class Order
     {
         this.total = total;
     }
-	*/	
+	*/
 	
 }

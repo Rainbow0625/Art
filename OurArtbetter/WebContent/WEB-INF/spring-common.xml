@@ -27,7 +27,7 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>com.art.entity</value>
+				<value>com.art</value>
 			</list>
 		</property>
 	</bean>
