@@ -10,13 +10,7 @@
 <meta name="generator" content="Joomla! - Open Source Content Management" />
 <title>drinkArt</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="css/animate.min.css" type="text/css" />
-<link rel="stylesheet" href="css/sppagebuilder.css" type="text/css" />
-<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-<link rel="stylesheet" href="css/shapebootstrap.icon.css" type="text/css" />
 <link rel="stylesheet" href="css/template.css" type="text/css" />
-<link rel="stylesheet" href="css/preset1.css" type="text/css" class="preset" />
 <link rel="stylesheet" href="css/style.css">
 
 <link rel="stylesheet" href="css/artstyle.css">
@@ -62,20 +56,46 @@ section.section {
     /* margin: 0; */
     padding: 80px 0 20px 0;
 }
+.sppb-addon-container{
+    height:4%;
+    line-height: 4%;
+    font-family: "黑体";
+    color: #0000000;
+    padding-top: 0%;
+}
+.sppb-addon-container i {
+    display: inline-block;
+    width:10px;
+    height: 10px;
+    background: #e56565;
+    vertical-align: bottom;
+    margin-right: 3%;
+}
+
+.sppb-addon-container a{
+color:#000000;
+}
+@media screen  and (min-width:619px){/*pc*/
+.sppb-addon-container{
+    font-size: 16px;/*字体大小适配*/
+    padding-bottom: 12%;
+}
+}
+@media screen  and (max-width:619px){/*手机*/
+.sppb-addon-container{
+    font-size: 3.8vw;/*字体大小适配*/
+	    padding-bottom: 3%;
+}
+}
+.col-md-6,.col-lg-4{
+padding-left:0px;
+padding-right:0px;}
   </style>
 <script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/jquery-noconflict.js" type="text/javascript"></script>
-<script src="js/jquery-migrate.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/favorites.js" type="text/javascript"></script>
-<script src="js/sppagebuilder.js" type="text/javascript"></script>
-<script src="js/jquery.magnific-popup.min.js" type="text/javascript"></script>
-<script src="js/cart.js" type="text/javascript"></script>
-<script src="js/jquery.sticky.js" type="text/javascript"></script>
-<script src="js/matchheight.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
-   <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-   <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <meta content="Premium & Free Bootstrap Templates & Themes" property="og:title" />
 <meta content="website" property="og:type"/>
 <meta content="https://shapebootstrap.net/" property="og:url" />
@@ -183,35 +203,36 @@ section.section {
                   </div>
                 </div>
                 <div class="sppb-row">
-                  <div class="sppb-col-sm-4">
+                  <div class="sppb-col-sm-4 col-lg-4 col-md-6">
                     <div class="sppb-addon-container" style="width:100%;height:30%;">
-                    
-						<span><img class="sppb-img-responsive" src="images/block.png" style="float:left;" alt=""></span>
-						 <a href="#">
-                          <h3 class="sppb-feature-box-title" style="float:left;color:#000000;font-size:16px;line-height:16px;">周小平雕塑作品趣味浓厚艺博会上吸引观众</h3>
-                          </a>
-					
+                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
                       </div>
                     </div>
                   </div>
-                  <div class="sppb-col-sm-4" style="left:0%;">
-                    <div class="sppb-addon-container" style="width:100%;height:5%;">
-                       <div class="sppb-addon-content"><span><img class="sppb-img-responsive" src="images/block.png" style="float:left;" alt=""></span><a href="#">
-                          <h3 class="sppb-feature-box-title" style="float:left;color:#000000;font-size:16px;line-height:16px;">逄小威摄影个展《电影的面孔》在京举办</h3>
-                          </a>
-
+                  <div class="sppb-col-sm-4 col-lg-4 col-md-6" style="left:0%;">
+                     <div class="sppb-addon-container" style="width:100%;height:30%;">
+                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
                       </div>
-                    </div>
                   </div>
-                  <div class="sppb-col-sm-4">
-                    <div class="sppb-addon-container" style="width:100%;height:5%;">
-
-                       <div class="sppb-addon-content"><span><img class="sppb-img-responsive" src="images/block.png" style="float:left;" alt=""></span><a href="#">
-                          <h3 class="sppb-feature-box-title" style="float:left;color:#000000;font-size:16px;line-height:16px;">西马德·比洛多画廊雕塑作品受观众青睐</h3>
-                          </a>
-                 
+                  <div class="sppb-col-sm-4 col-lg-4 col-md-6">
+                   <div class="sppb-addon-container" style="width:100%;height:30%;">
+                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
                       </div>
-                    </div>
+                  </div>
+				   <div class="sppb-col-sm-4 col-lg-4 col-md-6">
+                   <div class="sppb-addon-container" style="width:100%;height:30%;">
+                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
+                      </div>
+                  </div>
+				  <div class="sppb-col-sm-4 col-lg-4 col-md-6">
+                   <div class="sppb-addon-container" style="width:100%;height:30%;">
+                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
+                      </div>
+                  </div>
+				  <div class="sppb-col-sm-4 col-lg-4 col-md-6">
+                   <div class="sppb-addon-container" style="width:100%;height:30%;">
+                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -333,6 +354,7 @@ section.section {
                           <div class="portfolio-item"> <img src="${auction.imagesURL}" alt="" />
                             <div class="portfolio-desc align-center">
                               <div class="folio-info">
+
                                 <h5><a href="#">${auction.artworkName}</a></h5>
                                 <a href="img/portfolio/img9.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
                             </div>
