@@ -5,12 +5,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel = "Shortcut Icon" href="images/favicon.ico">
+		<link rel = "Shortcut Icon" href="../../images/favicon.ico">
 		<title>DrinkArt</title>
-		<link rel="stylesheet" type="text/css" href="css/admin_style.css" />
-		<link rel="stylesheet" type="text/css" href="css/admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/admin.css" />
 
-		<script type="text/javascript" src="js/jquery.1.10.2.js"></script>      
+		<script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>      
 		<style>
 		 h3{
 		 font-weight:bold;}

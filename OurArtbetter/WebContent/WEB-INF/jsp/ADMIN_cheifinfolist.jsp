@@ -6,15 +6,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel = "Shortcut Icon" href="images/favicon.ico">
 <title>DrinkArt</title>
-<link rel="stylesheet" type="text/css" href="css/admin_style.css" />
-<link rel="stylesheet" type="text/css" href="css/admin.css" />
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css" />
-<script type="text/javascript" src="js/jquery.1.10.2.js"></script>
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
+<link rel="stylesheet" type="text/css" href="../../css/admin.css" />
+<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="../../css/bootstrap-datetimepicker.min.css" type="text/css" />
+<script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>
+<script src="../../js/jquery.min.js" type="text/javascript"></script>
+<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../js/bootstrap-datetimepicker.js" type="text/javascript"></script>
 <style>
 	   body{
 		font-family:"Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei", sans-serif;
