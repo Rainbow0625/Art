@@ -35,8 +35,8 @@ public class Editor implements java.io.Serializable
 	@Column(name="password",nullable=false)
 	private String password;
 	
-	@OneToMany(targetEntity=Infomation.class,cascade = {CascadeType.ALL},mappedBy="editer",fetch=FetchType.EAGER)
-	private List<Infomation> infomationListToEdit;
+	@OneToMany(targetEntity=Information.class,cascade = {CascadeType.ALL},mappedBy="editer",fetch=FetchType.EAGER)
+	private List<Information> informationListToEdit;
 	
 	public Editor() {}
 	
@@ -66,11 +66,11 @@ public class Editor implements java.io.Serializable
 	    	this.password = password;
 		}
 	
-	public List<Infomation> getInfomation() {
-		return infomationListToEdit;
+	public List<Information> getInformation() {
+		return informationListToEdit;
 	}
-	public void setInfomation(List<Infomation> infomationListToEdit) {
-		this.infomationListToEdit=infomationListToEdit;
+	public void setInformation(List<Information> informationListToEdit) {
+		this.informationListToEdit=informationListToEdit;
 	}
 	
 	

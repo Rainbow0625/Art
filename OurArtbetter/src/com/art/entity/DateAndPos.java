@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
@@ -32,9 +31,9 @@ public class DateAndPos implements java.io.Serializable
 	@JoinColumn(name="infoColumnId")//加入一列作为外键列
 	private InfoColumn infoColumn;
 	
-	@ManyToOne( targetEntity=Infomation.class,cascade={CascadeType.ALL},fetch=FetchType.EAGER ,optional=false)
-	@JoinColumn(name="infomationId")//加入一列作为外键列
-	private Infomation infomation;
+	@ManyToOne( targetEntity=Information.class,cascade={CascadeType.ALL},fetch=FetchType.EAGER ,optional=false)
+	@JoinColumn(name="informationId")//加入一列作为外键列
+	private Information information;
 	
 	public int getId() 
 	{
@@ -59,13 +58,13 @@ public class DateAndPos implements java.io.Serializable
 		this.infoColumn = infoColumn;
 	}
 	
-	public Infomation getInfomation ()
+	public Information getInfomation ()
 	{
-		return infomation;
+		return information;
 	}
-	public void setInfomation ( Infomation infomation )
+	public void setInformation ( Information information )
 	{
-		this.infomation = infomation;
+		this.information = information;
 	}
 	
 	

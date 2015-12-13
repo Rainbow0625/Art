@@ -33,8 +33,8 @@ public class ChiefEditor implements java.io.Serializable
 	@Column(name="password",nullable=false)
 	private String password;
 	
-	@OneToMany(targetEntity=Infomation.class,cascade = {CascadeType.ALL},mappedBy="chiefEditor",fetch=FetchType.EAGER)
-	private List<Infomation> infomationListToCheck;
+	@OneToMany(targetEntity=Information.class,cascade = {CascadeType.ALL},mappedBy="chiefEditor",fetch=FetchType.EAGER)
+	private List<Information> informationListToCheck;
 	
 	public ChiefEditor() {}
 	
@@ -63,10 +63,10 @@ public class ChiefEditor implements java.io.Serializable
 	    	this.password = password;
 		}
 	
-	public List<Infomation> getInfomation() {
-		return infomationListToCheck;
+	public List<Information> getInformation() {
+		return informationListToCheck;
 	}
-	public void setInfomation(List<Infomation> infomationListToCheck) {
-		this.infomationListToCheck=infomationListToCheck;
+	public void setInformation(List<Information> informationListToCheck) {
+		this.informationListToCheck=informationListToCheck;
 	}
 }

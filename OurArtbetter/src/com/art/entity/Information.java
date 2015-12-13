@@ -20,8 +20,8 @@ import org.hibernate.annotations.DynamicUpdate;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name="Infomation")
-public class Infomation implements java.io.Serializable
+@Table(name="Information")
+public class Information implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 
@@ -44,12 +44,12 @@ public class Infomation implements java.io.Serializable
 	@Column(name="content",nullable=false)
 	private String content;
 	
-	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="infomation",fetch=FetchType.EAGER)
+	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="information",fetch=FetchType.EAGER)
 	private List<DateAndPos> dateAndPosS; 
 	
 	
 	
-	public Infomation(){}
+	public Information(){}
 	
 	public int getId() 
 	{

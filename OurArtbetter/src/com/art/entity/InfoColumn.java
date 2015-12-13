@@ -27,11 +27,11 @@ public class InfoColumn implements java.io.Serializable
 	@Column(name="id",nullable=false)
 	private int id;
 	
-	@Column(name="content",nullable=false)
-	private String content;
+	@Column(name="contentType",nullable=false)
+	private String contentType;
 	
 	@Column(name="price",nullable=false)
-	private String price; //everyday price
+	private double price; //everyday price
 	
 	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="infoColumn",fetch=FetchType.EAGER)
 	private List<DateAndPos> dateAndPosS; 
@@ -48,20 +48,20 @@ public class InfoColumn implements java.io.Serializable
         this.id = id;
     }
     
-    public String getContent() 
+    public String getContentType() 
 	{
-        return this.content;
+        return this.contentType;
     }
-    public void setContent(String content) 
+    public void setContentType(String content) 
     {
-        this.content = content;
+        this.contentType = content;
     }
     
-    public String getPrice()
+    public double getPrice()
 	{
         return this.price;
     }
-    public void setPrice(String price) 
+    public void setPrice(double price) 
     {
         this.price = price;
     }

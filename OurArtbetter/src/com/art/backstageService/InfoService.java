@@ -1,5 +1,8 @@
 package com.art.backstageService;
 
-public interface InfoService {
+import com.art.entity.Information;
 
+public interface InfoService 
+{
+	public Information getTodayInfoByColumnId(int infoColumnId);
 }
