@@ -1,14 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel = "Shortcut Icon" href="../../../images/favicon.ico">
+		<link rel = "Shortcut Icon" href="../../images/favicon.ico">
 		<title>DrinkArt</title>
-		<link rel="stylesheet" type="text/css" href="css/admin_style.css" />
-		<link rel="stylesheet" type="text/css" href="css/admin.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/admin.css" />
 
-		<script type="text/javascript" src="js/jquery.1.10.2.js"></script>      
+		<script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>      
 		<style>
 		 h3{
 		 font-weight:bold;}
@@ -75,47 +77,40 @@
 		</li>
 	</ul>
 </div>
+
   <div class="admin-main-r-wrapper">
 			   	
 			   	 <div class="search" style="float:right;">			   	 	
-                    <form action="__APP__/UserManage/search" method="post">                	
-                    	<input type="text" name="searchname" placeholder="请输入您要搜索的姓名" />
+                    <form action="#" method="post">                	
+                    	<input type="text" name="searchname" placeholder="请输入您要搜索的资讯" />
                     	<input type="submit"  value="搜索" />
                     </form>
 			   	 </div>
-			   	  <h3>艺术家列表</h3>
+			   	  <h3>资讯管理</h3>
 			   	 
 			   	 <div class="operate-table clear">
 			   	 	<table class="lc_prolist">
 			   	 		<thead>
 			   	 		<tr>
-			   	 			<th>用户名</th>
-							<th>性别</th>
-			   	 			<th>手机</th>
-							<th>生日</th>
-							<th>邮箱</th>
-			   	 		    <th>艺术家类型</th>	
-							<th>艺术家介绍</th>
-							<th>照片</th>			   	 	
-			   	 		    <th>操作</th>
-							<th>认证</th>
+			   	 			<th>资讯标题</th>
+							<th>上次修改时间</th>
+			   	 			<th>审核情况</th>
+							<!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
+							<th>操作</th>
 			   	 		</tr>
 			   	 		</thead>
-			   	 		<volist name="users" id="vo" key="k">
+			   	 		<volist name="users" id="">
 			   	 			<tr>
 			   	 				<td>{$v.name}</td>
-			   	 				<td>{$vo.phone}</td>		   	 			
-			   	 				<td>{$vo.rn}</td>
-								<td>{$v.name}</td>
-			   	 				<td>{$vo.phone}</td>		   	 			
-			   	 				<td>{$vo.rn}</td>
-								<td>{$vo.rn}</td>
-								<td><input type="button" value="修改照片" /></td>
-			   	 				<td><div style="height:20px;width:140px;"><input type="button" value="重置密码"/>
-								<input type="button" value="删除"/></div></td>
-			   	 			   	<td><input type="button" value="取消艺术家认证"/></td>
-			   	 			</tr>
+			   	 				<td>{$vo.time}</td>		   	 			
+			   	 				<td>{$vo.la}</td>
+			   	 				<td><input type="button" value="修改"/><input type="button" value="删除" /></td>
+		   	 			   </tr>
 			   	 		</volist>
+						<tr>
+						  <!--跳到单个资讯的页面-->
+						  <td colspan=10><a href="#" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建资讯</span></a></td>
+						</tr>
 			   	 		<tr>
 			   	 			<td colspan=10>{$page}</td>
 			   	 		</tr>
