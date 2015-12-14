@@ -2041,10 +2041,11 @@ input[type="color"].control-facebook::before,
   margin: 0;
 }
 #sp-header #sp-account >div >ul >li {
-  display: inline-block;
-  float: left;
-  position: relative;
-}
+      display: inline-block;
+    float: right;
+    margin-right: -24%;
+    position: relative;
+	}
 #sp-header #sp-account >div >ul >li:hover > ul {
   display: block;
 }

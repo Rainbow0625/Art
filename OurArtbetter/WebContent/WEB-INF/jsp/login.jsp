@@ -9,22 +9,18 @@
 <!--<base href="https://shapebootstrap.net/" />-->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Joomla! - Open Source Content Management" />
-<title>Art</title>
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="css/animate.min.css" type="text/css" />
-<link rel="stylesheet" href="css/sppagebuilder.css" type="text/css" />
-<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:regular,700,600&amp;latin" type="text/css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-<link rel="stylesheet" href="css/shapebootstrap.icon.css" type="text/css" />
-<link rel="stylesheet" href="css/template.css" type="text/css" />
-<link rel="stylesheet" href="css/preset1.css" type="text/css" class="preset" />
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/artstyle.css">
+<title>DrinkArt</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="../../css/template.css" type="text/css" />
+<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="../../css/artstyle.css">
 <!-- skin -->
 <link rel="stylesheet" href="skin/default.css">
 <style type="text/css">
-body{font-family:Open Sans,sans-serif;font-weight:normal;}
+body {
+    line-height: 24px;
+    background-color: #e5e5e5;
+font-family:Open Sans,sans-serif;font-weight:normal;}
 h1{font-family:Open Sans,sans-serif;font-weight:700;}
 h2{font-family:Open Sans,sans-serif;font-weight:600;}
 h3{font-family:Open Sans,sans-serif;font-weight:normal;}
@@ -37,17 +33,9 @@ h6{font-family:Open Sans,sans-serif;font-weight:600;}
     background-color: #e83258;
 }
 </style>
-<script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/jquery-noconflict.js" type="text/javascript"></script>
-<script src="js/jquery-migrate.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/favorites.js" type="text/javascript"></script>
-<script src="js/sppagebuilder.js" type="text/javascript"></script>
-<script src="js/jquery.magnific-popup.min.js" type="text/javascript"></script>
-<script src="js/cart.js" type="text/javascript"></script>
-<script src="js/jquery.sticky.js" type="text/javascript"></script>
-<script src="js/matchheight.js" type="text/javascript"></script>
-<script src="js/main.js" type="text/javascript"></script>
+<script src="../../js/jquery.min.js" type="text/javascript"></script>
+<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../js/main.js" type="text/javascript"></script>
 <meta content="Premium & Free Bootstrap Templates & Themes" property="og:title" />
 <meta content="website" property="og:type"/>
 <meta content="https://shapebootstrap.net/" property="og:url" />
@@ -154,16 +142,17 @@ window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpReque
                     <div class="form-group">
                       <button type="submit" class="btn btn-success btn-lg btn-block btn-login"> 登录 </button>
                     </div>
-                   <div class="form-links form-group" style="margin-top:30%;">
-                     <ul>
-                    <li style="margin-left:0%;"> <a href="#"> 忘记密码?</a> </li>
-                    <li style="margin-left:23%;"> <a href="#"> 注册</a> </li>
-                     </ul>
-                  </div>
+                  
                   </form>
 				  
                 </div>
-               
+                <div class="form-links form-group" style="margin-top:30%;">
+                     <ul>
+                    <li  style="float:left;margin-left:0%;"> <a href="#"> 忘记密码?</a> </li>
+					 <li style="float:left;margin-left:1%;"> <a href="#"> 注册</a> </li>
+					  <li style="float:left;margin-left:1%;"> <a href="#" > 管理员登录?</a> </li>
+                     </ul>
+                  </div>
               </div>
             </div>
           </div>
