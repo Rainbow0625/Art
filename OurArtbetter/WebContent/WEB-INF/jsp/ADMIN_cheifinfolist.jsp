@@ -8,6 +8,9 @@
 <title>DrinkArt</title>
 <link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
 <link rel="stylesheet" type="text/css" href="../../css/admin.css" />
+<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="../../css/bootstrap-datetimepicker.min.css" type="text/css" />
 <script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>
 <script src="../../js/jquery.min.js" type="text/javascript"></script>
 <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
@@ -98,6 +101,9 @@
       <table class="lc_prolist">
         <thead>
           <tr>
+            <th>资讯位置</th>
+            <th colspan=2>上传时间</th>
+            <th>价格</th>
             <th>资讯标题</th>
             <th>资讯内容</th>
 			<th>编辑</th>
@@ -108,16 +114,26 @@
         </thead>
         <volist name="users" id="">
           <tr>
+            <td><select>
+                <option value ="">1</option>
+                <option value ="">2</option>
+                <option value="">3</option>
+                <option value="">4</option>
+              </select></td>
+            <td colspan=2><div class="input-append date" id="datetimepicker" data-date="" data-date-format="dd-mm-yyyy 00:00:00">
+                <input class="span2" size="16" type="text" value="2015-12-07 00:00:00">
+                <!--这个需要后台设置value为当前时间-->
+                <span class="add-on"><i class="icon-th"></i></span> </div></td>
+            <td><span>￥</span>{$vo.la}</td>
 			<td>资讯标题</td>
-            <td><input type="button" value="查看资讯内容" /></td>
+            <td><input type="button" value="查看资讯内容"/></td>
 			<td>吴虹</td>
             <td><input type="button" value="审核通过"/>
 			  </td>
-			  <td><input type="button" value="设置上传时间位置"/>
+			  <td><input type="button" value="上传资讯"/>
 			  </td>
           </tr>
         </volist>
-		
         <tr>
           <td colspan=10>{$page}</td>
         </tr>
@@ -125,6 +141,24 @@
     </div>
   </div>
 </div>
-
+<script type="text/javascript">
+	$(function(){
+		$(".navhasul").hover(function(){
+			$(this).find(".firstnav").addClass("hovertri");
+			$(this).children("ul").show();
+		},function(){
+			$(this).find(".firstnav").removeClass("hovertri");
+			$(this).children("ul").hide();
+		});
+	})
+	   $(".input-append").datetimepicker({
+   format: 'yyyy-mm-dd 00:00:00',
+   autoclose:true,
+   minView:2,//最精确到天
+   startView:2,//一打开显示的是天
+   forceParse:true
+   
+ 
+   });
+</script>
 </body>
-
