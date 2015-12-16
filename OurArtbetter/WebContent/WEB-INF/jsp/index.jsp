@@ -144,10 +144,10 @@ padding-right:0px;}
           <div class='sp-megamenu-wrapper'>
             <ul class="sp-megamenu-parent menu-fade hidden-xs">
               <li class="sp-menu-item current-item active"><a  href="/" >首页</a></li>
-              <li class="sp-menu-item hidden"><a  href="/OSSSS" >艺术资讯</a></li>
+              <li class="sp-menu-item hidden"><a  href="/OurArtbetter/ADMIN_uploadInfo" >艺术资讯</a></li>
               <li class="sp-menu-item"><a  href="/OurArtbetter/artistList" >签约艺术家</a></li>
               <li class="sp-menu-item"><a  href="/OurArtbetter/productList" >艺术品商城</a></li>
-              <li class="sp-menu-item"><a  href="/OurArtbetter/ADMIN_infolist" >艺术品在线定制</a></li>
+              <li class="sp-menu-item"><a  href="/OurArtbetter/ADMIN_uploadInfo" >艺术品在线定制</a></li>
               <li class="sp-menu-item"><a  href="/blog" >拍卖商城</a></li>
               <li class="sp-menu-item sp-has-child"><a  href="#" ><i class="fa fa-support"></i> 联系我们</a></li>
 		

@@ -64,7 +64,7 @@ public class InfoController
 	}
 	
 
-	/*直接跳转的页面。其实需要设置session  editor？*/
+	//直接跳转的页面。其实需要设置session  editor？
 	@RequestMapping("/ADMIN_uploadInfo") 
 	public ModelAndView newInfo(Model model)
 	{
