@@ -1,5 +1,6 @@
 package com.art.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.art.backstageService.InfoService;
 import com.art.dao.ArtistDao;
 import com.art.entity.Artist;
 import com.art.entity.Artwork;
+import com.art.entity.Information;
 import com.art.exhibitService.ArtistExhibitService;
 import com.art.exhibitService.ArtworkExhibitService;
 @Controller
@@ -30,11 +33,13 @@ public class ExhibitController {
 	@Resource
 	private ArtistExhibitService artistExhibitService;
 	private ArtworkExhibitService artworkExhibitService; 
+	private InfoService infoService;
 	@Autowired
-	public ExhibitController(ArtistExhibitService artistExhibitService,ArtworkExhibitService artworkExhibitService)
+	public ExhibitController(ArtistExhibitService artistExhibitService,ArtworkExhibitService artworkExhibitService, InfoService infoService)
 	{
 		this.artistExhibitService=artistExhibitService;
 		this.artworkExhibitService=artworkExhibitService;
+		this.infoService = infoService;
 	}
 	
 	
@@ -61,6 +66,19 @@ public class ExhibitController {
 		model.addAttribute("custommade_list", custommadeList);
 		model.addAttribute("artist_list", artistList);
 		System.out.println("11111111111111");
+		
+		List<Information> adverList = new ArrayList<Information>();
+		List<Information> infoList = new ArrayList<Information>();
+		for(int i =1;i<4;i++)
+			adverList.add(infoService.getTodayInfoByColumnId(i)); 
+		
+		for(int i =4;i<=6;i++)
+			infoList.add(infoService.getTodayInfoByColumnId(i));
+		model.addAttribute("adverList", adverList);
+		model.addAttribute("infoList", infoList);
+		System.out.println("ok");
+		
+		
 		 return "index";
 
 	}

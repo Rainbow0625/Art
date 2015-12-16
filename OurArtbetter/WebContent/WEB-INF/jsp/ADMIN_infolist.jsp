@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
 		<link rel="stylesheet" type="text/css" href="../../css/admin.css" />
 
-		<script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>      
+		<script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>     
 		<style>
 		 h3{
 		 font-weight:bold;}
@@ -89,32 +89,85 @@
 			   	  <h3>资讯管理</h3>
 			   	 
 			   	 <div class="operate-table clear">
-			   	 	<table class="lc_prolist">
+			   	 
+			   	 
+			   	 <!-- 广告 -->
+			   	 <table class="lc_prolist">
+			   	 <c:if test="${! empty myAdver}">
+				 <c:forEach var="adver" items="${myAdver}"> 
+				 
 			   	 		<thead>
 			   	 		<tr>
-			   	 			<th>资讯标题</th>
+			   	 			<th>广告标题</th>
+			   	 			<th>创建时间</th>
 							<th>上次修改时间</th>
 			   	 			<th>审核情况</th>
+			   	 			<th>审核的主编</th>
 							<!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
 							<th>操作</th>
 			   	 		</tr>
 			   	 		</thead>
-			   	 		<volist name="users" id="">
+			   	 		
 			   	 			<tr>
-			   	 				<td>{$v.name}</td>
-			   	 				<td>{$vo.time}</td>		   	 			
-			   	 				<td>{$vo.la}</td>
-			   	 				<td><input type="button" value="修改"/><input type="button" value="删除" /></td>
+			   	 				<td>${adver.title}</td>
+			   	 				<td>${adver.createTime}</td>
+			   	 				<td>${adver.nextTime}</td>		   	 			
+			   	 				<td>${adver.state}</td>
+			   	 				<td>${adver.chiefEditor.id}</td>
+			   	 				<td><input type="button" value="修改" onclick="window.location.href=' /OurArtbetter/ADMIN_ToUpdateInfo/${adver.id}  '" /><input type="button" value="删除" onclick=" window.location.href=' /OurArtbetter/ADMIN_deleteInfo/${adver.id} ' "/></td>
 		   	 			   </tr>
-			   	 		</volist>
+			   	 		
 						<tr>
 						  <!--跳到单个资讯的页面-->
-						  <td colspan=10><a href="#" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建资讯</span></a></td>
+						  <td colspan=10><a href="/OurArtbetter/ADMIN_uploadinfo" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建广告</span></a></td>
 						</tr>
 			   	 		<tr>
-			   	 			<td colspan=10>{$page}</td>
+			   	 			<td colspan=10>{$page}</td>    <!-- 这是啥？ -->
 			   	 		</tr>
+			   	 		
+			   	 	</c:forEach>
+			   	 	</c:if>
 			   	 	</table>
+			   	 
+			   	 
+			   	 
+			   	 
+			   	  	 <!-- 咨询 -->
+			   	 	<table class="lc_prolist">
+			   	 	<c:if test="${! empty myInfo}">
+					<c:forEach var="info" items="${myInfo}"> 
+			   	 		<thead>
+			   	 		<tr>
+			   	 			<th>广告标题</th>
+			   	 			<th>创建时间</th>
+							<th>上次修改时间</th>
+			   	 			<th>审核情况</th>
+			   	 			<th>审核的主编</th>
+							<!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
+							<th>操作</th>
+			   	 		</tr>
+			   	 		</thead>
+			   	 			<tr>
+			   	 				<td>${info.title}</td>
+			   	 				<td>${info.createTime}</td>
+			   	 				<td>${info.nextTime}</td>		   	 			
+			   	 				<td>${info.state}</td>
+			   	 				<td>${info.chiefEditor.id}</td>
+			   	 				<td><input type="button" value="修改" onclick="window.location.href=' /OurArtbetter/ADMIN_ToUpdateInfo/${info.id} '"/><input type="button" value="删除" onclick=" window.location.href=' /OurArtbetter/ADMIN_deleteInfo/${info.id} ' "/></td>
+		   	 			   </tr>
+						<tr>
+						  <!--跳到单个资讯的页面-->
+						  <td colspan=10><a href="/OurArtbetter/ADMIN_uploadinfo" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建资讯</span></a></td>
+						</tr>
+			   	 		<tr>
+			   	 			<td colspan=10>{$page}</td>  <!-- 这是啥？ -->
+			   	 		</tr>
+			   	 		
+			   	 	</c:forEach>
+			   	 	</c:if>
+			   	 	</table>
+			   	 	
+			   	 	
 			   	 	</div>
 			   </div>
 			</div>

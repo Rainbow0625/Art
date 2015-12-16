@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -8,7 +10,7 @@
 <title>DrinkArt</title>
 <link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
 <link rel="stylesheet" type="text/css" href="../../css/admin.css" />
-<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href=../../"css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
 <link rel="stylesheet" href="../../css/bootstrap-datetimepicker.min.css" type="text/css" />
 <script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>
@@ -98,67 +100,80 @@
     </div>
     <h3>资讯管理</h3>
     <div class="operate-table clear">
+    
+    
       <table class="lc_prolist">
+      <c:if test="${! empty allAdver}">
+	  <c:forEach var="adver" items="${allAdver}"> 
         <thead>
           <tr>
-            <th>资讯位置</th>
-            <th colspan=2>上传时间</th>
-            <th>价格</th>
-            <th>资讯标题</th>
-            <th>资讯内容</th>
-			<th>编辑</th>
+            <th>广告标题</th>
+            <th>创建时间</th>
+			<th>上次修改时间</th>
+            <th>广告内容</th>
+			<th>采编</th>
             <th>审核情况</th>
             <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
             <th>操作</th>
           </tr>
         </thead>
-        <volist name="users" id="">
+        
           <tr>
-            <td><select>
-                <option value ="">1</option>
-                <option value ="">2</option>
-                <option value="">3</option>
-                <option value="">4</option>
-              </select></td>
-            <td colspan=2><div class="input-append date" id="datetimepicker" data-date="" data-date-format="dd-mm-yyyy 00:00:00">
-                <input class="span2" size="16" type="text" value="2015-12-07 00:00:00">
-                <!--这个需要后台设置value为当前时间-->
-                <span class="add-on"><i class="icon-th"></i></span> </div></td>
-            <td><span>￥</span>{$vo.la}</td>
-			<td>资讯标题</td>
-            <td><input type="button" value="查看资讯内容"/></td>
-			<td>吴虹</td>
-            <td><input type="button" value="审核通过"/>
-			  </td>
-			  <td><input type="button" value="上传资讯"/>
-			  </td>
+			<td>${adver.title}</td>
+			<td>${adver.createTime}</td>
+			<td>${adver.nextTime}</td>	
+            <td><input type="button" value="查看广告内容" onclick="window.location.href='/OurArtbetter/ADMIN_chiefLookThrough/${adver.id}' "/></td>
+			<td>${adver.editor.id}</td>
+			<td>${adver.state}</td>
+            <td><input type="button" value="审核通过" onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo/${adver.id}' " /> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo/${adver.id}' " />  <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos/${adver.id}' "/> </td>
           </tr>
-        </volist>
         <tr>
           <td colspan=10>{$page}</td>
         </tr>
-      </table>
+     </c:forEach>
+	 </c:if>
+     </table>
+
+
+
+      <table class="lc_prolist">
+      <c:if test="${! empty allInfo}">
+	  <c:forEach var="info" items="${allInfo}"> 
+        <thead>
+          <tr>
+            <th>咨询标题</th>
+            <th>创建时间</th>
+			<th>上次修改时间</th>
+            <th>咨询内容</th>
+			<th>采编</th>
+            <th>审核情况</th>
+            <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
+            <th>操作</th>
+          </tr>
+        </thead>
+        
+          <tr>
+			<td>${info.title}</td>
+			<td>${info.createTime}</td>
+			<td>${info.nextTime}</td>	
+            <td><input type="button" value="查看资讯内容" onclick="window.location.href='/OurArtbetter/ADMIN_chiefLookThrough/${info.id}' " /></td>
+			<td>${info.editor.id}</td>
+            <td>${info.state}</td>
+			<td><input type="button" value="审核通过"  onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo/${info.id}' "/> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo/${info.id}' " />  <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos/${info.id}' "/> </td>
+          </tr>
+        
+		
+        <tr>
+          <td colspan=10>{$page}</td>
+        </tr>
+     </c:forEach>
+	 </c:if>
+     </table>
+
+      
+      
     </div>
   </div>
 </div>
-<script type="text/javascript">
-	$(function(){
-		$(".navhasul").hover(function(){
-			$(this).find(".firstnav").addClass("hovertri");
-			$(this).children("ul").show();
-		},function(){
-			$(this).find(".firstnav").removeClass("hovertri");
-			$(this).children("ul").hide();
-		});
-	})
-	   $(".input-append").datetimepicker({
-   format: 'yyyy-mm-dd 00:00:00',
-   autoclose:true,
-   minView:2,//最精确到天
-   startView:2,//一打开显示的是天
-   forceParse:true
-   
- 
-   });
-</script>
+
 </body>

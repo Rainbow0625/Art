@@ -13,6 +13,5 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="F:/eclipse-jee-kepler-SR1-win32-x86_64/eclipse/plugins/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

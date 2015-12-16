@@ -144,10 +144,10 @@ padding-right:0px;}
           <div class='sp-megamenu-wrapper'>
             <ul class="sp-megamenu-parent menu-fade hidden-xs">
               <li class="sp-menu-item current-item active"><a  href="/" >首页</a></li>
-              <li class="sp-menu-item hidden"><a  href="/free-templates" >艺术资讯</a></li>
+              <li class="sp-menu-item hidden"><a  href="/OSSSS" >艺术资讯</a></li>
               <li class="sp-menu-item"><a  href="/OurArtbetter/artistList" >签约艺术家</a></li>
               <li class="sp-menu-item"><a  href="/OurArtbetter/productList" >艺术品商城</a></li>
-              <li class="sp-menu-item"><a  href="/popular-items" >艺术品在线定制</a></li>
+              <li class="sp-menu-item"><a  href="/OurArtbetter/ADMIN_infolist" >艺术品在线定制</a></li>
               <li class="sp-menu-item"><a  href="/blog" >拍卖商城</a></li>
               <li class="sp-menu-item sp-has-child"><a  href="#" ><i class="fa fa-support"></i> 联系我们</a></li>
 		
@@ -202,40 +202,39 @@ padding-right:0px;}
                     </div>
                   </div>
                 </div>
+                
+                <table>
+                <c:if test="${! empty infoList}">
+				<c:forEach var="infomation" items="${infoList}">  
+				 <tr>
                 <div class="sppb-row">
                   <div class="sppb-col-sm-4 col-lg-4 col-md-6">
                     <div class="sppb-addon-container" style="width:100%;height:30%;">
-                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
-                      </div>
-                    </div>
+						<i></i><a href="">${infomation.title}</a>
+					</div>
                   </div>
+                 </div>
+                 </tr>
+                
+                <!-- 
                   <div class="sppb-col-sm-4 col-lg-4 col-md-6" style="left:0%;">
                      <div class="sppb-addon-container" style="width:100%;height:30%;">
-                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
+<i></i><a href="">${infomation.title}</a>
                       </div>
                   </div>
                   <div class="sppb-col-sm-4 col-lg-4 col-md-6">
                    <div class="sppb-addon-container" style="width:100%;height:30%;">
-                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
+<i></i><a href="">${infomation.title}</a>
                       </div>
                   </div>
-				   <div class="sppb-col-sm-4 col-lg-4 col-md-6">
-                   <div class="sppb-addon-container" style="width:100%;height:30%;">
-                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
-                      </div>
-                  </div>
-				  <div class="sppb-col-sm-4 col-lg-4 col-md-6">
-                   <div class="sppb-addon-container" style="width:100%;height:30%;">
-                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
-                      </div>
-                  </div>
-				  <div class="sppb-col-sm-4 col-lg-4 col-md-6">
-                   <div class="sppb-addon-container" style="width:100%;height:30%;">
-                          <i></i><a href="#">周小平雕塑作品趣味浓厚艺博会上吸引观众  </a>
-                      </div>
-                  </div>
-                </div>
+                   -->
+               </c:forEach>
+ 				</c:if>
+ 				</table> 
+                
+              
               </div>
+              
             </section>
             <!--资讯-->
             

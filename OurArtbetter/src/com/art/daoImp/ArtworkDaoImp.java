@@ -34,6 +34,7 @@ public class ArtworkDaoImp implements ArtworkDao {
 	}
 	@Override
 	public List<Artwork> getAllArtwork() {
+		
 		String hql = "from Artwork";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")

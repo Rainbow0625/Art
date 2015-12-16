@@ -12,11 +12,11 @@ public interface DateAndPosDao
 	public Information getTodayInfoByInfoColumnId(int infoColumnId);
 	public List<DateAndPos> getDateAndPosByInformationId(int informationId);  //chief editor can see the Information when and where to set in the column
 	public List<DateAndPos> getDateAndPosByInfoColumnId(int infoColumnId);  //chief editor can see the InfoColumn 's display history
-		
-	//update
 	
 	//add
+	public void setDateAndPos(DateAndPos dateAndPos);
 	
 	//delete
+	public void deleteDateAndPos(DateAndPos dateAndPos);
 
 }

@@ -1,6 +1,6 @@
 package com.art.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,11 +27,11 @@ public class DateAndPos implements java.io.Serializable
 	
 	private Date date; //NEED TO create an index on the column in the DateBase
 	
-	@ManyToOne( targetEntity=InfoColumn.class,cascade={CascadeType.ALL},fetch=FetchType.EAGER ,optional=false)
+	@ManyToOne( targetEntity=InfoColumn.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)
 	@JoinColumn(name="infoColumnId")//加入一列作为外键列
 	private InfoColumn infoColumn;
 	
-	@ManyToOne( targetEntity=Information.class,cascade={CascadeType.ALL},fetch=FetchType.EAGER ,optional=false)
+	@ManyToOne( targetEntity=Information.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)
 	@JoinColumn(name="informationId")//加入一列作为外键列
 	private Information information;
 	
@@ -39,16 +39,20 @@ public class DateAndPos implements java.io.Serializable
 	{
         return this.id;
     }
+	public void setId(int id) 
+	{
+        this.id=id;
+    }
 	
 	public Date getDate ()
 	{
 		return date;
 	}
-	public void setDate ( Date date )
+	public void setDate ( java.util.Date date )
 	{
 		this.date = date;
 	}
-	
+
 	public InfoColumn getInfoColumn ()
 	{
 		return infoColumn;

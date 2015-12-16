@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding//WebContent/WEB-INF/jsp/ADMIN_artistList.jsp=UTF-8
+encoding//WebContent/WEB-INF/JSP/ADMIN_artistList.jsp=UTF-8
+encoding//WebContent/WEB-INF/JSP/ADMIN_chiefinfo.jsp=UTF-8

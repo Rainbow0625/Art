@@ -33,7 +33,7 @@ public class InfoColumn implements java.io.Serializable
 	@Column(name="price",nullable=false)
 	private double price; //everyday price
 	
-	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="infoColumn",fetch=FetchType.EAGER)
+	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="infoColumn",fetch=FetchType.LAZY)
 	private List<DateAndPos> dateAndPosS; 
 	
 	public InfoColumn(){}

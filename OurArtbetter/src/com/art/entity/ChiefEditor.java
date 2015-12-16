@@ -33,7 +33,7 @@ public class ChiefEditor implements java.io.Serializable
 	@Column(name="password",nullable=false)
 	private String password;
 	
-	@OneToMany(targetEntity=Information.class,cascade = {CascadeType.ALL},mappedBy="chiefEditor",fetch=FetchType.EAGER)
+	@OneToMany(targetEntity=Information.class,cascade = {CascadeType.ALL},mappedBy="chiefEditor",fetch=FetchType.LAZY)
 	private List<Information> informationListToCheck;
 	
 	public ChiefEditor() {}

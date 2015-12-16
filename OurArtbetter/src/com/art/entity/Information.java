@@ -1,5 +1,6 @@
 package com.art.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,18 +34,30 @@ public class Information implements java.io.Serializable
 	@Column(name="contentType",nullable=false)
 	private String contentType;
 	
-	@ManyToOne( targetEntity=Editor.class,cascade={CascadeType.ALL},fetch=FetchType.EAGER ,optional=false)
-	@JoinColumn(name="editorId")//加入一列作为外键列
-	private Editor editer;
+	@ManyToOne( targetEntity=Editor.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)
+	@JoinColumn(name="editorId",nullable=false,updatable=false) //一旦创建确认不可修改
+	private Editor editor;
 	
-	@ManyToOne(targetEntity=ChiefEditor.class,cascade={CascadeType.ALL},fetch=FetchType.EAGER )
-	@JoinColumn(name="chiefEditorId")//加入一列作为外键列
+	@ManyToOne(targetEntity=ChiefEditor.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY )
+	@JoinColumn(name="chiefEditorId",nullable=true,updatable=false)//一旦创建确认不可修改
 	private ChiefEditor chiefEditor;
 	
 	@Column(name="content",nullable=false)
 	private String content;
 	
-	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="information",fetch=FetchType.EAGER)
+	@Column(name="title",nullable=false)
+	private String title;
+	
+	@Column(name="createTime",nullable=false,updatable=false)
+	private Date createTime;
+	
+	@Column(name="nextTime",nullable=true)
+	private Date nextTime;
+	
+	@Column(name="state",nullable=false)
+	private int state;   //  1 haven't check  2 pass  3 not pass
+	
+	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="information",fetch=FetchType.LAZY)
 	private List<DateAndPos> dateAndPosS; 
 	
 	
@@ -54,6 +67,10 @@ public class Information implements java.io.Serializable
 	public int getId() 
 	{
         return this.id;
+    }
+	public void setId(int id) 
+	{
+         this.id=id;
     }
 	
 	public String getContentType() {
@@ -70,11 +87,48 @@ public class Information implements java.io.Serializable
 		this.content = content;
 	}
 	
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public void setState(int state)
+	{
+		this.state = state;
+	}
+	public int getState()
+	{
+		 return this.state;
+	}
+	
+	public void setCreateTime(Date createTime)
+	{
+		this.createTime = createTime;
+	}
+	public Date getCreateTime()
+	{
+		 return this.createTime;
+	}
+	
+	public void setNextTime(Date nextTime)
+	{
+		this.nextTime = nextTime;
+	}
+	public Date getNextTime()
+	{
+		 return this.nextTime;
+	}
+	
+	
+	
 	public Editor getEditor(){
-		return editer;
+		return editor;
 	}
 	public void setEditor(Editor editor){
-		this.editer = editor;
+		this.editor = editor;
 	}
 	
 	public ChiefEditor getChiefEditor(){
