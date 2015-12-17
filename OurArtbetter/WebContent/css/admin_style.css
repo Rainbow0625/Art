@@ -121,13 +121,13 @@ src: url('../font/Microsoft_YaHei.eot?#iefix') format('embedded-opentype'),
 .menu_content ul{ width: 800px; margin: 0 auto; font-size: 16px;}
 .menu_content li{ float: left;}
 .menu_content a{ display: inline-block; width: 200px; text-align: center; color: #fff; line-height: 36px; height: 36px;}
-
+/*
 .banquan{ margin-top: 23px; }
 .banquan_left{ width: 500px; float: left; font-size: 12px;}
 .banquan_left p{ line-height: 22px;}
 .banquan_right{ width: 500px; float: right; text-align: right; font-size: 12px;}
 .banquan_right span{ font-size: 22px;}
-
+*/
 /*----------------7.9更，上面记得换掉---------------*/
 .cooperate li{ margin-right: 9px; margin-bottom: 8px; }
 .footer{ height: 146px;}
