@@ -2042,8 +2042,7 @@ input[type="color"].control-facebook::before,
 }
 #sp-header #sp-account >div >ul >li {
       display: inline-block;
-    float: right;
-    margin-right: -24%;
+    float:left;
     position: relative;
 	}
 #sp-header #sp-account >div >ul >li:hover > ul {
