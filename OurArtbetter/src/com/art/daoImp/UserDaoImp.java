@@ -1,22 +1,23 @@
 package com.art.daoImp;
 
+
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.art.dao.UserDao;
-import com.art.entity.Artist;
 import com.art.entity.User;
 
-@Repository("UserDao")
-@Transactional(propagation = Propagation.SUPPORTS)   //@Transactional : mean��
+@Repository("userDao")
 public class UserDaoImp implements UserDao
 {
 	@Resource(name="sessionFactory")
@@ -30,21 +31,41 @@ public class UserDaoImp implements UserDao
 	@Override
 	public List<User> getAllUser() 
 	{
-		String hql = "from User";
-		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		Query query = this.sessionFactory.getCurrentSession().getNamedQuery("@GetAllUser");
 		@SuppressWarnings("unchecked")
 		List<User> user_list = query.list();
 		return user_list;
 	}	
-
 
 	@Override
 	public User userRegister(String tel, String password) {
 		// TODO Auto-generated method stub
 		if(checkTelUnique(tel))
 		{
+			//Transaction tran = ((SharedSessionContract) this.sessionFactory).beginTransaction();//开始事物
 			User user=new User(tel,password);
 			saveUser(user);
+			//updateUser(user);//
+			//tran.commit();
+			return user;
+		}
+		else
+			return null;
+	}
+
+	@Override
+	public User fillUserInfo(String nickName,String tel, String password,String gender,Date birthday,String email) {
+		// TODO Auto-generated method stub
+		User user = findUserByTelAndPassword(tel, password);
+		if(user!=null)
+		{
+			user.setNickName(nickName);
+			user.setBirthday(birthday);
+			user.setEmail(email);
+			user.setGender(gender);
+			
+			updateUser(user);//
+			//tran.commit();
 			return user;
 		}
 		else
@@ -52,14 +73,12 @@ public class UserDaoImp implements UserDao
 	}
 
 
-
 	@Override
 	public boolean checkTelUnique(String tel) {
 		// TODO Auto-generated method stub
-		String hql="from User u where u.tel=?";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setString(0, tel);
-		User user=(User)query.uniqueResult();
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("@FindUserByTel");
+		query.setString("0", tel);
+		User user=(User)query.uniqueResult();//此处待改！
 		return user==null;
 	}
 
@@ -68,9 +87,8 @@ public class UserDaoImp implements UserDao
 	@Override
 	public boolean checkEmailUnique(String email) {
 		// TODO Auto-generated method stub
-		String hql="from User u where u.email=?";
-		Query query = sessionFactory.getCurrentSession().createQuery(hql);
-		query.setString(0, email);
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("@FindUserByEmail");
+		query.setString("0", email);
 		User user=(User)query.uniqueResult();
 		return user==null;
 	}
@@ -80,14 +98,13 @@ public class UserDaoImp implements UserDao
 	@Override
 	public User findUserByTelAndPassword(String tel, String password) {
 		// TODO Auto-generated method stub
-		String hql="from User u where u.tel=? and u.password=?";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		query.setString(0, tel);
-		query.setString(1, password);
+		Query query=sessionFactory.getCurrentSession().getNamedQuery("@FindUserByTelAndPassword");
+		query.setString("0", tel);
+		query.setString("1", password);
 		User user=(User)query.uniqueResult();
-		if(user.getUserType().equals("artist")){
-			user=(Artist)user;
-		}
+//		if(user.getuseType.equals("artist")){
+//			user=(Artist)user;
+//		}
 		return user;
 	}
 
@@ -96,10 +113,9 @@ public class UserDaoImp implements UserDao
 	@Override
 	public User findUserByEmailAndPassword(String email, String password) {
 		// TODO Auto-generated method stub
-		String hql="from User u where u.email=? and u.password=?";
-		Query query=sessionFactory.getCurrentSession().createQuery(hql);
-		query.setString(0, email);
-		query.setString(1, password);
+		Query query=sessionFactory.getCurrentSession().getNamedQuery("@FindUserByEmailAndPassword");
+		query.setString("0", email);
+		query.setString("1", password);
 		User user=(User)query.uniqueResult();
 		return user;
 	}
@@ -128,11 +144,33 @@ public class UserDaoImp implements UserDao
 	}
 
 
+
 	@Override
-	public User updateUser(User user) {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().saveOrUpdate(user);
-		return null;
+		//Logger logger = Logger.getLogger(UserDaoImp.class);
+		//log.logDebug("update userInfo!");
+		try {
+			Session session = sessionFactory.openSession();
+			Transaction transaction = session.beginTransaction();
+			session.saveOrUpdate(user);
+			transaction.commit();
+			//sessionFactory.getCurrentSession().saveOrUpdate(user);
+			//log.logDebug("update userInfo successfully!");
+		} catch (Exception e) {
+			// TODO: handle exception
+			//log.logError("update failed!",e);
+		}
+		//此处带测试session.close();
+	}
+	
+	@Override
+	public User updatePassword(String tel,String password,String newPassword){
+		// TODO Auto-generated method stub
+		User user = findUserByTelAndPassword(tel,password);
+		user.setPassword(newPassword);
+		updateUser(user);//
+		return user;
 	}
 	
 

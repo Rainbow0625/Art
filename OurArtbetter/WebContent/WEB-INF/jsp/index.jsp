@@ -118,7 +118,7 @@ padding-right:0px;}
       <div id="sp-account" class="col-xs-4 col-sm-5 col-md-4">
         <div class="sp-column ">
           <ul>
-              <li><a class="btn btn-success btn-login hidden-sm hidden-xs" href="/login">Login</a></li>
+              <li><a class="btn btn-success btn-login hidden-sm hidden-xs" href="/OurArtbetter/TurnToLogin">Login</a></li>
               <li><a class="btn btn-link btn-login visible-sm visible-xs" href="/login"><i class="fa fa-user"></i></a></li>
               <li><a class="btn btn-default btn-registration hidden-sm hidden-xs" href="/login?view=registration">Create an Account</a></li>
               <li><a class="btn btn-link btn-login visible-sm visible-xs" href="#"><i class="fa fa-bars" style="background:url('images/user.png')no-repeat;margin-top:80%;width: 130%;height: 80%;"></i></a></li>

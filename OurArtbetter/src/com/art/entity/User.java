@@ -2,63 +2,67 @@ package com.art.entity;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.*;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-
-
 @Entity
 @DynamicInsert
 @DynamicUpdate
-
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)  
-@DiscriminatorValue("user")
+@DiscriminatorColumn(name="UserType")
+@DiscriminatorValue(value="user")
 @Table(name="user")
+@NamedQueries(
+		{ 
+			@NamedQuery(name= "@GetAllUser",query = "from User"),
+			@NamedQuery(name = "@FindUserByTel", query = "from User u where u.tel=?0"),
+			@NamedQuery(name = "@FindUserByEmail", query = "from User u where u.email=?0"),
+			@NamedQuery(name = "@FindUserByTelAndPassword", query = "from User u where u.tel=?0 and u.password=?1"),
+			@NamedQuery(name = "@FindUserByEmailAndPassword",query = "from User u where u.email=?0 and u.password=?1")
+		})
 public class User implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY) //Increase auto
 	@Column(name="id",nullable=false)
-	private int id;
+	protected int id;
 	
-	@Column(name="nickName",nullable=true)
-	private String nickName;
+	@Column(name="nickName")
+	protected String nickName;
 	
-	@Column(name="password",nullable=false)
-	private String password;	
+	@Column(name="password")
+	protected String password;	
 	
-	@Column(name="gender",nullable=true)
-	private String gender;
+	@Column(name="gender")
+	protected String gender;
 	
-	@Column(name="birthday",nullable=true)
-	private Date birthday;
+	@Column(name="birthday")
+	protected Date birthday;
 	
-	@Column(name="tel",nullable=false)
-	private String tel;
+	@Column(name="tel")
+	protected String tel;
 	
-	@Column(name="email",nullable=true)
-	private String email;
-	
-	@Column(name="userType",nullable=false)
-	private String userType;
+	@Column(name="email")
+	protected String email;
 		
 	
 	public User(){}
-	public User(String tel,String password) //two parameters must be filled while registering
+	public User(String tel,String password) //for user register
 	{
 		setTel(tel);
 		setPassword(password);
+	}
+	
+	public User(String nickName,String tel, String password,String gender,Date birthday,String email)//for user complete personal infomation
+	{
+		setNickName(nickName);
+		setTel(tel);
+		setPassword(password);
+		setGender(gender);
+		setBirthday(birthday);
+		setEmail(email);
 	}
 
 	
@@ -120,12 +124,5 @@ public class User implements java.io.Serializable
     public void setBirthday(Date birthday) 
 	{
     	this.birthday = birthday;
-	}
-
-    public String getUserType() {
-		return userType;
-	}
-	public void setUserType(String userType) {
-		this.userType = userType;
 	}
 }
