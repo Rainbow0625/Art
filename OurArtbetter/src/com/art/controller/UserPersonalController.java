@@ -60,12 +60,7 @@ public class UserPersonalController
 		return new ModelAndView("index","user",user);//return to personalInfo page
 	}
 
-	@RequestMapping("artistApply")
-	public ModelAndView artistApply(HttpServletRequest request)throws Exception
-	{
-		return null;
-
-	}
+	
 
 	@RequestMapping("/getAllUser")
 	public ModelAndView getAllUser()

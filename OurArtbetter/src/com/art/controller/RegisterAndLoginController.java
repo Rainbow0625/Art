@@ -91,4 +91,25 @@ public class RegisterAndLoginController
 		}
 		return modelAndView;
 	}
+	
+	@RequestMapping("TurnToLogin")
+	public ModelAndView TurnToLogin(HttpServletRequest request)throws Exception
+	{
+		return new ModelAndView("login");
+
+	}
+	
+	@RequestMapping("TurnToAdminLogin")
+	public ModelAndView TurnToAdminLogin(HttpServletRequest request)throws Exception
+	{
+		return new ModelAndView("ADMIN_login");
+
+	}
+	
+	@RequestMapping("TurnToRegister")
+	public ModelAndView TurnToRegister(HttpServletRequest request)throws Exception
+	{
+		return new ModelAndView("Register");
+
+	}
 }

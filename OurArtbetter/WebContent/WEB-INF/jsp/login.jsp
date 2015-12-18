@@ -123,7 +123,7 @@ window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpReque
               <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                 <div class="page-login-form box login">
                   <div class="login-description text-center"> 登录 </div>
-                  <form action="/login?task=user.login" method="post" class="form-validate">
+                  <form action="/OurArtbetter/Login" method="post" class="form-validate">
                     <div class="form-group">
                       <div class="group-control">
                         <input type="text" name="username" id="username" value="" class="validate-username required" size="25" placeholder="Username" required="" aria-required="true" autofocus="">
@@ -148,9 +148,9 @@ window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpReque
                 </div>
                 <div class="form-links form-group" style="margin-top:30%;">
                      <ul>
-                    <li  style="float:left;margin-left:0%;"> <a href="#"> 忘记密码?</a> </li>
-					 <li style="float:left;margin-left:1%;"> <a href="#"> 注册</a> </li>
-					  <li style="float:left;margin-left:1%;"> <a href="#" > 管理员登录?</a> </li>
+                    <li  style="float:left;margin-left:0%;"> <a href=""> 忘记密码?</a> </li>
+					 <li style="float:left;margin-left:1%;"> <a href="/OurArtbetter/TurnToRegister"> 注册</a> </li>
+					  <li style="float:left;margin-left:1%;"> <a href="/OurArtbetter/TurnToAdminLogin" > 管理员登录?</a> </li>
                      </ul>
                   </div>
               </div>

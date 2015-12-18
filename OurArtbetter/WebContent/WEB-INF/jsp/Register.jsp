@@ -139,7 +139,7 @@ window.setInterval(function(){var r;try{r=window.XMLHttpRequest?new XMLHttpReque
 <div class="row">
 <div class="col-sm-6 col-sm-offset-3">
 <div class="box registration">
-<form id="member-registration" action="/login?task=registration.register" method="post" class="form-validate" enctype="multipart/form-data">
+<form id="member-registration" action="/OurArtbetter/Register" method="post" class="form-validate" enctype="multipart/form-data">
 <div class="form-group">
 <div class="text-center" style="font-size:25px;">注册</div>
 </div>
