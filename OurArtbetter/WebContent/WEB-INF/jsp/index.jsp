@@ -144,7 +144,7 @@ padding-right:0px;}
           <div class='sp-megamenu-wrapper'>
             <ul class="sp-megamenu-parent menu-fade hidden-xs">
               <li class="sp-menu-item current-item active"><a  href="/" >首页</a></li>
-              <li class="sp-menu-item hidden"><a  href="/OurArtbetter/ADMIN_uploadInfo" >艺术资讯</a></li>
+              <li class="sp-menu-item hidden"><a  href="/OurArtbetter/infolist" >艺术资讯</a></li>
               <li class="sp-menu-item"><a  href="/OurArtbetter/artistList" >签约艺术家</a></li>
               <li class="sp-menu-item"><a  href="/OurArtbetter/productList" >艺术品商城</a></li>
               <li class="sp-menu-item"><a  href="/OurArtbetter/ADMIN_uploadInfo" >艺术品在线定制</a></li>
@@ -210,7 +210,7 @@ padding-right:0px;}
                 <div class="sppb-row">
                   <div class="sppb-col-sm-4 col-lg-4 col-md-6">
                     <div class="sppb-addon-container" style="width:100%;height:30%;">
-						<i></i><a href="">${infomation.title}</a>
+						<i></i><a href="/OurArtbetter/infoContent/${infomation.id}">${infomation.title}</a>
 					</div>
                   </div>
                  </div>
@@ -390,7 +390,7 @@ padding-right:0px;}
             <li class="item-111"><a href="/productList">艺术品商城</a></li>
             <li class="item-106"><a href="/free-templates">艺术品在线定制</a></li>
             <li class="item-118"><a href="/blog">拍卖商城</a></li>
-            <li class="item-125 deeper parent"><a href="#">艺术资讯</a></li>
+            <li class="item-125 deeper parent"><a href="/OurArtbetter/infolist">艺术资讯</a></li>
            <li class="item-131"><a href="/affiliates" >联系我们</a></li>
           </ul>
         </div>

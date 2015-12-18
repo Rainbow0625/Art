@@ -50,7 +50,7 @@
 <div class="login-bg"> </div>
 <div class="admin-bgbar"> </div>
 <div class="ui-mask" id="mask" onselectstart="return false"></div>
-<div class="container clearfix">
+<div class="container clearfix"/>
 <div class="login-bar-l">欢迎使用DrinkArt艺术品定制网站的后台管理系统!</div>
 <div class="login-bar"> <a href="#" class="orange" style="cursor:default;">你好！管理员:{$adminname}</a> <a href="__APP__/Login/logout">退出</a> </div>
 <div class="header clear">

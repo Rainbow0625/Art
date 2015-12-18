@@ -62,10 +62,9 @@ public class InformationDaoImp implements InformationDao
 	public List<Information> getInformationByEditorId(int editorId) {
 		//System.out.println("here!" );
 		
-		String hql = "from Information information where information.editor.id=?0 and information.contentType=\'INFO\' ";
-		
+		String hql = "from Information information where information.editor.id=? and information.contentType='INFO' ";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger("0", editorId);
+		query.setInteger(0, editorId);
 		List<Information> informationList = query.list();
 
 		
@@ -81,7 +80,7 @@ public class InformationDaoImp implements InformationDao
 	@Override
 	public List<Information> getAdverByEditorId(int editorId){
 
-		String hql = "from Information as information where information.editor.id=? and information.contentType=\"ADVER\" ";
+		String hql = "from Information as information where information.editor.id=? and information.contentType='ADVER' ";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, editorId);
 		@SuppressWarnings("unchecked")
@@ -106,16 +105,17 @@ public class InformationDaoImp implements InformationDao
 	
 	@Override
 	public void addAnInfo(Information info) {
+		//System.out.println("here!" );
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
+		//session.beginTransaction();
 		session.save(info);
-		session.getTransaction().commit();
+		//session.getTransaction().commit();
 	}
 
 	@Override
 	public void deleteAnInfo(Information info) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
+		//session.beginTransaction();
 		session.delete(info);
 		session.getTransaction().commit();
 	}

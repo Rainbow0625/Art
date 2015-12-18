@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +35,7 @@ public class ExhibitController {
 	private ArtistExhibitService artistExhibitService;
 	private ArtworkExhibitService artworkExhibitService; 
 	private InfoService infoService;
+	
 	@Autowired
 	public ExhibitController(ArtistExhibitService artistExhibitService,ArtworkExhibitService artworkExhibitService, InfoService infoService)
 	{
@@ -83,7 +85,13 @@ public class ExhibitController {
 
 	}
 	
-	
+	@RequestMapping(value = "/infoContent/${infomationId}")
+	public ModelAndView infoContent(@PathVariable int infomationId,Model model)
+	{
+		Information information = infoService.getInformationById(infomationId);
+		model.addAttribute(information);
+		return new ModelAndView("infoContent");
+	}
 	
 
 	@RequestMapping(value = "/artistList")

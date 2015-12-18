@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.art.backstageService.InfoService;
@@ -19,15 +20,29 @@ public class InfoServiceImp implements InfoService
 {
 	@Resource
 	private DateAndPosDao dateAndPosDao;
+	@Autowired
 	private InformationDao informationDao;
+	@Autowired
 	private InfoColumnDao infoColumnDao;
 	
-	public void setDateAndPosDao( DateAndPosDao dateAndPosDao,InformationDao informationDao,InfoColumnDao infoColumnDao)
-	{
-		this.dateAndPosDao = dateAndPosDao;
-		this.infoColumnDao = infoColumnDao;
-		this.informationDao = informationDao;
+	
+	
+	public InfoServiceImp( ){}
+	
+	public void setDateAndPosDao(DateAndPosDao dateAndPosDao){
+		this.dateAndPosDao=dateAndPosDao;
 	}
+	
+	public void setInformationDao(InformationDao informationDao){
+		this.informationDao=informationDao;
+	}
+	
+	public void setDateAndPosDao(InfoColumnDao infoColumnDao){
+		this.infoColumnDao=infoColumnDao;
+	}
+	
+	
+	
 	
 	
 	@Override
