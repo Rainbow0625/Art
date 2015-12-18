@@ -34,7 +34,7 @@
             <ul>
               <li><a class="btn btn-primary btn-submit-item hidden-sm hidden-xs" href="/login">Start Selling</a></li>
               <li><a class="btn btn-success btn-login hidden-sm hidden-xs" href="/OurArtbetter/TurnToLogin">Login</a></li>
-              <li><a class="btn btn-link btn-login visible-sm visible-xs" href="/login"><i class="fa fa-user"></i></a></li>
+              <li><a class="btn btn-link btn-login visible-sm visible-xs" href="/login" style="margin-top:40%;"><i style="background:url('images/glyphicons-4-user.png');width:127%;height:40%;" class="fa fa-bars"></i></a></li>
               <li><a class="btn btn-default btn-registration hidden-sm hidden-xs" href="/login?view=registration">Create an Account</a></li>
               <li><a class="btn btn-link btn-login visible-sm visible-xs" id="offcanvas-toggler" href="#"><i class="fa fa-bars" style="background:url('images/listimg.png');    margin-top:90%;width: 100%;height: 40%;"></i></a></li>
               <li><a class="btn btn-link btn-cart hidden-sm hidden-xs" href="/cart"><i class="sb-icon-purchase"></i> <small class="my-cart">0</small></a></li>
