@@ -22,6 +22,7 @@
     <mvc:resources mapping="/css/**" location="/css/"/>  
     <mvc:resources mapping="/images/**" location="/images/"/>
     <mvc:resources mapping="/ckeditor/**" location="/ckeditor/"/>
+   <!--  <mvc:resources mapping="/infoHTML/**" location="/infoHTML/"/>  -->
 	
 	<!-- 定义视图解析器 -->	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -1,6 +1,11 @@
 package com.art.controller;
 
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,7 +13,8 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-
+import org.apache.jasper.tagplugins.jstl.core.Out;
+import org.hibernate.sql.Template;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -64,7 +70,7 @@ public class InfoController
 	}
 	
 
-	/*直接跳转的页面。其实需要设置session  editor？*/
+	//直接跳转的页面。后期设置session  editor id等
 	@RequestMapping("/ADMIN_uploadInfo") 
 	public ModelAndView newInfo(Model model)
 	{
@@ -72,35 +78,95 @@ public class InfoController
 	}
 	
 	
-	/*保存成html文件的方法，并添加一条记录在数据库Information表里*/
+	/*并添加一条记录在数据库Information表里*/
+	@SuppressWarnings({ "unused", "resource" })
 	@RequestMapping("/ADMIN_saveInfo")   
-	public ModelAndView saveInfo(String title,String contentType,String content)
+	public ModelAndView saveInfo(HttpServletRequest request)
 	{
+		String title = request.getParameter("title");
+		String contentType = request.getParameter("contentType");
+		String content = request.getParameter("content");
 		Information info = new Information();
 		info.setTitle(title);
 		info.setState(0);
 		Date createTime = new Date();
 		info.setCreateTime(createTime);
-		info.setNextTime(null);
-		//info.setEditor(editor);   
-		
-		
-		
-		
-		//info.setContent(content);
+		info.setNextTime(null);	
 		info.setContentType(contentType);
+		
+		Editor editor= new Editor();
+		editor.setId(1);
+		info.setEditor(editor);  
+		
+		info.setContent(content);
+		
+		//文件保存 
+		/*
+		//System.out.printf("%s", content);	
+		 !!!   application.getRealPath(request.getRequestURI());
+		 request.getRequestURI()
+		 System.out.printf("%s", System.getProperty("user.dir") );
+		 //System.out.printf("%s", Thread.currentThread().getContextClassLoader().getResource(""));
+		//String  request.getContextPath();
+		 */
+		try
+	    { /*
+			String head = null;
+			String middle = null;
+			String tail = null;
+			FileReader fileReader = new FileReader("C:\\Users\\Hz\\Desktop\\Art\\OurArtbetter\\WebContent\\infoHTML\\head.txt");
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String temp;
+			while (  ( temp = bufferedReader.readLine() )!=null   )
+			 {
+				head+= temp;
+			 }
+	    	
+			fileReader = new FileReader("C:\\Users\\Hz\\Desktop\\Art\\OurArtbetter\\WebContent\\infoHTML\\middle.txt");
+			BufferedReader bufferedReader2 = new BufferedReader(fileReader);
+
+			while (  ( temp = bufferedReader2.readLine() )!=null   )
+			 {
+				middle+= temp;
+			 }
+			
+			fileReader = new FileReader("C:\\Users\\Hz\\Desktop\\Art\\OurArtbetter\\WebContent\\infoHTML\\tail.txt");
+			BufferedReader bufferedReader3 = new BufferedReader(fileReader);
+
+			while (  ( temp = bufferedReader3.readLine() )!=null   )
+			 {
+				tail+= temp;
+			 }
+			bufferedReader.close();
+			
+			*/
+				
+		    FileWriter fileWriter = new FileWriter("C:\\Users\\Hz\\Desktop\\Art\\OurArtbetter\\WebContent\\infoHTML\\"+title+".html"); 		    
+		    fileWriter.write(content); 
+		    fileWriter.flush();  
+		    fileWriter.close();
+	    }
+	    catch(FileNotFoundException e)
+		{
+	    	e.printStackTrace();
+		}
+	    catch(IOException e) 
+	    {
+	    	// TODO Auto-generated catch block
+	    	e.printStackTrace();
+	    }  
 		
 		infoService.addAnInfo(info);
 		return new ModelAndView("ADMIN_infolist") ;  
 	}
 	
-	/*//修改是需要用文本编辑器   打开原来的html的  设置的属性要显示！*/
+	/*//修改是需要用文本编辑器   打开原来的HTML的  设置的属性要显示！*/
 	@RequestMapping("/ADMIN_ToUpdateInfo/{infoId} ")  
 	public ModelAndView toUpdateInfo(@PathVariable int infoId,Model model)
 	{
 		Information information = infoService.getInformationById(infoId);
 		model.addAttribute(information);
-		return new ModelAndView( "ADMIN_uploadinfo");//新界面！ 能打开HTML
+		return new ModelAndView( "");//新界面！ 能打开HTML
 	}
 	
 	
@@ -114,6 +180,36 @@ public class InfoController
 		Date nextTime = new Date();
 		info.setNextTime(nextTime);
 		info.setContent(content);
+		
+		
+		
+		
+		//从文件中读取
+				try 
+				{
+					FileReader fileReader = new FileReader("c1.txt");
+					BufferedReader bufferedReader = new BufferedReader(fileReader);
+				
+					String str;
+			    	str= bufferedReader.readLine();
+			    	String[] integer = str.split(" ");
+			    	for(int j=0;j<10;j++)
+			    		System.out.printf("%s ",integer[j]);
+
+					bufferedReader.close();
+				} 
+				catch(FileNotFoundException e)
+				{
+			    	e.printStackTrace();
+				}
+			    catch (IOException e) 
+			    {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
+		
+		
 		info.setContentType(contentType);
 		infoService.updateAnInfo(info);
 		return new ModelAndView("ADMIN_infolist");  
@@ -188,16 +284,16 @@ public class InfoController
 	@RequestMapping("/ADMIN_setDateAndPos/{infoId}") 
 	public ModelAndView setDateAndPos(HttpServletRequest request,@PathVariable int infoId,Model model)
 	{
-		int infoColumnId = (Integer)request.getAttribute("infoColumnId");  //!!!
-		Date date = (Date)request.getAttribute("date");  //!!!
+		//int infoColumnId =Integer.parseInt( request.getParameter("infoColumnId") );    //为什么这么用详见getParameter 与getAttribute 的区别！
+		//Date date = Date.parse(request.getParameter("date"));  
 		
 		Information information = infoService.getInformationById(infoId);
-		InfoColumn infoColumn = infoService.getInfoColumnById(infoColumnId);
+		//InfoColumn infoColumn = infoService.getInfoColumnById(infoColumnId);
 		
 		DateAndPos dateAndPos = new DateAndPos();
 		dateAndPos.setInformation(information);
-		dateAndPos.setInfoColumn(infoColumn);
-		dateAndPos.setDate(date);
+		//dateAndPos.setInfoColumn(infoColumn);
+		//dateAndPos.setDate(date);
 
 		model.addAttribute(information);
 		infoService.setDateAndPos(dateAndPos);	

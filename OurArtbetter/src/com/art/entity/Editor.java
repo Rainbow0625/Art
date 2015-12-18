@@ -35,6 +35,9 @@ public class Editor implements java.io.Serializable
 	@Column(name="password",nullable=false)
 	private String password;
 	
+	
+	//µç»°£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡£¡
+	
 	@OneToMany(targetEntity=Information.class,cascade = {CascadeType.ALL},mappedBy="editor",fetch=FetchType.LAZY)
 	private List<Information> informationListToEdit;
 	

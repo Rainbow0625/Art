@@ -8,16 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link rel = "Shortcut Icon" href="images/favicon.ico"/>
 <title>DrinkArt</title>
-<link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
-<link rel="stylesheet" type="text/css" href="../../css/admin.css" />
-<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="../../css/bootstrap-datetimepicker.min.css" type="text/css" />
-<script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>
-<script src="../../js/jquery.min.js" type="text/javascript"></script>
-<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../../js/bootstrap-datetimepicker.js" type="text/javascript"></script>
-<script src="../../ckeditor/ckeditor.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/admin_style.css" />
+<link rel="stylesheet" type="text/css" href="css/admin.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css" />
+<script type="text/javascript" src="js/jquery.1.10.2.js"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<script src="ckeditor/ckeditor.js" type="text/javascript"></script>
 <style>
 	   body{
 		font-family:"Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei", sans-serif;
@@ -97,19 +97,36 @@
     </ul>
   </div>
   <div class="admin-main-r-wrapper">
+  <form action="/OurArtbetter/ADMIN_saveInfo" method="post">
     <h3>资讯管理</h3>
-    <div class="operate-table clear">
+    <div class="operate-table clear" style="margin-left:15px;">
+    	<div class="info-title">
+			<div class="label-control">
+		  	<label>资讯标题：</label>
+		 	</div>
+	  		<input type="text" name ="title" id="title" class="inputtitle"/>
+		</div>
+		<div>
+			<select name="contentType" >
+                <option value ="INFO">资讯</option>
+                <option value ="ADVER">广告</option>
+            </select>
+		</div>
+
+	<div class="info-content">
+		<div class="label-control"><label>资讯内容：</label></div>
     
-    
-       <textarea name= "content" id="content" class="ckeditor" > </textarea>
+       <textarea name= "content" id="content" > </textarea>
 	   <script type="text/javascript">CKEDITOR.replace('content');</script>
-      
-      
+	</div>
     </div>
+    
 	<div style="float:left;margin-left:9px;">
-    	<input type="submit" value="提交" style="width:100px;height:30px;" />
+    	<input type="submit" value="保存" style="width:100px;height:30px;" />
   	</div>
+  	</form>
   </div>
 </div>
+   <script type="text/javascript">CKEDITOR.replace('content');</script>
 </body>
 </html>
