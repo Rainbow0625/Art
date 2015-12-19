@@ -23,8 +23,12 @@ public class ArtistExhibitServiceImp implements ArtistExhibitService
 	
 	@Override
 	public List<Artist> getAllArtist() {
-		List<Artist> artist_list = artistDao.getAllArtist();
+		return null;
+/*
+		List<Artist> artist_list = artistDao.getAllArtist();   //这个函数  少了个参数，不是因为少了个l
 		return artist_list;
+		*/
 	}
+	
 
 }

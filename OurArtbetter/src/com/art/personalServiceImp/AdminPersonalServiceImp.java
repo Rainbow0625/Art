@@ -19,15 +19,9 @@ public class AdminPersonalServiceImp implements AdminPersonalService{
 	private AdminDao adminDao;
 	
 	
-	public AdminPersonalServiceImp(AdminDao adminDao) 
-	{
-		this.adminDao = adminDao;
-	}
+	public AdminPersonalServiceImp() {}
 
 
-	public void setAdminDao(AdminDao adminDao) {   
-		this.adminDao = adminDao;
-	}
 
 
 	@Override

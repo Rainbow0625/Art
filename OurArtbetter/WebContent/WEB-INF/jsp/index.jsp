@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<base href="https://shapebootstrap.net/" />-->
+
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Joomla! - Open Source Content Management" />
 <title>drinkArt</title>
@@ -131,35 +131,9 @@ padding-right:0px;}
     </div>
   </div>
 </header>
-<section id="sp-navbar" class=" hidden-xs">
-  <div class="container">
-    <div class="row">
-      <div id="sp-categories" class="col-sm-4 col-md-2">
-        <div class="sp-column ">
-          <div class="sp-module "> </div>
-        </div>
-      </div>
-      <div id="sp-menu" class="col-sm-8 col-md-7">
-        <div class="sp-column ">
-          <div class='sp-megamenu-wrapper'>
-            <ul class="sp-megamenu-parent menu-fade hidden-xs">
-              <li class="sp-menu-item current-item active"><a  href="/" >首页</a></li>
-              <li class="sp-menu-item hidden"><a  href="/OurArtbetter/infolist" >艺术资讯</a></li>
-              <li class="sp-menu-item"><a  href="/OurArtbetter/artistList" >签约艺术家</a></li>
-              <li class="sp-menu-item"><a  href="/OurArtbetter/productList" >艺术品商城</a></li>
-              <li class="sp-menu-item"><a  href="/OurArtbetter/ADMIN_uploadInfo" >艺术品在线定制</a></li>
-              <li class="sp-menu-item"><a  href="/blog" >拍卖商城</a></li>
-              <li class="sp-menu-item sp-has-child"><a  href="#" ><i class="fa fa-support"></i> 联系我们</a></li>
-		
-            </ul>
-          </div>
-        </div>
-      </div>
-     
-      </div>
-    </div>
-  </div>
-</section>
+
+<%@include file="header.jsp"%>
+
 <section id="sp-page-title">
   <div class="row">
     <div id="sp-title" class="col-sm-12 col-md-12">
@@ -216,18 +190,7 @@ padding-right:0px;}
                  </div>
                  </tr>
                 
-                <!-- 
-                  <div class="sppb-col-sm-4 col-lg-4 col-md-6" style="left:0%;">
-                     <div class="sppb-addon-container" style="width:100%;height:30%;">
-<i></i><a href="">${infomation.title}</a>
-                      </div>
-                  </div>
-                  <div class="sppb-col-sm-4 col-lg-4 col-md-6">
-                   <div class="sppb-addon-container" style="width:100%;height:30%;">
-<i></i><a href="">${infomation.title}</a>
-                      </div>
-                  </div>
-                   -->
+                
                </c:forEach>
  				</c:if>
  				</table> 
@@ -368,37 +331,15 @@ padding-right:0px;}
             </section>
           <!--end 拍卖-->
 
-    <footer id="sp-footer"上>
-    <div class="container">
-      <div class="row">
-        <div id="sp-footer1" class="col-sm-12 col-md-12">
-          <div class="sp-column "><span class="sp-copyright"> © 2015 ShapeBootstrap. Some Rights Reserved. A <a target="_blank" href="http://www.joomshaper.com">JoomShaper</a> Family.</span>
-		 </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  
-  <div class="offcanvas-menu"> <a href="#" class="close-offcanvas"><i class="fa fa-remove" style="background:url('images/close.png');width:65%;height:65%;margin-left:-18%;margin-top:13%;"></i></a>
-    <div class="offcanvas-inner">
-      <div class="sp-module ">
-        <h3 class="sp-module-title">drinkArt</h3>
-        <div class="sp-module-content">
-          <ul class="nav menu">
-            <li class="item-101 current active"><a href="/">首页</a></li>
-			<li class="item-105"><a href="/items">签约艺术家</a></li>
-            <li class="item-111"><a href="/productList">艺术品商城</a></li>
-            <li class="item-106"><a href="/free-templates">艺术品在线定制</a></li>
-            <li class="item-118"><a href="/blog">拍卖商城</a></li>
-            <li class="item-125 deeper parent"><a href="/OurArtbetter/infolist">艺术资讯</a></li>
-           <li class="item-131"><a href="/affiliates" >联系我们</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!--把footer开头的那个块替换成下面的-->
+  <%@include file="footer.jsp"%>
+  <!-- 把div改成下面这个-->
+  <%@include file="canvasmenu.jsp"%>
+
+
   <script>
    $("#myCarousel").carousel('cycle');
   </script>
 </body>
+
 </html>
