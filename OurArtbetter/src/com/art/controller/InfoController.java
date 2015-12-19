@@ -87,7 +87,7 @@ public class InfoController
 	
 	/*+  editor session*/
 	@RequestMapping("/ADMIN_saveInfo")   
-	public ModelAndView saveInfo(HttpServletRequest request)
+	public ModelAndView saveInfo(HttpServletRequest request,Model model )
 	{
 		String title = request.getParameter("title");
 		String contentType = request.getParameter("contentType");
@@ -106,9 +106,7 @@ public class InfoController
 		
 		info.setContent(content);
 		
-		//文件保存 
-
-	
+		//文件再次保存 
 		try
 	    { 	
 		    FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/infoHTML/")+title+".html"); 		    
@@ -127,7 +125,9 @@ public class InfoController
 	    }  
 		
 		infoService.addAnInfo(info);
-		return new ModelAndView("ADMIN_successToUploadInfo") ;  
+		int message=1;
+		model.addAttribute(message);
+		return new ModelAndView("ADMIN_EditorSuccess") ;  
 	}
 	
 	/*//修改是需要用文本编辑器   打开原来的HTML的  设置的属性要显示！*/
@@ -136,63 +136,61 @@ public class InfoController
 	{
 		Information information = infoService.getInformationById(infoId);
 		model.addAttribute(information);
-		return new ModelAndView( "");//新界面！ 能打开HTML
+		
+		System.out.print("here");
+		return new ModelAndView("ADMIN_updateInfo");
 	}
 	
 	
-	/*在文本编辑器的页面，点击提交，设置的 为调用这个controller*/
-	@RequestMapping("/ADMIN_updateInfo")  
-	public ModelAndView updateInfo(String title,String contentType,String content)//这个是info 类的对象吗
+
+	@RequestMapping("/ADMIN_updateinfo")  
+	public ModelAndView updateinfo(HttpServletRequest request,Model model)
 	{
+		String title = request.getParameter("title");
+		String contentType = request.getParameter("contentType");
+		String content = request.getParameter("content");
 		Information info = new Information();  
 		info.setState(0); //一旦修改之后，就变成未审核状态
 		info.setTitle(title);
+		info.setContentType(contentType);
 		Date nextTime = new Date();
 		info.setNextTime(nextTime);
 		info.setContent(content);
-		
-		
-		
-		
-		//从文件中读取
-				try 
-				{
-					FileReader fileReader = new FileReader("c1.txt");
-					BufferedReader bufferedReader = new BufferedReader(fileReader);
-				
-					String str;
-			    	str= bufferedReader.readLine();
-			    	String[] integer = str.split(" ");
-			    	for(int j=0;j<10;j++)
-			    		System.out.printf("%s ",integer[j]);
 
-					bufferedReader.close();
-				} 
-				catch(FileNotFoundException e)
-				{
-			    	e.printStackTrace();
-				}
-			    catch (IOException e) 
-			    {
+		//从文件中写入
+		try 
+		{	
+			FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/infoHTML/")+title+".html"); 		    
+		    fileWriter.write(content); 
+		    fileWriter.flush();  
+		    fileWriter.close();
+		} 
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e) 
+		{
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			e.printStackTrace();
+		}
 		
-		
-		
-		info.setContentType(contentType);
 		infoService.updateAnInfo(info);
-		return new ModelAndView("ADMIN_infolist");  
+		int message=2;
+		model.addAttribute(message);
+		return new ModelAndView("ADMIN_EditorSuccess");
 	}
 	
 	
 	@RequestMapping("/ADMIN_deleteInfo/{infoId}") 
-	public ModelAndView deleteInfo(@PathVariable int infoId) //delete by primary key
+	public ModelAndView deleteInfo(@PathVariable int infoId, Model model) //delete by primary key
 	{
 		Information information = new Information();
 		information.setId(infoId);
 		infoService.deleteAnInfo(information);
-		return new ModelAndView("ADMIN_infolist");
+		int message=3;
+		model.addAttribute(message);
+		return new ModelAndView("ADMIN_EditorSuccess");
 	}
 	
 	

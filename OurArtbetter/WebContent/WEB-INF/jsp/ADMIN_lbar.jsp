@@ -27,7 +27,7 @@
       <li class="navhasul"><a href="#" class="firstnav">资讯广告管理</a>
         <ul class="secondnav">
           <li><a href="/OurArtbetter/ADMIN_infolist">采编软文管理</a></li>
-          <li><a href="#">主编软文管理</a></li>
+          <li><a href="/OurArtbetter/ADMIN_chiefinfo">主编软文管理</a></li>
         </ul>
       </li>
       <li class="navhasul"><a href="#" class="firstnav">业务管理</a>

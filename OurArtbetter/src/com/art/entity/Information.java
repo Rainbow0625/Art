@@ -28,33 +28,33 @@ public class Information implements java.io.Serializable
 
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY) //Increase auto
-	@Column(name="id",nullable=false)
+	@Column(name="id")
 	private int id;
 	
-	@Column(name="contentType",nullable=false)
+	@Column(name="contentType")
 	private String contentType;
 	
 	@ManyToOne( targetEntity=Editor.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)
-	@JoinColumn(name="editorId",nullable=false,updatable=false) //一旦创建确认不可修改
+	@JoinColumn(name="editorId",updatable=false) //一旦创建确认不可修改
 	private Editor editor;
 	
 	@ManyToOne(targetEntity=ChiefEditor.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY )
-	@JoinColumn(name="chiefEditorId",nullable=true,updatable=false)//一旦创建确认不可修改
+	@JoinColumn(name="chiefEditorId")//一旦创建确认不可修改
 	private ChiefEditor chiefEditor;
 	
-	@Column(name="content",nullable=false)
+	@Column(name="content")
 	private String content;
 	
-	@Column(name="title",nullable=false)
+	@Column(name="title")
 	private String title;
 	
-	@Column(name="createTime",nullable=false,updatable=false)
+	@Column(name="createTime",updatable=false)
 	private Date createTime;
 	
-	@Column(name="nextTime",nullable=true)
+	@Column(name="nextTime")
 	private Date nextTime;
 	
-	@Column(name="state",nullable=false)
+	@Column(name="state")
 	private int state;   //  1 haven't check  2 pass  3 not pass
 	
 	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="information",fetch=FetchType.LAZY)

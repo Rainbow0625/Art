@@ -17,6 +17,7 @@
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<script src="ckeditor/ckeditor.js" type="text/javascript"></script>
 <style>
 	   body{
 		font-family:"Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei", sans-serif;
@@ -45,6 +46,9 @@
 		th{
 		text-align:center;
 		}
+		textarea{
+		width:800px;
+		height:600px;}
 		</style>
 </head>
 <body>
@@ -56,6 +60,7 @@
 <div class="login-bar"> <a href="#" class="orange" style="cursor:default;">你好！管理员:{$adminname}</a> <a href="__APP__/Login/logout">退出</a> </div>
 <div class="header clear">
   <h1 class="logo">DrinkArt</h1>
+</div>
 </div>
 <div class="main clearfix">
   <div class="admin-l-bar">
@@ -92,89 +97,36 @@
     </ul>
   </div>
   <div class="admin-main-r-wrapper">
-    <div class="search" style="float:right;">
-      <form action="#" method="post">
-        <input type="text" name="searchname" placeholder="请输入您要搜索的资讯" />
-        <input type="submit"  value="搜索" />
-      </form>
-    </div>
+  <form action="/OurArtbetter/ADMIN_updateinfo" >
     <h3>资讯管理</h3>
-    <div class="operate-table clear">
+    <div class="operate-table clear" style="margin-left:15px;">
+    	<div class="info-title">
+			<div class="label-control">
+		  	<label>资讯标题：</label>
+		 	</div>
+	  		<input type="text" name ="title" id="title" class="inputtitle"  value = "${information.title }"></input>
+		</div>
+		<div>
+			<select name="contentType" >
+                <option value ="INFO">资讯</option>
+                <option value ="ADVER">广告</option>
+            </select>
+		</div>
+
+	<div class="info-content">
+		<div class="label-control"><label>资讯内容：</label></div>
     
-    
-      <table class="lc_prolist">
-      <c:if test="${! empty allAdver}">
-	  <c:forEach var="adver" items="${allAdver}"> 
-        <thead>
-          <tr>
-            <th>广告标题</th>
-            <th>创建时间</th>
-			<th>上次修改时间</th>
-            <th>广告内容</th>
-			<th>采编</th>
-            <th>审核情况</th>
-            <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
-            <th>操作</th>
-          </tr>
-        </thead>
-        
-          <tr>
-			<td>${adver.title}</td>
-			<td>${adver.createTime}</td>
-			<td>${adver.nextTime}</td>	
-            <td><input type="button" value="查看广告内容" onclick="window.location.href='/OurArtbetter/ADMIN_chiefLookThrough/${adver.id}' "/></td>
-			<td>${adver.editor.id}</td>
-			<td>${adver.state}</td>
-            <td><input type="button" value="审核通过" onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo/${adver.id}' " /> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo/${adver.id}' " />  <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos/${adver.id}' "/> </td>
-          </tr>
-        <tr>
-          <td colspan=10>{$page}</td>
-        </tr>
-     </c:forEach>
-	 </c:if>
-     </table>
-
-
-
-      <table class="lc_prolist">
-      <c:if test="${! empty allInfo}">
-	  <c:forEach var="info" items="${allInfo}"> 
-        <thead>
-          <tr>
-            <th>咨询标题</th>
-            <th>创建时间</th>
-			<th>上次修改时间</th>
-            <th>咨询内容</th>
-			<th>采编</th>
-            <th>审核情况</th>
-            <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
-            <th>操作</th>
-          </tr>
-        </thead>
-        
-          <tr>
-			<td>${info.title}</td>
-			<td>${info.createTime}</td>
-			<td>${info.nextTime}</td>	
-            <td><input type="button" value="查看资讯内容" onclick="window.location.href='/OurArtbetter/ADMIN_chiefLookThrough/${info.id}' " /></td>
-			<td>${info.editor.id}</td>
-            <td>${info.state}</td>
-			<td><input type="button" value="审核通过"  onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo/${info.id}' "/> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo/${info.id}' " />  <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos/${info.id}' "/> </td>
-          </tr>
-        
-		
-        <tr>
-          <td colspan=10>{$page}</td>
-        </tr>
-     </c:forEach>
-	 </c:if>
-     </table>
-
-      
-      
+       <textarea name= "content" id="content" >${information.content} </textarea>
+	   <script type="text/javascript"  >CKEDITOR.replace('content');</script>
+	</div>
     </div>
+    
+	<div style="float:left;margin-left:9px;">
+    	<input type="submit" value="确认修改" style="width:100px;height:30px;" />
+  	</div>
+  	</form>
   </div>
 </div>
-
+   <script type="text/javascript">CKEDITOR.replace('content');</script>
 </body>
 </html>

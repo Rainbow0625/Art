@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.art.backstageService.InfoService;
 import com.art.dao.DateAndPosDao;
@@ -16,6 +17,7 @@ import com.art.entity.InfoColumn;
 import com.art.entity.Information;
 
 @Service
+@Transactional
 public class InfoServiceImp implements InfoService
 {
 	@Resource

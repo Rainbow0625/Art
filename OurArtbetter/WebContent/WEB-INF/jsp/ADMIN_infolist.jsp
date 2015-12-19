@@ -5,12 +5,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<link rel = "Shortcut Icon" href="/images/favicon.ico"/>
+		<link rel = "Shortcut Icon" href="images/favicon.ico"/>
 		<title>DrinkArt</title>
-		<link rel="stylesheet" type="text/css" href="/css/admin_style.css" />
-		<link rel="stylesheet" type="text/css" href="/css/admin.css" />
+		<link rel="stylesheet" type="text/css" href="css/admin_style.css" />
+		<link rel="stylesheet" type="text/css" href="css/admin.css" />
 
-		<script type="text/javascript" src="/js/jquery.1.10.2.js"></script>     
+		<script type="text/javascript" src="js/jquery.1.10.2.js"></script>     
 		<style>
 		 h3{
 		 font-weight:bold;}
@@ -36,49 +36,10 @@
 			<div class="header clear">
 				<h1 class="logo">DrinkArt</h1>
 			</div>
-			<div class="main clearfix">
-			<div class="admin-l-bar">
-			</div>
-	<h2>后台管理系统</h2>
-	<ul>
-		<li><a href="#" class="firstnav">首页</a></li>
+			
+<div class="main clearfix">
 
-
-		<li class="navhasul"><a href="#" class="firstnav">用户管理</a>
-			<ul class="secondnav">
-				<li><a href="#">用户列表</a></li>
-				<li><a href="#">艺术家列表</a></li>
-				<li><a href="#">增加用户</a></li>
-			</ul>
-		</li>
-
-		<li class="navhasul"><a href="#" class="firstnav">订单管理</a>
-			<ul class="secondnav">
-				<li><a href="#">商城订单管理</a></li>
-				<li><a href="#">定制订单管理</a></li>
-				<li><a href="#">拍卖订单管理</a></li>
-			</ul>
-		</li>
-
-		<li class="navhasul"><a href="#" class="firstnav">资讯广告管理</a>
-			<ul class="secondnav">
-		        <li><a href="#">资讯管理</a></li>
-				<li><a href="#">广告管理</a></li>
-			</ul>
-		</li>
-
-		<li class="navhasul"><a href="#" class="firstnav">业务管理</a>
-			<ul class="secondnav">
-			    <li><a href="#">拍卖管理</a></li>
-				<li><a href="#">商城管理</a></li>
-			</ul>
-		</li>
-
-        <li class="navhasul"><a href="#" class="firstnav">咨询投诉管理</a>
-		</li>
-	</ul>
-</div>
-
+<%@include file="ADMIN_lbar.jsp"%> 
   <div class="admin-main-r-wrapper">
 			   	
 			   	 <div class="search" style="float:right;">			   	 	
@@ -115,7 +76,7 @@
 			   	 				<td>${adver.nextTime}</td>		   	 			
 			   	 				<td>${adver.state}</td>
 			   	 				<td>${adver.chiefEditor.id}</td>
-			   	 				<td><input type="button" value="修改" onclick="window.location.href=' /OurArtbetter/ADMIN_ToUpdateInfo/${adver.id}  '" /><input type="button" value="删除" onclick=" window.location.href=' /OurArtbetter/ADMIN_deleteInfo/${adver.id} ' "/></td>
+			   	 				<td><a href="/OurArtbetter/ADMIN_ToUpdateInfo/${adver.id}"> <input type="button" value="修改" /></a>   <a  href="/OurArtbetter/ADMIN_deleteInfo/${adver.id}" ><input type="button" value="删除"  />   </a></td>
 		   	 			   </tr>
 		   	 			   </c:forEach>
 			   	 		  </c:if>
@@ -156,7 +117,7 @@
 			   	 				<td>${info.nextTime}</td>		   	 			
 			   	 				<td>${info.state}</td>
 			   	 				<td>${info.chiefEditor.id}</td>
-			   	 				<td><input type="button" value="修改" onclick="window.location.href=' /OurArtbetter/ADMIN_ToUpdateInfo/${info.id} '"/><input type="button" value="删除" onclick=" window.location.href=' /OurArtbetter/ADMIN_deleteInfo/${info.id} ' "/></td>
+			   	 				<td><a href="/OurArtbetter/ADMIN_ToUpdateInfo/${info.id}"><input type="button" value="修改" /></a>    <a  href="/OurArtbetter/ADMIN_deleteInfo/${info.id} "><input type="button" value="删除" /> </a> </td>
 		   	 			   </tr>
 		   	 			   
 		   	 			   </c:forEach>
@@ -175,7 +136,8 @@
 			   	 	
 			   	 	</div>
 			   </div>
-			</div>
+			   </div>
+			
 			<script type="text/javascript">
 	$(function(){
 		$(".navhasul").hover(function(){
