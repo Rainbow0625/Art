@@ -15,6 +15,8 @@ public class InfoColumnDaoImp implements InfoColumnDao
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
+	public InfoColumnDaoImp(){}
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -22,27 +24,30 @@ public class InfoColumnDaoImp implements InfoColumnDao
 	@Override
 	public InfoColumn getInfoColumnById(int infoColumnById) {
 		String id=String.valueOf(infoColumnById);
-		String hql = "from InfoColumn where id="+ id;
+		String hql = "from InfoColumn where id=?";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, infoColumnById);
 		InfoColumn infoColumn = (InfoColumn) query.uniqueResult();
 		return infoColumn;
 	}
 
-	@Override
+	@Override  //use!!
 	public double getInforColumnPriceById(int infoColumnById) {
 		String id=String.valueOf(infoColumnById);
-		String hql = "select from InfoColumn where id="+ id;
+		String hql = "select from InfoColumn where id=?";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, infoColumnById);
 		InfoColumn infoColumn = (InfoColumn) query.uniqueResult();
 		double price = infoColumn.getPrice();
 		return price;
 	}
 
-	@Override
+	@Override 
 	public String getInforColumnTypeById(int infoColumnById) {
 		String id=String.valueOf(infoColumnById);
-		String hql = "select from InfoColumn where id="+ id;
+		String hql = "select from InfoColumn where id=?";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, infoColumnById);
 		InfoColumn infoColumn = (InfoColumn) query.uniqueResult();
 		String type = infoColumn.getContentType();
 		return type;

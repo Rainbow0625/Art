@@ -5,12 +5,12 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<link rel = "Shortcut Icon" href="../../images/favicon.ico"/>
+		<link rel = "Shortcut Icon" href="/images/favicon.ico"/>
 		<title>DrinkArt</title>
-		<link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/admin.css" />
+		<link rel="stylesheet" type="text/css" href="/css/admin_style.css" />
+		<link rel="stylesheet" type="text/css" href="/css/admin.css" />
 
-		<script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>     
+		<script type="text/javascript" src="/js/jquery.1.10.2.js"></script>     
 		<style>
 		 h3{
 		 font-weight:bold;}
@@ -38,6 +38,7 @@
 			</div>
 			<div class="main clearfix">
 			<div class="admin-l-bar">
+			</div>
 	<h2>后台管理系统</h2>
 	<ul>
 		<li><a href="#" class="firstnav">首页</a></li>
@@ -93,8 +94,7 @@
 			   	 
 			   	 <!-- 广告 -->
 			   	 <table class="lc_prolist">
-			   	 <c:if test="${! empty myAdver}">
-				 <c:forEach var="adver" items="${myAdver}"> 
+			   	 
 				 
 			   	 		<thead>
 			   	 		<tr>
@@ -107,7 +107,8 @@
 							<th>操作</th>
 			   	 		</tr>
 			   	 		</thead>
-			   	 		
+			   	 			<c:if test="${! empty myAdver}">
+				 			<c:forEach var="adver" items="${myAdver}"> 
 			   	 			<tr>
 			   	 				<td>${adver.title}</td>
 			   	 				<td>${adver.createTime}</td>
@@ -116,17 +117,18 @@
 			   	 				<td>${adver.chiefEditor.id}</td>
 			   	 				<td><input type="button" value="修改" onclick="window.location.href=' /OurArtbetter/ADMIN_ToUpdateInfo/${adver.id}  '" /><input type="button" value="删除" onclick=" window.location.href=' /OurArtbetter/ADMIN_deleteInfo/${adver.id} ' "/></td>
 		   	 			   </tr>
+		   	 			   </c:forEach>
+			   	 		  </c:if>
 			   	 		
 						<tr>
 						  <!--跳到单个资讯的页面-->
 						  <td colspan=10><a href="/OurArtbetter/ADMIN_uploadinfo" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建广告</span></a></td>
 						</tr>
 			   	 		<tr>
-			   	 			<td colspan=10>{$page}</td>    <!-- 这是啥？ -->
+			   	 			
 			   	 		</tr>
 			   	 		
-			   	 	</c:forEach>
-			   	 	</c:if>
+			   	 	
 			   	 	</table>
 			   	 
 			   	 
@@ -134,11 +136,10 @@
 			   	 
 			   	  	 <!-- 咨询 -->
 			   	 	<table class="lc_prolist">
-			   	 	<c:if test="${! empty myInfo}">
-					<c:forEach var="info" items="${myInfo}"> 
+			   	 	
 			   	 		<thead>
 			   	 		<tr>
-			   	 			<th>广告标题</th>
+			   	 			<th>咨询标题</th>
 			   	 			<th>创建时间</th>
 							<th>上次修改时间</th>
 			   	 			<th>审核情况</th>
@@ -147,6 +148,8 @@
 							<th>操作</th>
 			   	 		</tr>
 			   	 		</thead>
+			   	 		<c:if test="${! empty myInfo}">
+						<c:forEach var="info" items="${myInfo}"> 
 			   	 			<tr>
 			   	 				<td>${info.title}</td>
 			   	 				<td>${info.createTime}</td>
@@ -155,16 +158,18 @@
 			   	 				<td>${info.chiefEditor.id}</td>
 			   	 				<td><input type="button" value="修改" onclick="window.location.href=' /OurArtbetter/ADMIN_ToUpdateInfo/${info.id} '"/><input type="button" value="删除" onclick=" window.location.href=' /OurArtbetter/ADMIN_deleteInfo/${info.id} ' "/></td>
 		   	 			   </tr>
+		   	 			   
+		   	 			   </c:forEach>
+			   	 			</c:if>
 						<tr>
 						  <!--跳到单个资讯的页面-->
 						  <td colspan=10><a href="/OurArtbetter/ADMIN_uploadinfo" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建资讯</span></a></td>
 						</tr>
 			   	 		<tr>
-			   	 			<td colspan=10>{$page}</td>  <!-- 这是啥？ -->
+			   	 			
 			   	 		</tr>
 			   	 		
-			   	 	</c:forEach>
-			   	 	</c:if>
+			   	 	
 			   	 	</table>
 			   	 	
 			   	 	

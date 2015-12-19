@@ -22,6 +22,8 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
+	public DateAndPosDaoImp(){}
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -37,7 +39,6 @@ public class DateAndPosDaoImp implements DateAndPosDao
 		query.setDate(1,todayDate);  
 		Information information = (Information)query.uniqueResult();
 		
-		//System.out.printf("aaaa%s",todayDate.toString());
 		return information;
 	}
 
@@ -45,7 +46,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	public List<DateAndPos> getDateAndPosByInformationId(int informationId) {
 		String hql = "select dateAndPos from DateAndPos as dateAndPos where dateAndPos.information.id=? " ;  
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger("id", informationId);  
+		query.setInteger(0, informationId);  
 		@SuppressWarnings("unchecked")
 		List<DateAndPos> dateAndPos =  query.list();
 		return dateAndPos;
@@ -55,7 +56,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	public List<DateAndPos> getDateAndPosByInfoColumnId(int infoColumnId) {
 		String hql = "select dateAndPos from DateAndPos as dateAndPos where dateAndPos.infoColumn.id=?";  
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger("id", infoColumnId);  
+		query.setInteger(0, infoColumnId);  
 		@SuppressWarnings("unchecked")
 		List<DateAndPos> dateAndPos =  query.list();
 		return dateAndPos;
@@ -65,17 +66,16 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	@Override
 	public void setDateAndPos(DateAndPos dateAndPos) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
+		
 		session.save(dateAndPos);
-		session.getTransaction().commit();
 	}
 
 	@Override
 	public void deleteDateAndPos(DateAndPos dateAndPos) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
+		
 		session.delete(dateAndPos);
-		session.getTransaction().commit();
+		
 	}
 
 }

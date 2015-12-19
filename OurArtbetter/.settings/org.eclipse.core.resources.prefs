@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/JSP/ADMIN_artistList.jsp=UTF-8
 encoding//WebContent/WEB-INF/JSP/ADMIN_chiefinfo.jsp=UTF-8
+encoding//src/com/art/daoImp/AdminDaoImp.java=UTF-8
 encoding//src/com/art/daoImp/ArtistDaoImp.java=UTF-8
+encoding//src/com/art/daoImp/UserDaoImp.java=UTF-8

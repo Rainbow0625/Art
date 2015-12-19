@@ -15,6 +15,8 @@ public class ArtworkDaoImp implements ArtworkDao {
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
+	public ArtworkDaoImp(){}
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

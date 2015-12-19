@@ -2,6 +2,7 @@ package com.art.controller;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -29,21 +30,27 @@ import com.art.entity.Editor;
 import com.art.entity.InfoColumn;
 import com.art.entity.Information;
 
+import antlr.ASdebug.TokenOffsetInfo;
+
 @Controller
 public class InfoController 
 {
 	@Resource
 	private InfoService infoService;
 	
-	@Autowired
-	public InfoController(InfoService infoService)
-	{
-		this.infoService=infoService;
-	}
+	
+	public InfoController(){}
 
 	
-	/*editor*/
-
+	
+	@RequestMapping("/ADMIN_welcome") 
+	public ModelAndView toadmin()
+	{
+		
+		return new ModelAndView("ADMIN_welcome");
+	}
+	
+	/*+editor session*/
 	@RequestMapping("/ADMIN_infolist") 
 	public ModelAndView listAllInfoByEditorId(ModelMap model)
 	{
@@ -70,16 +77,15 @@ public class InfoController
 	}
 	
 
-	//直接跳转的页面。后期设置session  editor id等
-	@RequestMapping("/ADMIN_uploadInfo") 
-	public ModelAndView newInfo(Model model)
+	//+直接跳转的页面。后期设置session  editor id等
+	@RequestMapping("/ADMIN_uploadinfo") 
+	public ModelAndView newInfo()
 	{
-		return new ModelAndView("ADMIN_uploadInfo");
+		return new ModelAndView("ADMIN_uploadinfo");
 	}
 	
 	
-	/*并添加一条记录在数据库Information表里*/
-	@SuppressWarnings({ "unused", "resource" })
+	/*+  editor session*/
 	@RequestMapping("/ADMIN_saveInfo")   
 	public ModelAndView saveInfo(HttpServletRequest request)
 	{
@@ -101,47 +107,11 @@ public class InfoController
 		info.setContent(content);
 		
 		//文件保存 
-		/*
-		//System.out.printf("%s", content);	
-		 !!!   application.getRealPath(request.getRequestURI());
-		 request.getRequestURI()
-		 System.out.printf("%s", System.getProperty("user.dir") );
-		 //System.out.printf("%s", Thread.currentThread().getContextClassLoader().getResource(""));
-		//String  request.getContextPath();
-		 */
+
+	
 		try
-	    { /*
-			String head = null;
-			String middle = null;
-			String tail = null;
-			FileReader fileReader = new FileReader("C:\\Users\\Hz\\Desktop\\Art\\OurArtbetter\\WebContent\\infoHTML\\head.txt");
-			BufferedReader bufferedReader = new BufferedReader(fileReader);
-			String temp;
-			while (  ( temp = bufferedReader.readLine() )!=null   )
-			 {
-				head+= temp;
-			 }
-	    	
-			fileReader = new FileReader("C:\\Users\\Hz\\Desktop\\Art\\OurArtbetter\\WebContent\\infoHTML\\middle.txt");
-			BufferedReader bufferedReader2 = new BufferedReader(fileReader);
-
-			while (  ( temp = bufferedReader2.readLine() )!=null   )
-			 {
-				middle+= temp;
-			 }
-			
-			fileReader = new FileReader("C:\\Users\\Hz\\Desktop\\Art\\OurArtbetter\\WebContent\\infoHTML\\tail.txt");
-			BufferedReader bufferedReader3 = new BufferedReader(fileReader);
-
-			while (  ( temp = bufferedReader3.readLine() )!=null   )
-			 {
-				tail+= temp;
-			 }
-			bufferedReader.close();
-			
-			*/
-				
-		    FileWriter fileWriter = new FileWriter("C:\\Users\\Hz\\Desktop\\Art\\OurArtbetter\\WebContent\\infoHTML\\"+title+".html"); 		    
+	    { 	
+		    FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/infoHTML/")+title+".html"); 		    
 		    fileWriter.write(content); 
 		    fileWriter.flush();  
 		    fileWriter.close();
@@ -157,7 +127,7 @@ public class InfoController
 	    }  
 		
 		infoService.addAnInfo(info);
-		return new ModelAndView("ADMIN_infolist") ;  
+		return new ModelAndView("ADMIN_successToUploadInfo") ;  
 	}
 	
 	/*//修改是需要用文本编辑器   打开原来的HTML的  设置的属性要显示！*/

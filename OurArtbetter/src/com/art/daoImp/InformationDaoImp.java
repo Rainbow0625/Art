@@ -17,6 +17,9 @@ public class InformationDaoImp implements InformationDao
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 	
+	public InformationDaoImp(){}
+	
+	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -24,9 +27,9 @@ public class InformationDaoImp implements InformationDao
 	@Override
 	public Information getInformationById(int informationId) {
 		
-		String id=String.valueOf(informationId);
-		String hql = "from Information where id="+ id;
+		String hql = "from Information where id=?";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, informationId);
 		Information information = (Information) query.uniqueResult();
 		return information;
 	}
@@ -34,43 +37,45 @@ public class InformationDaoImp implements InformationDao
 	@Override
 	public List<Information> getAllAdver() {
 		
-		String hql = "from Information where contentType=\"ADVER\" ";
+		String hql = "from Information where contentType='ADVER' ";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Information> informationList = query.list();
 		for(int i =0 ; i<informationList.size() ;i++)
 		{
-			informationList.get(i).getEditor().getId();
+			if(informationList.get(i).getEditor()!=null)
+				informationList.get(i).getEditor().getId();
 		}
 		return informationList;
 	} 
 
 	@Override
 	public List<Information> getAllInfo() {
-		String hql = "from Information where contentType=\"INFO\" ";
+		String hql = "from Information where contentType='INFO' ";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Information> informationList = query.list();
 		for(int i =0 ; i<informationList.size() ;i++)
 		{
-			informationList.get(i).getEditor().getId();
+			if(informationList.get(i).getEditor()!=null)
+				informationList.get(i).getEditor().getId();
 		}
 		return informationList;
 	}
 
 	@Override
 	public List<Information> getInformationByEditorId(int editorId) {
-		//System.out.println("here!" );
 		
 		String hql = "from Information information where information.editor.id=? and information.contentType='INFO' ";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, editorId);
+		@SuppressWarnings("unchecked")
 		List<Information> informationList = query.list();
 
-		
 		for(int i =0 ; i<informationList.size() ;i++)
 		{
-			informationList.get(i).getChiefEditor().getId();
+			if(informationList.get(i).getChiefEditor()!=null)
+				informationList.get(i).getChiefEditor().getId();
 		}
 		return informationList;
 	}
@@ -87,7 +92,8 @@ public class InformationDaoImp implements InformationDao
 		List<Information> informationList = query.list();
 		for(int i =0 ; i<informationList.size() ;i++)
 		{
-			informationList.get(i).getChiefEditor().getId();
+			if(informationList.get(i).getChiefEditor()!=null)
+				informationList.get(i).getChiefEditor().getId();
 		}
 		return informationList;
 	}
@@ -104,54 +110,46 @@ public class InformationDaoImp implements InformationDao
 	}
 	
 	@Override
+	//事务加标签即可！
 	public void addAnInfo(Information info) {
-		//System.out.println("here!" );
 		Session session = sessionFactory.getCurrentSession();
-		//session.beginTransaction();
 		session.save(info);
-		//session.getTransaction().commit();
 	}
 
 	@Override
 	public void deleteAnInfo(Information info) {
 		Session session = sessionFactory.getCurrentSession();
-		//session.beginTransaction();
 		session.delete(info);
-		session.getTransaction().commit();
+
 	}
 
 	@Override
 	public void updateAnInfo(Information info) {
 		
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
 		session.saveOrUpdate(info);
 		//other : sessionFactory.getCurrentSession().update(info);
-		session.getTransaction().commit();
-		
 	}
 
 	@Override
 	public void checkInfoById(int infoId) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		String hql = "update Information info set info.state='2' where info.id=?";
+		String hql = "update Information info set info.state=2 where info.id=?";
 		Query query = session.createQuery(hql);
 		query.setInteger(0, infoId);
 		query.executeUpdate();
-		session.getTransaction().commit();
 	}
 	
 	
 	@Override
 	public void failInfoById(int infoId) {
 		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		String hql = "update Information info set info.state='3' where info.id=?";
+		//session.beginTransaction();
+		String hql = "update Information info set info.state=3 where info.id=?";
 		Query query = session.createQuery(hql);
 		query.setInteger(0, infoId);
 		query.executeUpdate();
-		session.getTransaction().commit();
+		//session.getTransaction().commit();
 	}
 
 }

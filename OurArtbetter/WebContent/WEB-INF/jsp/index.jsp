@@ -106,41 +106,9 @@ padding-right:0px;}
 </head>
 <body class="site com-sppagebuilder view-page no-layout no-task itemid-101 en-gb ltr  sticky-header layout-fluid">
 <div class="body-innerwrapper">
-<header id="sp-header">
-  <div class="container">
-    <div class="row">
-      <div id="sp-logo" class="col-xs-8 col-sm-3 col-md-2">
-        <div class="sp-column "><a class="logo" href="/">
-          <h1 style="color:#913334;">drinkArt</h1>
-          </a></div>
-      </div>
-	  
-      <div id="sp-account" class="col-xs-4 col-sm-5 col-md-4">
-        <div class="sp-column ">
-          <ul>
-              <li><a class="btn btn-success btn-login hidden-sm hidden-xs" href="/OurArtbetter/TurnToLogin">Login</a></li>
-              <li><a class="btn btn-link btn-login visible-sm visible-xs" href="/login"><i class="fa fa-user"></i></a></li>
-              <li><a class="btn btn-default btn-registration hidden-sm hidden-xs" href="/login?view=registration">Create an Account</a></li>
-              <li><a class="btn btn-link btn-login visible-sm visible-xs" href="#"><i class="fa fa-bars" style="background:url('images/user.png')no-repeat;margin-top:80%;width: 130%;height: 80%;"></i></a></li>
-	  
-              <li><a class="btn btn-link btn-login visible-sm visible-xs" id="offcanvas-toggler" href="#"><i class="fa fa-bars" style="background:url('images/listimg.png');    margin-top:90%;width: 100%;height: 40%;"></i></a></li>
-              <li><a class="btn btn-link btn-cart hidden-sm hidden-xs" href="/cart"><i class="sb-icon-purchase"></i> <small class="my-cart">0</small></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
 <%@include file="header.jsp"%>
 
-<section id="sp-page-title">
-  <div class="row">
-    <div id="sp-title" class="col-sm-12 col-md-12">
-      <div class="sp-column "></div>
-    </div>
-  </div>
-</section>
+<a href="/OurArtbetter/ADMIN_welcome">test </a>
 
 <section  class="sppb-section section-intro" style="margin:0px;padding:20px 0;">
 <div class="sppb-container">
@@ -189,8 +157,6 @@ padding-right:0px;}
                   </div>
                  </div>
                  </tr>
-                
-                
                </c:forEach>
  				</c:if>
  				</table> 
@@ -340,6 +306,7 @@ padding-right:0px;}
   <script>
    $("#myCarousel").carousel('cycle');
   </script>
+  </div>
 </body>
 
 </html>
