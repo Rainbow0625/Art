@@ -1,10 +1,7 @@
 package com.art.controller;
 
 
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,9 +11,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.jasper.tagplugins.jstl.core.Out;
-import org.hibernate.sql.Template;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -27,10 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.art.backstageService.InfoService;
 import com.art.entity.DateAndPos;
 import com.art.entity.Editor;
-import com.art.entity.InfoColumn;
 import com.art.entity.Information;
-
-import antlr.ASdebug.TokenOffsetInfo;
 
 @Controller
 public class InfoController 
@@ -196,8 +187,7 @@ public class InfoController
 	
 	
 	
-	/*chiefEditor*/
-	
+	/*chiefEditor*/	
 	@RequestMapping("/ADMIN_chiefinfo") 
 	public ModelAndView listAllInfoToChiefEditor(ModelMap model)
 	{
@@ -211,16 +201,16 @@ public class InfoController
 		model.addAttribute("allAdver", allAdver); 
 		System.out.println("ok to display info list");
 
-		return new ModelAndView("ADMIN_cheifinfo",model);
+		return new ModelAndView("ADMIN_chiefinfo",model);
 	}
 	
 	/*修改返回值*/
 	@RequestMapping("/ADMIN_chiefLookThrough/{infoId}") 
-	public ModelAndView displayInfoToChiefEditor(@PathVariable int infoId)
+	public ModelAndView displayInfoToChiefEditor(@PathVariable int infoId,Model model )
 	{
 		Information information = infoService.getInformationById(infoId);
-
-		return new ModelAndView(information.getContent());   //有问题
+		model.addAttribute("information", information);
+		return new ModelAndView("infoContent");   
 	}
 	
 	

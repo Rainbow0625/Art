@@ -103,14 +103,12 @@
     
     
       <table class="lc_prolist">
-      <c:if test="${! empty allAdver}">
-	  <c:forEach var="adver" items="${allAdver}"> 
+
         <thead>
           <tr>
             <th>广告标题</th>
             <th>创建时间</th>
 			<th>上次修改时间</th>
-            <th>广告内容</th>
 			<th>采编</th>
             <th>审核情况</th>
             <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
@@ -118,33 +116,35 @@
           </tr>
         </thead>
         
-          <tr>
-			<td>${adver.title}</td>
+        
+                <c:if test="${! empty allAdver}">
+	  <c:forEach var="adver" items="${allAdver}"> 
+	    <tr>
+			<td><a href="/OurArtbetter/ADMIN_chiefLookThrough/${adver.id}">${adver.title}</a></td>
 			<td>${adver.createTime}</td>
 			<td>${adver.nextTime}</td>	
-            <td><input type="button" value="查看广告内容" onclick="window.location.href='/OurArtbetter/ADMIN_chiefLookThrough/${adver.id}' "/></td>
 			<td>${adver.editor.id}</td>
 			<td>${adver.state}</td>
-            <td><input type="button" value="审核通过" onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo/${adver.id}' " /> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo/${adver.id}' " />  <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos/${adver.id}' "/> </td>
-          </tr>
-        <tr>
-          <td colspan=10>{$page}</td>
+            <td><input type="button" value="审核通过" onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo/${adver.id}' " /> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo/${adver.id}' " /> <input type="button" value="驳回意见"></input> <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos/${adver.id}' "/> </td>
         </tr>
-     </c:forEach>
+              </c:forEach>
 	 </c:if>
+
+        <tr>
+          
+        </tr>
+ 
      </table>
 
 
 
       <table class="lc_prolist">
-      <c:if test="${! empty allInfo}">
-	  <c:forEach var="info" items="${allInfo}"> 
+     
         <thead>
           <tr>
             <th>咨询标题</th>
             <th>创建时间</th>
 			<th>上次修改时间</th>
-            <th>咨询内容</th>
 			<th>采编</th>
             <th>审核情况</th>
             <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
@@ -152,22 +152,27 @@
           </tr>
         </thead>
         
+          
+           <c:if test="${! empty allInfo}">
+	  <c:forEach var="info" items="${allInfo}"> 
           <tr>
-			<td>${info.title}</td>
+			<td><a href="/OurArtbetter/ADMIN_chiefLookThrough/${info.id}">${info.title}</a></td>
 			<td>${info.createTime}</td>
 			<td>${info.nextTime}</td>	
-            <td><input type="button" value="查看资讯内容" onclick="window.location.href='/OurArtbetter/ADMIN_chiefLookThrough/${info.id}' " /></td>
 			<td>${info.editor.id}</td>
             <td>${info.state}</td>
-			<td><input type="button" value="审核通过"  onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo/${info.id}' "/> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo/${info.id}' " />  <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos/${info.id}' "/> </td>
-          </tr>
+			<td><a href=" /OurArtbetter/ADMIN_checkInfo/${info.id} "><input type="button" value="审核通过" /></a>  <a href = "/OurArtbetter/ADMIN_failInfo/${info.id}"><input type="button" value="审核不通过"/></a>  <a href="  "> <input type="button" value="驳回意见"/></a>  <a href=" /OurArtbetter/ADMIN_TosetDateAndPos/${info.id} "><input type="button" value="设置上传时间位置"/> </a> </td>
+           </tr>
+
+         </c:forEach>
+	 </c:if>
+        
         
 		
         <tr>
-          <td colspan=10>{$page}</td>
+          
         </tr>
-     </c:forEach>
-	 </c:if>
+     
      </table>
 
       

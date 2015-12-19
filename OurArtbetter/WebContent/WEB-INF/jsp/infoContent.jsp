@@ -9,10 +9,10 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Joomla! - Open Source Content Management" />
 <title>drinkArt</title>
-<link rel="stylesheet" href="../../css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="../../css/template.css" type="text/css" />
-<link rel="stylesheet" href="../../css/style.css">
-<link rel="stylesheet" href="../../css/artstyle.css">
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/template.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/artstyle.css">
 <style type="text/css">
 body{    font-family: Arial, "宋体"; font-weight:normal; }
 h1{font-family:Open Sans, sans-serif; font-weight:700; }
@@ -118,9 +118,9 @@ p {
 }
 
   </style>
-<script src="../../js/jquery.min.js" type="text/javascript"></script>
-<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../../js/main.js" type="text/javascript"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
 <meta content="Premium & Free Bootstrap Templates & Themes" property="og:title" />
 <meta content="website" property="og:type"/>
 <meta content="https://shapebootstrap.net/" property="og:url" />
