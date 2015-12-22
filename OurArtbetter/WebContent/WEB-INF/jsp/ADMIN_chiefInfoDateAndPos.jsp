@@ -1,21 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+ <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%!
+int dayNum =1; 
+%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel = "Shortcut Icon" href="images/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel = "Shortcut Icon" href="images/favicon.ico"/>
 <title>DrinkArt</title>
-<link rel="stylesheet" type="text/css" href="../../css/admin_style.css" />
-<link rel="stylesheet" type="text/css" href="../../css/admin.css" />
-<link rel="stylesheet" href=../../"css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="../../css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="../../css/bootstrap-datetimepicker.min.css" type="text/css" />
-<script type="text/javascript" src="../../js/jquery.1.10.2.js"></script>
-<script src="../../js/jquery.min.js" type="text/javascript"></script>
-<script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../../js/bootstrap-datetimepicker.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/admin_style.css" />
+<link rel="stylesheet" type="text/css" href="css/admin.css" />
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css" />
+<script type="text/javascript" src="js/jquery.1.10.2.js"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
 <style>
 	   body{
 		font-family:"Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei", sans-serif;
@@ -97,27 +100,32 @@
         <input type="submit"  value="搜索" />
       </form>
     </div>
-    <h3>资讯管理</h3>
+    
+    
+    <h3>上线设置 :</h3>
+    <h3>${info.contentType}标题：${info.title }  </h3>
     <div class="operate-table clear">
-    
-    
-    
-    
-    <form action="/OurArtbetter/ADMIN_setDateAndPos/"  method="post">
+    <form action="/OurArtbetter/ADMIN_setDateAndPos?id=${ info.id }"  method="post"  id="newDateAndPos">     <!-- 需要修改 -->
       <table class="lc_prolist" >
         <thead>
           <tr>
+            <th colspan=2>上线时间</th>
             <th>软文位置</th>
-            <th colspan=2>上传时间</th>
             <th>价格</th>
-            <th>软文标题</th>
             <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
             <th>操作</th>
           </tr>
         </thead>
-        <volist name="users" id="">
+        <volist name="users" id="type">
           <tr>
-            <td><select name="columnId" >
+            <td colspan=2><div class="input-append date" id="datetimepicker" data-date="" data-date-format="dd-mm-yyyy 00:00:00" style="width:40px;">
+                <input class="span2" size="16" type="text" value=""  id="startDate" name="startDate"/>
+                <!--这个需要后台设置value为当前时间-->
+                <span class="add-on"><i class="icon-th"></i></span> </div>
+            </td>
+            
+            <td>
+              <select name="columnId" id="columnId">       <!-- 需要用Ajax即时显示出来，这个时段哪些栏目已经被设置过了 -->
                 <option value ="1">广告栏 1</option>
                 <option value ="2">广告栏2</option>
                 <option value="3">广告栏3</option>
@@ -126,60 +134,78 @@
                 <option value="6">资讯栏3</option>
               </select>
             </td>
-            <td colspan=2><div class="input-append date" id="datetimepicker" data-date="" data-date-format="dd-mm-yyyy 00:00:00" style="width:40px;">
-                <input class="span2" size="16" type="text" value="2015-12-07 00:00:00">
-                <!--这个需要后台设置value为当前时间-->
-                <span class="add-on"><i class="icon-th"></i></span> </div></td>
-            <td><span>￥</span>${price}</td>   <!-- 需要计算 -->
-			<td>资讯标题</td>
-			<td><input type="button" value="上传资讯"/></td>
+            
+            <td><span>￥</span>price!!!!</td>   <!-- 需要用Ajax即时显示出来 -->
+			
+			<td><input type="submit" value="设置上线"/></td>
 		  </tr>
         </volist>
-		<tr>
-						  <!--跳到单个资讯的页面-->
-						  <td colspan=10><a href="javascript:void(0)" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;" onClick="addtimepos()"><span><img src="../../images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建资讯时间位置</span></a></td>
-						</tr>
-			   	 		<tr>
-        <tr>
-          <td colspan=10>{$page}</td>
-        </tr>
+     
       </table>
       </form>
+    
+    
+    
       
       
       
-        <table class="lc_prolist" >
+      <h3>该条软文设置记录：</h3>
+       <form action="/OurArtbetter/ADMIN_getDateAndPosByInfoId"  method="post">
+      <table class="lc_prolist" >
         <thead>
           <tr>
-            <th>资讯位置</th>
-            <th colspan=2>上传时间</th>
+           
+            <th colspan=2>在线时间</th>
+             <th>软文栏目</th>
             <th>价格</th>
-            <th>资讯标题</th>
             <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
             <th>操作</th>
           </tr>
         </thead>
+        
+        <c:if test="${! empty dateAndPosList}">
+	  <c:forEach var="dateAndPos" items="${dateAndPosList}"> 
         <volist name="users" id="">
           <tr>
-            <td></td>
-            <td colspan=2><div class="input-append date" id="datetimepicker" data-date="" data-date-format="dd-mm-yyyy 00:00:00" style="width:40px;">
-                <input class="span2" size="16" type="text" value="2015-12-07 00:00:00">
-                <!--这个需要后台设置value为当前时间-->
-                <span class="add-on"><i class="icon-th"></i></span> </div></td>
-            <td><span>￥</span>{$vo.la}</td>
-			<td>资讯标题</td>
-			<td><input type="button" value="上传资讯"/></td>
+           
+            <td colspan=2>
+                 ${ dateAndPos.date }
+                <span class="add-on"><i class="icon-th"></i></span> 
+            </td>
+             <td>
+             ${dateAndPos.infoColumn.id}
+             <c:if test="${dateAndPos.infoColumn.id == 1 } ">
+                                                            广告轮播图1
+             </c:if>
+             <c:if test="${dateAndPos.infoColumn.id == 2}  ">
+                                                            广告轮播图2
+             </c:if>
+             <c:if test="${dateAndPos.infoColumn.id == 3}  ">
+                                                            广告轮播图3
+             </c:if>
+             <c:if test="${dateAndPos.infoColumn.id  == 4} ">
+                                                            咨询栏目1
+             </c:if>
+             <c:if test="${dateAndPos.infoColumn.id  == 5} ">
+                                                            资讯栏目2
+             </c:if>
+             <c:if test="${dateAndPos.infoColumn.id  == 6 } ">
+                                                             资讯栏目3
+             </c:if>
+             </td>
+            
+           
+            <td><span>￥</span>${dateAndPos.infoColumn.price}</td>     <!-- 需要计算dayNum -->
+
+			<td><a href="/OurArtbetter/ADMIN_deleteDateAndPos?id=${dateAndPos.id}"><input type="button" value="删除"   /></a></td> <!-- 修改 -->
 		  </tr>
         </volist>
-		<tr>
-						  <!--跳到单个资讯的页面-->
-						  <td colspan=10><a href="javascript:void(0)" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;" onClick="addtimepos()"><span><img src="../../images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建资讯时间位置</span></a></td>
-						</tr>
-			   	 		<tr>
-        <tr>
-          <td colspan=10>{$page}</td>
-        </tr>
+        </c:forEach>
+        </c:if>
+		
       </table>
+      </form>
+      
       
       
       
@@ -213,3 +239,4 @@
    }
 </script>
 </body>
+</html>

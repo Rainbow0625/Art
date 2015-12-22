@@ -48,6 +48,9 @@ public class Information implements java.io.Serializable
 	@Column(name="title")
 	private String title;
 	
+	@Column(name="image")
+	private String image;
+	
 	@Column(name="createTime",updatable=false)
 	private Date createTime;
 	
@@ -93,6 +96,14 @@ public class Information implements java.io.Serializable
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 	public void setState(int state)

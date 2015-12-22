@@ -1,6 +1,6 @@
 package com.art.daoImp;
 
-import java.text.SimpleDateFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -66,15 +66,17 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	@Override
 	public void setDateAndPos(DateAndPos dateAndPos) {
 		Session session = sessionFactory.getCurrentSession();
-		
 		session.save(dateAndPos);
 	}
 
 	@Override
-	public void deleteDateAndPos(DateAndPos dateAndPos) {
+	public void deleteDateAndPos(int dateAndPosId) {
 		Session session = sessionFactory.getCurrentSession();
-		
-		session.delete(dateAndPos);
+		//session.delete(dateAndPos);
+		String hql= "delete DateAndPos where id=?";
+		Query query = session.createQuery(hql);
+		query.setInteger(0,dateAndPosId);
+		query.executeUpdate();
 		
 	}
 

@@ -25,6 +25,7 @@ public class DateAndPos implements java.io.Serializable
 	@Column(name="id",nullable=false)
 	private int id;
 	
+	@Column(name="date")
 	private Date date; //NEED TO create an index on the column in the DateBase
 	
 	@ManyToOne( targetEntity=InfoColumn.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)

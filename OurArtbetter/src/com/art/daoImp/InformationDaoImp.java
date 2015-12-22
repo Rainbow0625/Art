@@ -109,26 +109,37 @@ public class InformationDaoImp implements InformationDao
 		return informationList;
 	}
 	
+	
 	@Override
-	//事务加标签即可！
 	public void addAnInfo(Information info) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(info);
 	}
 
 	@Override
-	public void deleteAnInfo(Information info) {
+	public void deleteAnInfo(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		session.delete(info);
+		String hql= "delete Information info where info.id=?";
+		Query query = session.createQuery(hql);
+		query.setInteger(0,id);
+		query.executeUpdate();
 
 	}
 
 	@Override
 	public void updateAnInfo(Information info) {
-		
 		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(info);
+		//session.saveOrUpdate(info);
 		//other : sessionFactory.getCurrentSession().update(info);
+		String hql = "update Information info set info.state=0, info.title=? , info.contentType=? , info.content=? , info.image=? ,info.nextTime=? where info.id=?";
+		Query query = session.createQuery(hql);
+		query.setString(0,info.getTitle());
+		query.setString(1,info.getContentType());
+		query.setString(2,info.getContent());
+		query.setString(2,info.getImage());
+		query.setDate(3, info.getNextTime());
+		query.setInteger(4, info.getId());
+		query.executeUpdate();		
 	}
 
 	@Override
@@ -151,5 +162,26 @@ public class InformationDaoImp implements InformationDao
 		query.executeUpdate();
 		//session.getTransaction().commit();
 	}
+	
+	
+	
+	
+	
+	@Override
+	public void uploadImage() {
+		Session session = sessionFactory.getCurrentSession();
+		//session.beginTransaction();
+		String hql = "update Information info set info.state=3 where info.id=?";
+		Query query = session.createQuery(hql);
+		//query.setInteger(0, infoId);
+		query.executeUpdate();
+		//session.getTransaction().commit();
+	}
+	
+	
+	
+	
+	
+	
 
 }

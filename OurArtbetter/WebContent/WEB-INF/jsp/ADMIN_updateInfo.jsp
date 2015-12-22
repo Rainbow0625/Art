@@ -97,7 +97,7 @@
     </ul>
   </div>
   <div class="admin-main-r-wrapper">
-  <form action="/OurArtbetter/ADMIN_updateinfo" >
+  <form action="/OurArtbetter/ADMIN_updateinfo?id=${information.id}"  method="post">
     <h3>资讯管理</h3>
     <div class="operate-table clear" style="margin-left:15px;">
     	<div class="info-title">

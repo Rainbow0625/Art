@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -120,12 +120,12 @@
                 <c:if test="${! empty allAdver}">
 	  <c:forEach var="adver" items="${allAdver}"> 
 	    <tr>
-			<td><a href="/OurArtbetter/ADMIN_chiefLookThrough/${adver.id}">${adver.title}</a></td>
+			<td><a href="/OurArtbetter/ADMIN_chiefLookThrough?id=${adver.id}">${adver.title}</a></td>
 			<td>${adver.createTime}</td>
 			<td>${adver.nextTime}</td>	
 			<td>${adver.editor.id}</td>
 			<td>${adver.state}</td>
-            <td><input type="button" value="审核通过" onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo/${adver.id}' " /> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo/${adver.id}' " /> <input type="button" value="驳回意见"></input> <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos/${adver.id}' "/> </td>
+            <td><input type="button" value="审核通过" onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo?id=${adver.id}' " /> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo?id=${adver.id}' " /> <input type="button" value="驳回意见"></input> <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos?id=${adver.id}' "/> </td>
         </tr>
               </c:forEach>
 	 </c:if>
@@ -156,14 +156,13 @@
            <c:if test="${! empty allInfo}">
 	  <c:forEach var="info" items="${allInfo}"> 
           <tr>
-			<td><a href="/OurArtbetter/ADMIN_chiefLookThrough/${info.id}">${info.title}</a></td>
+			<td><a href="/OurArtbetter/ADMIN_chiefLookThrough?id=${info.id}">${info.title}</a></td>
 			<td>${info.createTime}</td>
 			<td>${info.nextTime}</td>	
 			<td>${info.editor.id}</td>
-            <td>${info.state}</td>
-			<td><a href=" /OurArtbetter/ADMIN_checkInfo/${info.id} "><input type="button" value="审核通过" /></a>  <a href = "/OurArtbetter/ADMIN_failInfo/${info.id}"><input type="button" value="审核不通过"/></a>  <a href="  "> <input type="button" value="驳回意见"/></a>  <a href=" /OurArtbetter/ADMIN_TosetDateAndPos/${info.id} "><input type="button" value="设置上传时间位置"/> </a> </td>
+            <td><c:if test="${info.state == '3'}">sss</c:if></td>
+			<td><a href=" /OurArtbetter/ADMIN_checkInfo?id=${info.id} "><input type="button" value="审核通过" /></a>  <a href = "/OurArtbetter/ADMIN_failInfo?id=${info.id}"><input type="button" value="审核不通过"/></a>  <a href="  "> <input type="button" value="驳回意见"/></a>  <a href=" /OurArtbetter/ADMIN_TosetDateAndPos?id=${info.id} "><input type="button" value="设置上传时间位置"/> </a> </td>
            </tr>
-
          </c:forEach>
 	 </c:if>
         

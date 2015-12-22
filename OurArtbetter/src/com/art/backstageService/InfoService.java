@@ -16,7 +16,7 @@ public interface InfoService
 	public List<DateAndPos> getDateAndPosByInfoColumnId(int infoColumnId);  //chief editor can see the InfoColumn 's display history
 	
 	public void setDateAndPos(DateAndPos dateAndPos);
-	public void deleteDateAndPos(DateAndPos dateAndPos);
+	public void deleteDateAndPos(int dateAndPosId);
 	
 	
 	//information  DAO
@@ -34,7 +34,7 @@ public interface InfoService
 	
 	
 	public void addAnInfo(Information info);
-	public void deleteAnInfo(Information info);
+	public void deleteAnInfo(int id);
 	public void updateAnInfo(Information info) ;
 	public void checkInfoById(int infoId);
 	public void failInfoById(int infoId);

@@ -20,7 +20,7 @@ import com.art.entity.Information;
 @Transactional
 public class InfoServiceImp implements InfoService
 {
-	@Resource
+	@Autowired
 	private DateAndPosDao dateAndPosDao;
 	@Autowired
 	private InformationDao informationDao;
@@ -140,8 +140,8 @@ public class InfoServiceImp implements InfoService
 
 
 	@Override
-	public void deleteAnInfo(Information info) {
-		informationDao.deleteAnInfo(info);
+	public void deleteAnInfo(int id) {
+		informationDao.deleteAnInfo(id);
 		
 	}
 
@@ -174,8 +174,8 @@ public class InfoServiceImp implements InfoService
 
 
 	@Override
-	public void deleteDateAndPos(DateAndPos dateAndPos) {
-		dateAndPosDao.deleteDateAndPos(dateAndPos);
+	public void deleteDateAndPos(int dateAndPosId) {
+		dateAndPosDao.deleteDateAndPos(dateAndPosId);
 	}
 
 	

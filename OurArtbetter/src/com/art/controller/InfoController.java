@@ -4,6 +4,8 @@ package com.art.controller;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,13 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.art.backstageService.InfoService;
 import com.art.entity.DateAndPos;
 import com.art.entity.Editor;
+import com.art.entity.InfoColumn;
 import com.art.entity.Information;
 
 @Controller
@@ -29,7 +32,7 @@ public class InfoController
 	@Resource
 	private InfoService infoService;
 	
-	
+
 	public InfoController(){}
 
 	
@@ -83,6 +86,7 @@ public class InfoController
 		String title = request.getParameter("title");
 		String contentType = request.getParameter("contentType");
 		String content = request.getParameter("content");
+		String image = request.getParameter("image");
 		Information info = new Information();
 		info.setTitle(title);
 		info.setState(0);
@@ -90,6 +94,7 @@ public class InfoController
 		info.setCreateTime(createTime);
 		info.setNextTime(null);	
 		info.setContentType(contentType);
+		info.setImage(image);
 		
 		Editor editor= new Editor();
 		editor.setId(1);
@@ -117,36 +122,36 @@ public class InfoController
 		
 		infoService.addAnInfo(info);
 		int message=1;
-		model.addAttribute(message);
+		model.addAttribute("message",message);
 		return new ModelAndView("ADMIN_EditorSuccess") ;  
 	}
 	
-	/*//修改是需要用文本编辑器   打开原来的HTML的  设置的属性要显示！*/
-	@RequestMapping("/ADMIN_ToUpdateInfo/{infoId} ")  
-	public ModelAndView toUpdateInfo(@PathVariable int infoId,Model model)
+	@RequestMapping("/ADMIN_ToUpdateInfo")  
+	public ModelAndView toUpdateInfo(@RequestParam int id,Model model)
 	{
-		Information information = infoService.getInformationById(infoId);
-		model.addAttribute(information);
-		
-		System.out.print("here");
+		Information information = infoService.getInformationById(id);
+		model.addAttribute("information",information);
 		return new ModelAndView("ADMIN_updateInfo");
 	}
 	
 	
 
 	@RequestMapping("/ADMIN_updateinfo")  
-	public ModelAndView updateinfo(HttpServletRequest request,Model model)
+	public ModelAndView updateinfo(@RequestParam int id,HttpServletRequest request,Model model)
 	{
+		System.out.print(id);
 		String title = request.getParameter("title");
 		String contentType = request.getParameter("contentType");
 		String content = request.getParameter("content");
-		Information info = new Information();  
-		info.setState(0); //一旦修改之后，就变成未审核状态
+		String image = request.getParameter("image");
+		Information info = new Information();  	
+		info.setId(id);
 		info.setTitle(title);
 		info.setContentType(contentType);
 		Date nextTime = new Date();
 		info.setNextTime(nextTime);
 		info.setContent(content);
+		info.setImage(image);
 
 		//从文件中写入
 		try 
@@ -162,32 +167,30 @@ public class InfoController
 		}
 		catch (IOException e) 
 		{
-					// TODO Auto-generated catch block
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		infoService.updateAnInfo(info);
+		
 		int message=2;
-		model.addAttribute(message);
+		model.addAttribute("message",message);
 		return new ModelAndView("ADMIN_EditorSuccess");
 	}
 	
 	
-	@RequestMapping("/ADMIN_deleteInfo/{infoId}") 
-	public ModelAndView deleteInfo(@PathVariable int infoId, Model model) //delete by primary key
+	@RequestMapping("/ADMIN_deleteInfo") 
+	public ModelAndView deleteInfo(@RequestParam int id, Model model) //delete by primary key
 	{
-		Information information = new Information();
-		information.setId(infoId);
-		infoService.deleteAnInfo(information);
+		infoService.deleteAnInfo(id);
 		int message=3;
-		model.addAttribute(message);
+		model.addAttribute("message",message);
 		return new ModelAndView("ADMIN_EditorSuccess");
 	}
+
 	
 	
-	
-	
-	/*chiefEditor*/	
+	/*chiefEditor*/
 	@RequestMapping("/ADMIN_chiefinfo") 
 	public ModelAndView listAllInfoToChiefEditor(ModelMap model)
 	{
@@ -204,70 +207,108 @@ public class InfoController
 		return new ModelAndView("ADMIN_chiefinfo",model);
 	}
 	
-	/*修改返回值*/
-	@RequestMapping("/ADMIN_chiefLookThrough/{infoId}") 
-	public ModelAndView displayInfoToChiefEditor(@PathVariable int infoId,Model model )
+	
+	@RequestMapping("/ADMIN_chiefInfoDateAndPos") 
+	public ModelAndView chiefInfoDateAndPos(ModelMap model,@RequestParam int id)
 	{
-		Information information = infoService.getInformationById(infoId);
+		Information info = infoService.getInformationById(id);
+		List<DateAndPos>  dateAndPosList  = new ArrayList<DateAndPos>();
+		dateAndPosList.addAll(infoService.getDateAndPosByInformationId(id));
+		model.addAttribute("dateAndPosList",dateAndPosList);
+		model.addAttribute("info",info);
+		return new ModelAndView("ADMIN_chiefInfoDateAndPos",model);  
+	}
+	
+	
+	
+	
+	@RequestMapping("/ADMIN_chiefLookThrough") 
+	public ModelAndView displayInfoToChiefEditor(@RequestParam int id,Model model )
+	{
+		Information information = infoService.getInformationById(id);
 		model.addAttribute("information", information);
 		return new ModelAndView("infoContent");   
 	}
 	
 	
-	@RequestMapping("/ADMIN_checkInfo/{infoId}") 
-	public ModelAndView checkInfo(@PathVariable int infoId)
+	
+	@RequestMapping("/ADMIN_checkInfo") 
+	public ModelAndView checkInfo(@RequestParam int id,Model model )
 	{
-		infoService.checkInfoById(infoId);
-		return new ModelAndView("ADMIN_chiefinfo");  
+		infoService.checkInfoById(id);
+		int message= 1;
+		model.addAttribute("message",message);
+		return new ModelAndView("ADMIN_ChiefEditorSuccess");  
 	}
 	
-	@RequestMapping("/ADMIN_failInfo/{infoId}") 
-	public ModelAndView failInfo(@PathVariable int infoId)
+	@RequestMapping("/ADMIN_failInfo") 
+	public ModelAndView failInfo(@RequestParam int id,Model model)
 	{
-		infoService.failInfoById(infoId);
-		return new ModelAndView("ADMIN_chiefinfo"); 
+		infoService.failInfoById(id);
+		int message= 2;
+		model.addAttribute("message",message);
+		return new ModelAndView("ADMIN_ChiefEditorSuccess"); 
 	}
 	
 		
-	/*跳转到该条咨询的页面 */
-	@RequestMapping("/ADMIN_TosetDateAndPos/{infoId}") 
-	public ModelAndView TosetDateAndPos(@PathVariable int infoId,Model model)
+	@RequestMapping("/ADMIN_TosetDateAndPos") 
+	public ModelAndView TosetDateAndPos(@RequestParam int id,ModelMap model)
 	{
-		Information information = infoService.getInformationById(infoId);
-		model.addAttribute(information);
-		return new ModelAndView("ADMIN_chiefInfoDateAndPos");  
+		Information info = infoService.getInformationById(id);
+		List<DateAndPos>  dateAndPosList  = new ArrayList<DateAndPos>();
+		dateAndPosList.addAll(infoService.getDateAndPosByInformationId(id));
+		model.addAttribute("dateAndPosList",dateAndPosList);
+		model.addAttribute("info",info);
+		return new ModelAndView("ADMIN_chiefInfoDateAndPos",model);  
 	}
 	
 
-	@RequestMapping("/ADMIN_setDateAndPos/{infoId}") 
-	public ModelAndView setDateAndPos(HttpServletRequest request,@PathVariable int infoId,Model model)
+	@RequestMapping("/ADMIN_setDateAndPos")   
+	public ModelAndView setDateAndPos(HttpServletRequest request,@RequestParam int id,Model model)
 	{
-		//int infoColumnId =Integer.parseInt( request.getParameter("infoColumnId") );    //为什么这么用详见getParameter 与getAttribute 的区别！
-		//Date date = Date.parse(request.getParameter("date"));  
 		
-		Information information = infoService.getInformationById(infoId);
-		//InfoColumn infoColumn = infoService.getInfoColumnById(infoColumnId);
+		try {
+			int infoColumnId =Integer.parseInt( request.getParameter("columnId") );    //为什么这么用详见getParameter 与getAttribute 的区别！
+			String date =request.getParameter("startDate");
+			System.out.println(date);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
+			Date update = sdf.parse(date);
+			
+			Information information = infoService.getInformationById(id);
+			InfoColumn infoColumn = infoService.getInfoColumnById(infoColumnId);
+			
+			DateAndPos dateAndPos = new DateAndPos();
+			dateAndPos.setInformation(information);
+			dateAndPos.setInfoColumn(infoColumn);
+			/*
+			System.out.println(infoColumn.getId());
+			System.out.println(information.getId());
+			*/
+			dateAndPos.setDate(update);
+			
+			int message= 3;
+			model.addAttribute("message",message);
+			model.addAttribute("id",id);
+			infoService.setDateAndPos(dateAndPos);	
+			
+		} catch (ParseException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		DateAndPos dateAndPos = new DateAndPos();
-		dateAndPos.setInformation(information);
-		//dateAndPos.setInfoColumn(infoColumn);
-		//dateAndPos.setDate(date);
+		return new ModelAndView("ADMIN_ChiefEditorSuccess");
+	}
+	
+	@RequestMapping("/ADMIN_deleteDateAndPos")   
+	public ModelAndView deleteDateAndPos(@RequestParam int id,Model model )
+	{
+		infoService.deleteDateAndPos(id);	
+		
+		int message=4;
+		model.addAttribute("message",message);
+		//model.addAttribute("id",infoId);  加入session后，就可以得到了
+		return new ModelAndView("ADMIN_ChiefEditorSuccess");  	
 
-		model.addAttribute(information);
-		infoService.setDateAndPos(dateAndPos);	
-		return new ModelAndView("ADMIN_chiefInfoDateAndPos");  
 	}
-	
-	
-	@RequestMapping("/ADMIN_deleteDateAndPos/{dateAndPosId}")   //传入的参数！！
-	public ModelAndView deleteDateAndPos(@PathVariable int dateAndPosId)
-	{
-		DateAndPos dateAndPos = new DateAndPos();
-		dateAndPos.setId(dateAndPosId);
-		infoService.deleteDateAndPos(dateAndPos);	
-		return new ModelAndView("ADMIN_chiefInfoDateAndPos");  
-	}
-	
-	
-	
 }

@@ -76,7 +76,7 @@
 			   	 				<td>${adver.nextTime}</td>		   	 			
 			   	 				<td>${adver.state}</td>
 			   	 				<td>${adver.chiefEditor.id}</td>
-			   	 				<td><a href="/OurArtbetter/ADMIN_ToUpdateInfo/${adver.id}"> <input type="button" value="修改" /></a>   <a  href="/OurArtbetter/ADMIN_deleteInfo/${adver.id}" ><input type="button" value="删除"  />   </a></td>
+			   	 				<td><a href="/OurArtbetter/ADMIN_ToUpdateInfo?id=${adver.id}"> <input type="button" value="修改" /></a>   <a  href="/OurArtbetter/ADMIN_deleteInfo?id=${adver.id}" ><input type="button" value="删除"  />   </a></td>
 		   	 			   </tr>
 		   	 			   </c:forEach>
 			   	 		  </c:if>
@@ -117,7 +117,7 @@
 			   	 				<td>${info.nextTime}</td>		   	 			
 			   	 				<td>${info.state}</td>
 			   	 				<td>${info.chiefEditor.id}</td>
-			   	 				<td><a href="/OurArtbetter/ADMIN_ToUpdateInfo/${info.id}"><input type="button" value="修改" /></a>    <a  href="/OurArtbetter/ADMIN_deleteInfo/${info.id} "><input type="button" value="删除" /> </a> </td>
+			   	 				<td><a href="/OurArtbetter/ADMIN_ToUpdateInfo?id=${info.id}"><input type="button" value="修改" /></a>    <a  href="/OurArtbetter/ADMIN_deleteInfo?id=${info.id} "><input type="button" value="删除" /> </a> </td>
 		   	 			   </tr>
 		   	 			   
 		   	 			   </c:forEach>

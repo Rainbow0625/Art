@@ -17,6 +17,6 @@ public interface DateAndPosDao
 	public void setDateAndPos(DateAndPos dateAndPos);
 	
 	//delete
-	public void deleteDateAndPos(DateAndPos dateAndPos);
+	public void deleteDateAndPos(int dateAndPosId);
 
 }

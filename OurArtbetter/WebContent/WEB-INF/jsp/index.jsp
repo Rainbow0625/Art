@@ -108,8 +108,6 @@ padding-right:0px;}
 <div class="body-innerwrapper">
 <%@include file="header.jsp"%>
 
-<a href="/OurArtbetter/ADMIN_welcome">test </a>
-
 <section  class="sppb-section section-intro" style="margin:0px;padding:20px 0;">
 <div class="sppb-container">
        	    <div id="myCarousel" class="carousel slide" style="width:100%;height:100%;background-color:#ffffff;">
@@ -122,9 +120,12 @@ padding-right:0px;}
               </ol>
               <!-- 轮播（Carousel）项目-->
               <div class="carousel-inner" style="width:100%;height:100%;">
+               <c:forEach var="adver" items="${adverList}">
+               <!-- 需要修改！！显示图片 -->
                 <div class="item active"> <img src="images/art2.jpg" alt="First slide"> </div>
                 <div class="item"> <img src="images/art.jpg" alt="Second slide"> </div>
                 <div class="item"> <img src="images/art2.jpg" alt="Third slide"> </div>
+                </c:forEach>
               </div>
               <!-- 轮播（Carousel）导航 -->
               <a class="carousel-control left" href="#myCarousel" 
