@@ -167,15 +167,16 @@ public class InfoServiceImp implements InfoService
 
 
 	@Override
-	public void setDateAndPos(DateAndPos dateAndPos) {
+	public Boolean setDateAndPos(DateAndPos dateAndPos) {
 		dateAndPosDao.setDateAndPos(dateAndPos);
-		
+		return true;
 	}
 
 
 	@Override
-	public void deleteDateAndPos(int dateAndPosId) {
+	public Boolean deleteDateAndPos(int dateAndPosId) {
 		dateAndPosDao.deleteDateAndPos(dateAndPosId);
+		return true;
 	}
 
 	

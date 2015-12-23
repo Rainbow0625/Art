@@ -58,7 +58,7 @@ public class Information implements java.io.Serializable
 	private Date nextTime;
 	
 	@Column(name="state")
-	private int state;   //  1 haven't check  2 pass  3 not pass
+	private String state;   //  1 haven't check  2 pass  3 not pass
 	
 	@OneToMany(targetEntity=DateAndPos.class,cascade = {CascadeType.ALL},mappedBy="information",fetch=FetchType.LAZY)
 	private List<DateAndPos> dateAndPosS; 
@@ -106,11 +106,11 @@ public class Information implements java.io.Serializable
 		this.image = image;
 	}
 	
-	public void setState(int state)
+	public void setState(String state)
 	{
 		this.state = state;
 	}
-	public int getState()
+	public String getState()
 	{
 		 return this.state;
 	}

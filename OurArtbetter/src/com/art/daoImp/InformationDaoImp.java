@@ -114,6 +114,7 @@ public class InformationDaoImp implements InformationDao
 	public void addAnInfo(Information info) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(info);
+		session.flush();
 	}
 
 	@Override
@@ -131,21 +132,23 @@ public class InformationDaoImp implements InformationDao
 		Session session = sessionFactory.getCurrentSession();
 		//session.saveOrUpdate(info);
 		//other : sessionFactory.getCurrentSession().update(info);
-		String hql = "update Information info set info.state=0, info.title=? , info.contentType=? , info.content=? , info.image=? ,info.nextTime=? where info.id=?";
+		String hql = "update Information info set info.title=? , info.contentType=? , info.content=? , info.image=? ,info.nextTime=?,info.state=? where info.id=?";
 		Query query = session.createQuery(hql);
 		query.setString(0,info.getTitle());
 		query.setString(1,info.getContentType());
 		query.setString(2,info.getContent());
-		query.setString(2,info.getImage());
-		query.setDate(3, info.getNextTime());
-		query.setInteger(4, info.getId());
+		query.setString(3,info.getImage());
+		query.setDate(4, info.getNextTime());
+		query.setString(5, info.getState());
+		query.setInteger(6, info.getId());
+
 		query.executeUpdate();		
 	}
 
 	@Override
 	public void checkInfoById(int infoId) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "update Information info set info.state=2 where info.id=?";
+		String hql = "update Information info set info.state='审核通过',info.chiefEditor.id =1  where info.id=?";
 		Query query = session.createQuery(hql);
 		query.setInteger(0, infoId);
 		query.executeUpdate();
@@ -156,32 +159,11 @@ public class InformationDaoImp implements InformationDao
 	public void failInfoById(int infoId) {
 		Session session = sessionFactory.getCurrentSession();
 		//session.beginTransaction();
-		String hql = "update Information info set info.state=3 where info.id=?";
+		String hql = "update Information info set info.state='审核不通过' ,info.chiefEditor.id =1  where info.id=?";
 		Query query = session.createQuery(hql);
 		query.setInteger(0, infoId);
 		query.executeUpdate();
 		//session.getTransaction().commit();
 	}
 	
-	
-	
-	
-	
-	@Override
-	public void uploadImage() {
-		Session session = sessionFactory.getCurrentSession();
-		//session.beginTransaction();
-		String hql = "update Information info set info.state=3 where info.id=?";
-		Query query = session.createQuery(hql);
-		//query.setInteger(0, infoId);
-		query.executeUpdate();
-		//session.getTransaction().commit();
-	}
-	
-	
-	
-	
-	
-	
-
 }

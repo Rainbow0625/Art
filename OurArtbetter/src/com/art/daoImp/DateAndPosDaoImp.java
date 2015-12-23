@@ -64,20 +64,23 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	@Override
-	public void setDateAndPos(DateAndPos dateAndPos) {
+	public Boolean setDateAndPos(DateAndPos dateAndPos) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(dateAndPos);
+		session.flush();
+		return true;
 	}
 
 	@Override
-	public void deleteDateAndPos(int dateAndPosId) {
+	public Boolean deleteDateAndPos(int dateAndPosId) {
 		Session session = sessionFactory.getCurrentSession();
 		//session.delete(dateAndPos);
 		String hql= "delete DateAndPos where id=?";
 		Query query = session.createQuery(hql);
 		query.setInteger(0,dateAndPosId);
 		query.executeUpdate();
-		
+		session.flush();
+		return true;
 	}
 
 }

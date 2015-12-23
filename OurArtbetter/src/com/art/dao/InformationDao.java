@@ -24,6 +24,5 @@ public interface InformationDao
 	public void updateAnInfo(Information info);
 	public void checkInfoById(int infoId);
 	public void failInfoById(int infoId);
-	public void uploadImage();
 	
 }

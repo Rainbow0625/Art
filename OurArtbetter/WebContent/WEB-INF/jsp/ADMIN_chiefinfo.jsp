@@ -111,7 +111,8 @@
 			<th>上次修改时间</th>
 			<th>采编</th>
             <th>审核情况</th>
-            <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
+                                      <!--审核如果没有通过的话，我要把设置上线位置那个按钮改成灰色，说明不能上线-->
+                                      <!--state=  未审核   审核通过  审核不通过 -->
             <th>操作</th>
           </tr>
         </thead>
@@ -123,7 +124,7 @@
 			<td><a href="/OurArtbetter/ADMIN_chiefLookThrough?id=${adver.id}">${adver.title}</a></td>
 			<td>${adver.createTime}</td>
 			<td>${adver.nextTime}</td>	
-			<td>${adver.editor.id}</td>
+			<td>${adver.editor.name}</td>
 			<td>${adver.state}</td>
             <td><input type="button" value="审核通过" onclick="window.location.href='/OurArtbetter/ADMIN_checkInfo?id=${adver.id}' " /> <input type="button" value="审核不通过" onclick="window.location.href='/OurArtbetter/ADMIN_failInfo?id=${adver.id}' " /> <input type="button" value="驳回意见"></input> <input type="button" value="设置上传时间位置"  onclick="window.location.href='/OurArtbetter/ADMIN_TosetDateAndPos?id=${adver.id}' "/> </td>
         </tr>
@@ -147,7 +148,6 @@
 			<th>上次修改时间</th>
 			<th>采编</th>
             <th>审核情况</th>
-            <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
             <th>操作</th>
           </tr>
         </thead>
@@ -159,8 +159,8 @@
 			<td><a href="/OurArtbetter/ADMIN_chiefLookThrough?id=${info.id}">${info.title}</a></td>
 			<td>${info.createTime}</td>
 			<td>${info.nextTime}</td>	
-			<td>${info.editor.id}</td>
-            <td><c:if test="${info.state == '3'}">sss</c:if></td>
+			<td>${info.editor.name}</td>
+            <td>${info.state}</td>
 			<td><a href=" /OurArtbetter/ADMIN_checkInfo?id=${info.id} "><input type="button" value="审核通过" /></a>  <a href = "/OurArtbetter/ADMIN_failInfo?id=${info.id}"><input type="button" value="审核不通过"/></a>  <a href="  "> <input type="button" value="驳回意见"/></a>  <a href=" /OurArtbetter/ADMIN_TosetDateAndPos?id=${info.id} "><input type="button" value="设置上传时间位置"/> </a> </td>
            </tr>
          </c:forEach>

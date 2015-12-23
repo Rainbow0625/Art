@@ -14,9 +14,9 @@ public interface DateAndPosDao
 	public List<DateAndPos> getDateAndPosByInfoColumnId(int infoColumnId);  //chief editor can see the InfoColumn 's display history
 	
 	//add
-	public void setDateAndPos(DateAndPos dateAndPos);
+	public Boolean setDateAndPos(DateAndPos dateAndPos);
 	
 	//delete
-	public void deleteDateAndPos(int dateAndPosId);
+	public Boolean deleteDateAndPos(int dateAndPosId);
 
 }

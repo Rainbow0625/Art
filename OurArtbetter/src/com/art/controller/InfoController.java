@@ -1,6 +1,7 @@
 package com.art.controller;
 
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.art.backstageService.InfoService;
@@ -81,28 +83,39 @@ public class InfoController
 	
 	/*+  editor session*/
 	@RequestMapping("/ADMIN_saveInfo")   
-	public ModelAndView saveInfo(HttpServletRequest request,Model model )
+	public ModelAndView saveInfo(@RequestParam("uploadImage") MultipartFile uploadImage,HttpServletRequest request,Model model )
 	{
 		String title = request.getParameter("title");
 		String contentType = request.getParameter("contentType");
 		String content = request.getParameter("content");
-		String image = request.getParameter("image");
+		String Imagepath=request.getSession().getServletContext().getRealPath("/")+ uploadImage.getOriginalFilename();
+		
 		Information info = new Information();
 		info.setTitle(title);
-		info.setState(0);
+		info.setState("未审核");
 		Date createTime = new Date();
 		info.setCreateTime(createTime);
 		info.setNextTime(null);	
 		info.setContentType(contentType);
-		info.setImage(image);
-		
+		info.setImage(Imagepath);
 		Editor editor= new Editor();
 		editor.setId(1);
 		info.setEditor(editor);  
-		
 		info.setContent(content);
 		
-		//文件再次保存 
+		//保存图片
+		try 
+		{
+			File image = new File(Imagepath);
+			uploadImage.transferTo(image);
+		} 
+		catch (IllegalStateException | IOException e1) 
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		//HTML保存 
 		try
 	    { 	
 		    FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/infoHTML/")+title+".html"); 		    
@@ -137,13 +150,15 @@ public class InfoController
 	
 
 	@RequestMapping("/ADMIN_updateinfo")  
-	public ModelAndView updateinfo(@RequestParam int id,HttpServletRequest request,Model model)
+	public ModelAndView updateinfo(@RequestParam("uploadImage") MultipartFile uploadImage, @RequestParam("id") int id,HttpServletRequest request,Model model)
 	{
 		System.out.print(id);
 		String title = request.getParameter("title");
 		String contentType = request.getParameter("contentType");
 		String content = request.getParameter("content");
-		String image = request.getParameter("image");
+		
+		String Imagepath=request.getSession().getServletContext().getRealPath("/")+ uploadImage.getOriginalFilename();
+		
 		Information info = new Information();  	
 		info.setId(id);
 		info.setTitle(title);
@@ -151,7 +166,20 @@ public class InfoController
 		Date nextTime = new Date();
 		info.setNextTime(nextTime);
 		info.setContent(content);
-		info.setImage(image);
+		info.setImage(Imagepath);
+		info.setState("未审核");
+		
+		//保存图片
+		try 
+		{
+			File image = new File(Imagepath);
+			uploadImage.transferTo(image);
+		} 
+		catch (IllegalStateException | IOException e1) 
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		//从文件中写入
 		try 
@@ -270,45 +298,49 @@ public class InfoController
 		try {
 			int infoColumnId =Integer.parseInt( request.getParameter("columnId") );    //为什么这么用详见getParameter 与getAttribute 的区别！
 			String date =request.getParameter("startDate");
-			System.out.println(date);
+			//System.out.println(date);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
 			Date update = sdf.parse(date);
-			
+
 			Information information = infoService.getInformationById(id);
 			InfoColumn infoColumn = infoService.getInfoColumnById(infoColumnId);
 			
 			DateAndPos dateAndPos = new DateAndPos();
 			dateAndPos.setInformation(information);
 			dateAndPos.setInfoColumn(infoColumn);
-			/*
-			System.out.println(infoColumn.getId());
-			System.out.println(information.getId());
-			*/
 			dateAndPos.setDate(update);
 			
 			int message= 3;
 			model.addAttribute("message",message);
 			model.addAttribute("id",id);
-			infoService.setDateAndPos(dateAndPos);	
+			Boolean flag = infoService.setDateAndPos(dateAndPos);
+			if(flag==false)
+			{
+				return new ModelAndView("error");
+			}
 			
 		} catch (ParseException e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return new ModelAndView("ADMIN_ChiefEditorSuccess");
+		
 	}
 	
 	@RequestMapping("/ADMIN_deleteDateAndPos")   
 	public ModelAndView deleteDateAndPos(@RequestParam int id,Model model )
 	{
-		infoService.deleteDateAndPos(id);	
-		
-		int message=4;
-		model.addAttribute("message",message);
+		Boolean flag = infoService.deleteDateAndPos(id);	
+		if(flag==true)
+		{
+			int message=4;
+			model.addAttribute("message",message);
 		//model.addAttribute("id",infoId);  加入session后，就可以得到了
-		return new ModelAndView("ADMIN_ChiefEditorSuccess");  	
+		return new ModelAndView("ADMIN_ChiefEditorSuccess"); 
+		}
+		else
+			return new ModelAndView("error");
 
 	}
 }

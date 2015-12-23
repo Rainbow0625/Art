@@ -115,7 +115,7 @@
 		
 	
     <div>
-  	<label>照片：</label><input type="file" name="uploadImage" />
+  	<label>照片：</label><input type="file" name="uploadImage" id="uploadImage" />
  	</div>
 		
 

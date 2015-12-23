@@ -81,10 +81,6 @@
 		   	 			   </c:forEach>
 			   	 		  </c:if>
 			   	 		
-						<tr>
-						  <!--跳到单个资讯的页面-->
-						  <td colspan=10><a href="/OurArtbetter/ADMIN_uploadinfo" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建广告</span></a></td>
-						</tr>
 			   	 		<tr>
 			   	 			
 			   	 		</tr>
@@ -124,7 +120,7 @@
 			   	 			</c:if>
 						<tr>
 						  <!--跳到单个资讯的页面-->
-						  <td colspan=10><a href="/OurArtbetter/ADMIN_uploadinfo" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建资讯</span></a></td>
+						  <td colspan=10><a href="/OurArtbetter/ADMIN_uploadinfo" style="float:right;text-decoration:underline;font-size:14px;color:#2B6AB8;"><span><img src="images/addnew.png" alt="" style="width:10px;height:10px;"/></span><span style="margin-left:2px;">新建软文</span></a></td>
 						</tr>
 			   	 		<tr>
 			   	 			
