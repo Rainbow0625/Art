@@ -3050,7 +3050,6 @@ table.category tbody >tr td {
   color: #119d55;
 }
 .nav.nav-tabs {
-  margin-bottom: 30px;
   border: 0;
   background: #fff;
   -webkit-box-shadow: 2px 2px 2px 0px rgba(5, 5, 5, 0.06);
@@ -3073,7 +3072,7 @@ table.category tbody >tr td {
 }
 .nav.nav-tabs >li >a >span {
   display: inline-block;
-  background: #f26522;
+  background: #e83258;
   font-size: 14px;
   line-height: 14px;
   padding: 3px 8px;
@@ -3128,6 +3127,8 @@ table.category tbody >tr td {
   color: #fff;
   border-color: transparent;
 }
+.active-order{
+color:#e83258;}
 @media (max-width: 767px) {
   .nav.nav-tabs >li >a,
   .nav.nav-sub >li >a {

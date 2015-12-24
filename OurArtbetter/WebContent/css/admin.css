@@ -2,10 +2,35 @@
 .admin-bgbar{ width: 100%; height: 3px; background-color: #D3D3D3; position: absolute; top: 165px;}
 
 
-.admin-l-bar{ float: left; width: 150px; height:100%; padding-bottom: 10px; position: relative; color: #fff; text-align: center; background-color: #2B6AB8;}
-.admin-l-bar h2{ height: 55px; font-size: 16px; background-color: #0548A0; line-height: 55px; border-bottom: 2px solid #dedede;}
+.admin-l-bar {
+    float: left;
+    width: 150px;
+    padding-bottom: 10px;
+    position: relative;
+    color: #fff;
+    text-align: center;
+    background-color: #073a7c;
+height:530px;
+}
+.admin-l-bar h2 {
+    height: 55px;
+    font-size: 16px;
+    background-color: #092e5d;
+    line-height: 55px;
+    border-bottom: 2px solid #dedede;
+}
 .admin-l-bar li{ position: relative; }
-.admin-l-bar li a.firstnav{ display: block; width: 140px; padding-left: 10px; height: 42px; line-height: 42px; text-indent: -10px; letter-spacing: 2px; background-color: #2B6AB8; color: #eaeaea;}
+.admin-l-bar li a.firstnav {
+    display: block;
+    width: 140px;
+    padding-left: 10px;
+    height: 42px;
+    line-height: 42px;
+    text-indent: -10px;
+    letter-spacing: 2px;
+    background-color: #073a7c;
+    color: #eaeaea;
+}
 .admin-l-bar li a.firstnav:hover,.admin-l-bar li .secondnav a:hover{ background-color: #3E7CCE;}
 .admin-l-bar li a.firstnav.hovertri{ background-color: #3E7CCE; }
 .admin-l-bar li a.firstnav.hovertri:before{ content: " "; display: block; position: absolute; width: 0; height: 0; border: 5px solid transparent; border-left: 6px solid #fff; top: 16px; right: 3px; }
@@ -21,7 +46,7 @@
 .admin-main-r-wrapper{ width: 834px; position: relative; float: right; padding:30px 5px 0;}
 
 .admin-main-r-wrapper h3{font-size: 20px; color: #2B6AB8; margin-bottom: 10px;}
-.admin-main-r-wrapper input[type="submit"],.admin-main-r-wrapper input[type="button"]{ background-color: #2B6AB8; color: #fff; border-radius: 3px; padding: 0 10px; border: none; height: 22px; line-height: 22px; font-size: 12px; cursor: pointer; }
+.admin-main-r-wrapper input[type="submit"],.admin-main-r-wrapper input[type="button"]{ background-color: #2B6AB8; color: #fff; border-radius: 3px; padding: 0 10px; border: none; height: 32px; line-height: 22px; font-size: 12px; cursor: pointer; }
 
 
 .admin-nav{ width: 500px; float: left;}
