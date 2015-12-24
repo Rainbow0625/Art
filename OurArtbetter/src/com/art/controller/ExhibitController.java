@@ -35,6 +35,7 @@ public class ExhibitController {
 	private ArtistExhibitService artistExhibitService;
 	private ArtworkExhibitService artworkExhibitService; 
 	private InfoService infoService;
+	private Object adver1;
 	
 	@Autowired
 	public ExhibitController(ArtistExhibitService artistExhibitService,ArtworkExhibitService artworkExhibitService, InfoService infoService)
@@ -67,21 +68,28 @@ public class ExhibitController {
 		model.addAttribute("auction_list", auctionList);
 		model.addAttribute("custommade_list", custommadeList);
 		model.addAttribute("artist_list", artistList);
-		System.out.println("11111111111111");
 		
-		List<Information> adverList = new ArrayList<Information>();
+		//List<Information> adverList = new ArrayList<Information>();
+		Information adver1 = new Information();
+		Information adver2 = new Information();
+		Information adver3 = new Information();
+		adver1 = infoService.getTodayInfoByColumnId(1);
+		adver2 = infoService.getTodayInfoByColumnId(2);
+		adver3 = infoService.getTodayInfoByColumnId(3);
 		List<Information> infoList = new ArrayList<Information>();
+		/*
 		for(int i =1;i<4;i++)
 			adverList.add(infoService.getTodayInfoByColumnId(i)); 
-		
+			*/
+	
 		for(int i =4;i<=6;i++)
 			infoList.add(infoService.getTodayInfoByColumnId(i));
-		model.addAttribute("adverList", adverList);
+		model.addAttribute("adver1", adver1);
+		model.addAttribute("adver2", adver2);
+		model.addAttribute("adver3", adver3);
 		model.addAttribute("infoList", infoList);
-		System.out.println("ok");
 		
-		
-		 return "index";
+		return "index";
 
 	}
 	

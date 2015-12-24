@@ -1,19 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"+ request.getServerName() + ":" + request.getServerPort()+ path + "/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Joomla! - Open Source Content Management" />
 <title>drinkArt</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/template.css" type="text/css" />
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css"/>
 
 <link rel="stylesheet" href="css/artstyle.css">
+
 <style type="text/css">
 body{font-family:Open Sans, sans-serif; font-weight:normal; }
 h1{font-family:Open Sans, sans-serif; font-weight:700; }
@@ -108,6 +114,7 @@ padding-right:0px;}
 <div class="body-innerwrapper">
 <%@include file="header.jsp"%>
 
+<img src="${adver3.image}">
 <section  class="sppb-section section-intro" style="margin:0px;padding:20px 0;">
 <div class="sppb-container">
        	    <div id="myCarousel" class="carousel slide" style="width:100%;height:100%;background-color:#ffffff;">
@@ -120,19 +127,21 @@ padding-right:0px;}
               </ol>
               <!-- 轮播（Carousel）项目-->
               <div class="carousel-inner" style="width:100%;height:100%;">
-               <c:forEach var="adver" items="${adverList}">
+              
                <!-- 需要修改！！显示图片 -->
-                <div class="item active"> <img src="images/art2.jpg" alt="First slide"> </div>
-                <div class="item"> <img src="images/art.jpg" alt="Second slide"> </div>
-                <div class="item"> <img src="images/art2.jpg" alt="Third slide"> </div>
-                </c:forEach>
-              </div>
+                <div class="item active"><img src="${adver1.image}" alt="First slide" >  </div>
+                <div class="item"> <img src="${adver2.image}" alt="Second slide"> </div>
+                
+                <div class="item "> <img src="${adver3.image}"  alt="Third slide"> </div>
+              
+              </div>'
               <!-- 轮播（Carousel）导航 -->
               <a class="carousel-control left" href="#myCarousel" 
       data-slide="prev">&lsaquo;</a> <a class="carousel-control right" href="#myCarousel" 
       data-slide="next">&rsaquo;</a>
 	       </div>
-            </section>
+ </div>
+</section>
             <!--资讯-->
            
              <section id="section-about" class="section appear clearfix sppb-section">

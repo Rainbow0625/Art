@@ -34,11 +34,8 @@ public class InfoController
 	@Resource
 	private InfoService infoService;
 	
-
 	public InfoController(){}
 
-	
-	
 	@RequestMapping("/ADMIN_welcome") 
 	public ModelAndView toadmin()
 	{
@@ -88,7 +85,8 @@ public class InfoController
 		String title = request.getParameter("title");
 		String contentType = request.getParameter("contentType");
 		String content = request.getParameter("content");
-		String Imagepath=request.getSession().getServletContext().getRealPath("/")+ uploadImage.getOriginalFilename();
+		String Imagepath=request.getSession().getServletContext().getRealPath("/")+"images//"+ uploadImage.getOriginalFilename();
+		
 		
 		Information info = new Information();
 		info.setTitle(title);
@@ -97,11 +95,18 @@ public class InfoController
 		info.setCreateTime(createTime);
 		info.setNextTime(null);	
 		info.setContentType(contentType);
-		info.setImage(Imagepath);
+		
 		Editor editor= new Editor();
 		editor.setId(1);
+		
 		info.setEditor(editor);  
 		info.setContent(content);
+		
+		
+		File db= new File(request.getSession().getServletContext().getRealPath("/")+"images/");
+		String ImageDB = db.getPath();
+		System.out.println(ImageDB);
+		info.setImage(ImageDB);
 		
 		//保存图片
 		try 
@@ -118,7 +123,7 @@ public class InfoController
 		//HTML保存 
 		try
 	    { 	
-		    FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/infoHTML/")+title+".html"); 		    
+		    FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/")+"infoHTML//"+title+".html"); 		    
 		    fileWriter.write(content); 
 		    fileWriter.flush();  
 		    fileWriter.close();
@@ -152,12 +157,14 @@ public class InfoController
 	@RequestMapping("/ADMIN_updateinfo")  
 	public ModelAndView updateinfo(@RequestParam("uploadImage") MultipartFile uploadImage, @RequestParam("id") int id,HttpServletRequest request,Model model)
 	{
-		System.out.print(id);
+		String Imagepath=request.getSession().getServletContext().getRealPath("/")+"images//"+ uploadImage.getOriginalFilename();
 		String title = request.getParameter("title");
 		String contentType = request.getParameter("contentType");
 		String content = request.getParameter("content");
 		
-		String Imagepath=request.getSession().getServletContext().getRealPath("/")+ uploadImage.getOriginalFilename();
+		File db= new File(request.getSession().getServletContext().getRealPath("/")+"images/",uploadImage.getOriginalFilename());
+		String ImageDB = db.getPath();  //变为相对路径
+		System.out.println(ImageDB);
 		
 		Information info = new Information();  	
 		info.setId(id);
@@ -166,8 +173,9 @@ public class InfoController
 		Date nextTime = new Date();
 		info.setNextTime(nextTime);
 		info.setContent(content);
-		info.setImage(Imagepath);
+		info.setImage(ImageDB);
 		info.setState("未审核");
+		
 		
 		//保存图片
 		try 
@@ -184,7 +192,7 @@ public class InfoController
 		//从文件中写入
 		try 
 		{	
-			FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/infoHTML/")+title+".html"); 		    
+			FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/")+"infoHTML//"+title+".html"); 		    
 		    fileWriter.write(content); 
 		    fileWriter.flush();  
 		    fileWriter.close();

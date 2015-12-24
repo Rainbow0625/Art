@@ -114,7 +114,6 @@ public class InformationDaoImp implements InformationDao
 	public void addAnInfo(Information info) {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(info);
-		session.flush();
 	}
 
 	@Override
