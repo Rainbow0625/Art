@@ -18,8 +18,7 @@ public class InformationDaoImp implements InformationDao
 	private SessionFactory sessionFactory;
 	
 	public InformationDaoImp(){}
-	
-	
+
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}

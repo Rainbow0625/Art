@@ -30,6 +30,10 @@ public class DateAndPos implements java.io.Serializable
 	
 	@Column(name="date")
 	private Date date; //NEED TO create an index on the column in the DateBase
+
+	@Column(name="days")
+	private int days; 
+	
 	
 	@ManyToOne( targetEntity=InfoColumn.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)
 	@JoinColumn(name="infoColumnId")//加入一列作为外键列
@@ -66,13 +70,18 @@ public class DateAndPos implements java.io.Serializable
 		this.infoColumn = infoColumn;
 	}
 	
-	public Information getInfomation ()
-	{
-		return information;
-	}
 	public void setInformation ( Information information )
 	{
 		this.information = information;
+	}
+	public int getDays() {
+		return days;
+	}
+	public void setDays(int days) {
+		this.days = days;
+	}
+	public Information getInformation() {
+		return information;
 	}
 	
 	

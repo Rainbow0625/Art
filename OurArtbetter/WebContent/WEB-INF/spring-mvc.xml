@@ -36,4 +36,37 @@
 		<property name="maxInMemorySize" value="10240" />
 	</bean>
 	
+	
+	
+
+	<!-- 
+	<mvc:interceptors>
+	    
+		<mvc:interceptor> 
+       		<mvc:mapping path=""/>  
+        	<bean class="com.art.interceptor...Interceptor">
+        		 <property name="">  
+                    <value></value>  
+                </property>
+        	</bean>
+    	</mvc:interceptor> 
+    	
+    	
+    	<mvc:interceptor> 
+			
+       		<mvc:mapping path=""/>  
+        	<bean class="com.art.interceptor."/>  
+    	</mvc:interceptor> 
+    	
+    	
+    	<mvc:interceptor> 
+			 
+       		<mvc:mapping path=""/>  
+        	<bean class="com.art.interceptor."/>  
+    	</mvc:interceptor> 
+	</mvc:interceptors>
+		定义多个拦截器,顺序执行-->
+
+	 
+	
 </beans>

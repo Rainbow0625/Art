@@ -23,7 +23,6 @@ public class InfoColumnDaoImp implements InfoColumnDao
 
 	@Override
 	public InfoColumn getInfoColumnById(int infoColumnById) {
-		String id=String.valueOf(infoColumnById);
 		String hql = "from InfoColumn where id=?";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, infoColumnById);
@@ -33,7 +32,6 @@ public class InfoColumnDaoImp implements InfoColumnDao
 
 	@Override  //use!!
 	public double getInforColumnPriceById(int infoColumnById) {
-		String id=String.valueOf(infoColumnById);
 		String hql = "select from InfoColumn where id=?";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, infoColumnById);
@@ -44,7 +42,6 @@ public class InfoColumnDaoImp implements InfoColumnDao
 
 	@Override 
 	public String getInforColumnTypeById(int infoColumnById) {
-		String id=String.valueOf(infoColumnById);
 		String hql = "select from InfoColumn where id=?";
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
 		query.setInteger(0, infoColumnById);

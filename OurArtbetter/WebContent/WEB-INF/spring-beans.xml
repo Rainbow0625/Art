@@ -5,17 +5,6 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<!--
-	<bean id="userDAO" class="cn.edu.xmu.artworkauction.dao.impl.UserDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-
-	<bean id="secureService" class="cn.edu.xmu.artworkauction.service.impl.SecureServiceImpl">
-		<property name="userDAO" ref="userDAO"></property>
-	</bean>
-	-->
-	<!--  why  -->
-	
 	
 	<!--
 	<bean name="tempSecureService" parent="transactionProxy">
