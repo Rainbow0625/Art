@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
-
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,14 +11,13 @@
 <meta name="generator" content="Joomla! - Open Source Content Management" />
 <title>Art</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="css/animate.min.css" type="text/css" />
-<link rel="stylesheet" href="css/sppagebuilder.css" type="text/css" />
-<link rel="stylesheet" href="css/magnific-popup.css" type="text/css" />
-<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
-<link rel="stylesheet" href="css/shapebootstrap.icon.css" type="text/css" />
 <link rel="stylesheet" href="css/template.css" type="text/css" />
 <link rel="stylesheet" href="css/preset1.css" type="text/css" class="preset" />
-<link rel="stylesheet" href="css/style.css">
+<script>
+	function saveCart() {
+		document.getElementById("cartForm").submit();
+	}
+</script>
 <style type="text/css">
 body{font-family:'SimSun'; font-weight:normal;background-color:#e5e5e5; }
 h1{font-family:Open Sans, sans-serif; font-weight:700; }
@@ -73,17 +72,15 @@ padding-right:5%;
 color:#e83258;
 font-size:20px;
 }
+.icon{
+float:right;
+background:url('images/glyphicons-203-shopping-cart.png');
+height:23px;
+width:26px;
+}
   </style>
 <script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/jquery-noconflict.js" type="text/javascript"></script>
-<script src="js/jquery-migrate.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/favorites.js" type="text/javascript"></script>
-<script src="js/sppagebuilder.js" type="text/javascript"></script>
-<script src="js/jquery.magnific-popup.min.js" type="text/javascript"></script>
-<script src="js/cart.js" type="text/javascript"></script>
-<script src="js/jquery.sticky.js" type="text/javascript"></script>
-<script src="js/matchheight.js" type="text/javascript"></script>
 <script src="js/main.js" type="text/javascript"></script>
    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -123,7 +120,7 @@ font-size:20px;
     </div>
   </div>
 </header>
-<section id="sp-navbar" class=" hidden-xs">
+<section id="sp-navbar" class="hidden-xs">
   <div class="container">
     <div class="row">
       <div id="sp-categories" class="col-sm-4 col-md-2">
@@ -138,7 +135,6 @@ font-size:20px;
               <li class="sp-menu-item current-item active"><a  href="/" >首页</a></li>
               <li class="sp-menu-item hidden"><a  href="/free-templates" >艺术资讯</a></li>
               <li class="sp-menu-item"><a  href="artistList" >签约艺术家</a></li>
-               <li class="sp-menu-item"><a  href="artistList" >艺术品展示</a></li>
               <li class="sp-menu-item"><a  href="/items" >艺术品商城</a></li>
               <li class="sp-menu-item"><a  href="/popular-items" >艺术品在线定制</a></li>
               <li class="sp-menu-item"><a  href="/blog" >拍卖商城</a></li>
@@ -176,50 +172,84 @@ font-size:20px;
 	       </div>
 </section>
 
+
 <!--购物车小图标-->
 <div class="shoppingcart" style="width:8%;height:4%;position:fixed;right:10%;bottom:2%;z-index:100;">
-   <a href="#"><img src="images/shoppingcart.png" alt="找不到图片" style="width:100%;height:100%;"></a>
+   <a href="/OurArtbetter/myCart"><img src="images/shoppingcart.png" alt="找不到图片" style="width:100%;height:100%;"></a>
 </div>
-            <!-- 艺术品商城 -->
-             <c:if test="${! empty artwork_list}">
-                    	<c:forEach var="artwork" items="${artwork_list}">
-            <section id="section-works" class="section appear clearfix" style="background-color:#e5e5e5;">
-              <div class="container">
-                <div class="row mar-bot40">
-                  <div class="col-md-offset-3 col-md-6">
-                  
+<div class="row mar-bot40"style="background-color:#ffffff;">
+                  <div class="col-md-offset-3 col-md-6" style="padding:2% 8%;">
+                    <div class="item-type" style="background-color:#e5e5e5;border-radius:3px;width:25%;text-align:center;border-bottom:1px solid #e5e5e5;margin-left:2%;" id="item-type">
+					   <span id="showitemtype">	<a href="${ pageContext.request.contextPath }/index">商品分类</a>|</span>
+					</div>
+					<c:forEach items="${sessionScope.cList}" var="c">
+					<div class="item-typedrop" style="z-index:100;display:block;width:100%;height:20%;display:none;" id="item-typedrop">
+		   <li><a
+				href="${ pageContext.request.contextPath }/findByCid/<c:out value="${c.cid}"/>/1">
+				<c:out value="${c.cname}"></c:out> 
+			  </a>
+		   </li>
+
+				</div>
+				</c:forEach>
                   </div>
                 </div>
+            <!-- 艺术品商城 -->
+                      <section id="section-works" class="section appear clearfix" style="background-color:#e5e5e5;">
+              <div class="container">
                 <div class="row">
                   <div class="col-md-12">
                     <div class="row">
                       <div class="portfolio-items isotopeWrapper clearfix" id="3">
-                       
+						
+						  <div id="result" class="result table clearfix">
+					           <ul>
+						        <c:forEach var="p" items="${artwork_list}">
+						        <form id="cartForm"action="${ pageContext.request.contextPath }/addCart"method="post">
 						<article class="col-md-4 isotopeItem webdesign" style="border:1px solid #000000;border-radius:10px;background-color:#ffffff;padding-left:0;padding-right:0;">
                           <div class="portfolio-item" style="width:100%;height:85%;"> 
-						   <img src="${artwork.imagesURL}" alt="" style="border:1px solid #d6d3d3;border-radius:10px;"/>
+						   <img src="${p.imagesURL}" alt="找不到图片" style="border:1px solid #d6d3d3;border-radius:10px;"/>
                             <div class="portfolio-desc align-center">
                               <div class="folio-info">
-                                <h5><a href="#">Portfolio name</a></h5>
-                                <a href="img/portfolio/art1.jpg" class="fancybox"><i class="fa fa-plus fa-2x"></i></a> </div>
                             </div>
                           </div>
-						  <div class="${artwork.imagesURL}"style="">
-						    <p style="color:#000000;">${artwork.artworkName}</p>
-							<p>作者 :<span>${artwork.artworkName}</span></p>
-							<p>价格 :<span>￥</span><span class="shop-itemprice">${artwork.artworkPrice}</span></p>
+						  <div class="shop-itemdetail"style="">
+						   <a href="/OurArtbetter/findByPid?pid=${p.artworkId} ">
+						    <p style="color:#000000;">${p.artworkName}</p></a>
+						    <p>编号:<c:out value="${p.artworkId }" /></p>
+							<p>作者 :<span>aaa</span></p>
+							<p>价格 :<span>￥</span><span class="shop-itemprice">${p.artworkPrice}</span></p>
+						
+				<input type="hidden" name="artworkId"
+					value="<c:out value="${p.artworkId }"/>" />
+				
+				<dl class="quantity">
+						<dt>购买数量:</dt>
+						<dd>
+							<input id="count" name="count" value="1" maxlength="4"
+								onpaste="return false;" type="text" />
+						</dd>
+						<dd>件</dd>
+					</dl>
+					<div class="buy">
+					<input type="submit" value="加入购物车" onclick="saveCart()" />
+					</div>
+					</div>					
 						  </div>
                         </article>
-					   
+                        </form>
+						</c:forEach>
+					</ul>
+					</div>
+				</div>
+				
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </section>
-           </c:forEach>
-	                     </c:if>
-
+          
     <footer id="sp-footer">
     <div class="container">
       <div class="row">
@@ -251,7 +281,21 @@ font-size:20px;
   </div>
   <script>
    $("#myCarousel").carousel('cycle');
+   $("#item-type").click(function(){
+  // alert("a");
+     if(document.getElementById("item-typedrop").style.display=="none"){
+	 document.getElementById("item-typedrop").style.display="block";
+	 }
+	 else
+	  document.getElementById("item-typedrop").style.display="none";
+   });
+   $(".itemstyle").click(function(){
+      var val=$(this).text();
+	  console.log(val);
+      document.getElementById("showitemtype").innerHTML=val;
+	   document.getElementById("showitemtype").style.color="#e83258";
+      document.getElementById("item-typedrop").style.display="none";
+   });
   </script>
 </body>
 </html>
-

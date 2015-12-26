@@ -1,0 +1,155 @@
+﻿/*=================初始化样式表================*/
+body,ul,ol,li,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,span,a{margin:0;padding:0;border:0;}
+body{ position:relative;background:#fff; color:black; font-size:14px; margin:0px; font-family: "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei", sans-serif; }
+ul{list-style-type:none;}
+select,input,img,select{vertical-align:middle;}
+h1,h2,h3,h4,h5{ font-weight: normal; } 
+ 
+a{ color: black; text-decoration: none; }
+a:hover{ text-decoration: none; }
+
+input, button, select, textarea { outline:none; font-family: "Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei", sans-serif; }
+
+.clearfix {
+	zoom:1;
+}
+.clearfix:after {
+	content: " ";
+	display: block;
+	clear: both;
+	height: 0;
+} 
+.clear{ clear: both; }
+
+@font-face {
+font-family: 'Microsoft_YaHei347247';
+src: url('../font/Microsoft_YaHei.eot');
+src: url('../font/Microsoft_YaHei.eot?#iefix') format('embedded-opentype'),
+     url('../font/Microsoft_YaHei.woff') format('woff'),
+     url('../font/Microsoft_YaHei.ttf') format('truetype'),
+     url('../font/Microsoft_YaHei.svg#Microsoft_YaHei') format('svg');
+    font-weight: normal;
+    font-style: normal;
+   }
+
+/*=================css=================*/
+
+.warnningp,#LC_enroll .warnningp,#LC_login .warnningp{ color: red; }
+
+.container{ width: 1016px; margin: 0 auto; }
+
+.login-bg { width: 100%; height: 50px; background-color: #f7f7f7; position: absolute; z-index: -1; }
+
+.login-bar-l{ height: 36px; float: left; margin-top:14px; color: #777; }
+.login-bar{ float: right; }
+.login-bar a{ color: #777; margin-top:14px; display: inline-block;}
+.login-bar span.partition{ margin: 0 8px; color: #999;}
+.login-bar .orange{ color: #f5b16c;}
+#loginentry p{ display: inline-block; }
+
+.header{ height: 115px;}
+.header .logo{float: left; background: url(../images/logo.png) no-repeat 0 0px ; background-size: 100% 100%; width: 370px; height: 85px; text-indent: -9999px; margin-top: 10px;}
+.logo{margin-top:10px;}
+.header .slogan{ float: right; text-indent: -9999px;  background: url(../images/slogan-index.jpg) no-repeat; width: 290px; height: 115px; }
+
+.main-nav-bg{ width: 100%; z-index: -1; position: absolute;  background: #2b6ab8; top: 165px; height: 44px; border-top: 1px solid #0b53ad; border-bottom: 1px solid #0b53ad; }
+.main-nav{ height: 46px; color: #fff; text-align: center; }
+.main-nav li{ float: left; /* border-image:url(../images/index-mainnav-bg.png); */ }
+.main-nav li a{ display: inline-block; font-weight: bold; color: #FFF; font-size: 18px; line-height: 46px; height: 46px; width: 203px; }
+.main-nav a:hover{ color: #0042a5; background-color: #fff; }
+.main-nav span{ display: inline-block; width: 1px; background: url(../images/index-mainnav-bg.png) no-repeat; height: 46px; }
+.main-nav .dragger ul{ position: absolute; z-index: 20; background-color: #fff; box-shadow: 1px 1px 6px rgba(0,0,0,0.3); }
+.main-nav .dragger ul li{ float: none; }
+.main-nav .dragger ul li a{ color: #8b8b8c; }
+.main-nav .dragger ul li a:hover{ color: #fff; background-color: #2b6ab8;}
+/*--================登录窗口====================*/
+  .ui-dialog{ 
+    width: 380px;height: auto; border: 1px solid #efefef;
+    margin: 0 auto; margin-top: 50px;
+  }
+
+  .ui-dialog a{text-decoration: none;}
+
+  .ui-dialog-title{
+    height: 50px; background: #efefef;
+    /*border-bottom: 1px solid #efefef;*/
+    cursor: move;
+    user-select:none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  .ui-dialog-title h2{ width: 100%; height: 50px; line-height: 50px; font-size: 18px; text-align:center; }
+
+  .ui-dialog-closebutton{
+    width: 16px;height: 16px;display: block;
+    position: absolute;top: 12px;right: 20px;
+    background: url(../images/icons.png) no-repeat -50px 0;cursor: pointer;
+
+  }
+
+
+  .ui-dialog-content{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 25px 65px 20px; background: #fff; width: 380px;height: 225px;
+    border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; position: relative;
+  }
+  .login-input{ height: 30px; margin-bottom: 23px; line-height: 30px; font-size: 14px; position: relative;}
+
+  .login-ID,.login-password{ letter-spacing: 1em;}
+  .login-ID span{ background-position: 0 -180px;}
+  .login-password span{ background-position: -30px -180px;}
+  .login-input input{  height: 18px; width: 150px; float: right; margin-top: 1px; padding: 5px 12px; border: 1px solid #ddd; background: none;}
+  .login-button{ width: 250px; height: 35px; color: #fff; background-color: #2b6ab8; border:none; font-size: 16px; font-family:"微软雅黑"; font-weight: bold;}
+  .login-button:hover{ background-color: #3076cd;}
+  .remind-l,.remind-r{ color: #bdbdbd; margin-top: 12px;}
+  .remind-l:hover,.remind-r:hover{ color: #222;}
+  .remind-l{ float: left;}
+  .remind-r{ float: right;}
+  .ui-mask{ 
+    width: 100%;height:100%;background: #000;
+    position: absolute;top: 0px;height: 0px;z-index: 8000;
+    opacity:0.4; filter: Alpha(opacity=40);
+  }
+
+
+
+/*================footer====================*/
+.footer-bg{ width: 100%; height: 142px; background:url(../images/header-nav-footer-bg.png) repeat-x 0 -474px; position: absolute; bottom: 0; z-index: -1;}
+.footer{ height: 142px; margin-top: 20px; color: #fff; }
+.menu_content ul{ width: 800px; margin: 0 auto; font-size: 16px;}
+.menu_content li{ float: left;}
+.menu_content a{ display: inline-block; width: 200px; text-align: center; color: #fff; line-height: 36px; height: 36px;}
+
+.banquan{ margin-top: 23px; }
+.banquan_left{ width: 500px; float: left; font-size: 12px;}
+.banquan_left p{ line-height: 22px;}
+.banquan_right{ width: 500px; float: right; text-align: right; font-size: 12px;}
+.banquan_right span{ font-size: 22px;}
+
+/*----------------7.9更，上面记得换掉---------------*/
+.cooperate li{ margin-right: 9px; margin-bottom: 8px; }
+.footer{ height: 146px;}
+.footer .banquan{ margin-top: 25px;}
+.footermenu-bg{ width: 100%; height: 36px; background: #2b6ab8; position: absolute; bottom: 110px; z-index: -1; }
+.footer-bg{ background: #eeeeef; height: 102px; }
+.footer{ color: #a0a0a1;}
+
+.hide{ display: none; }
+.show{ display: block; }
+/*----==============table==============----*/
+table{
+  font-size:12px;
+}
+table th{
+  font-size:15px;
+  font-weight:normal;
+  color:#2B6AB8;
+}
+table td{
+  padding:15px;
+}
+.userlist-btn{
+font-size:12px;
+}

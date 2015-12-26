@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.art.backstageService.InfoService;
@@ -33,20 +34,12 @@ public class ExhibitController {
 	
 	@Resource
 	private ArtistExhibitService artistExhibitService;
+	@Resource
 	private ArtworkExhibitService artworkExhibitService; 
+	@Resource
 	private InfoService infoService;
-	private Object adver1;
 	
-	@Autowired
-	public ExhibitController(ArtistExhibitService artistExhibitService,ArtworkExhibitService artworkExhibitService, InfoService infoService)
-	{
-		this.artistExhibitService=artistExhibitService;
-		this.artworkExhibitService=artworkExhibitService;
-		this.infoService = infoService;
-	}
-	
-	
-	
+	public ExhibitController(){}
 	
 	@RequestMapping(value = "/productList")
 	public ModelAndView listAllArtwork(HttpServletRequest request)
@@ -101,24 +94,15 @@ public class ExhibitController {
 		return new ModelAndView("infoContent");
 	}
 	
-
 	@RequestMapping(value = "/artistList")
-	public ModelAndView listAllArtist(HttpServletRequest request,  
-	        HttpServletResponse response)throws Exception
+	public String listAllArtist(@RequestParam int flag,ModelMap model)
 	{
-		//Map<String,Object> model = new HashMap<String,Object>();
 		List<Artist> artistList = artistExhibitService.getAllArtist();
+		if(flag==1)
+		{model.addAttribute("artist_list", artistList); return "shop";}
+		else
+		{model.addAttribute("artist_list", artistList);return "artistList";}
 		
-		/*
-		for (Artist i: artistList) 
-		{
-			System.out.print(i.getNickName());
-		}
-		*/
-		
-		//model.put("artist_list", artist_list);
-		ModelAndView modelAndView=new ModelAndView("artistList","artist_list",artistList);
-		return modelAndView;
 	}
 	
 }

@@ -36,11 +36,11 @@ public class DateAndPos implements java.io.Serializable
 	
 	
 	@ManyToOne( targetEntity=InfoColumn.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)
-	@JoinColumn(name="infoColumnId")//加入一列作为外键列
+	@JoinColumn(name="infoColumnId")//鍔犲叆涓�鍒椾綔涓哄閿垪
 	private InfoColumn infoColumn;
 	
 	@ManyToOne( targetEntity=Information.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)
-	@JoinColumn(name="informationId")//加入一列作为外键列
+	@JoinColumn(name="informationId")//鍔犲叆涓�鍒椾綔涓哄閿垪
 	private Information information;
 	
 	public int getId() 

@@ -6,9 +6,9 @@
       <li><a href="#" class="firstnav">首页</a></li>
       <li class="navhasul"><a href="#" class="firstnav">用户管理</a>
         <ul class="secondnav">
-          <li><a href="#">用户列表</a></li>
-          <li><a href="#">艺术家列表</a></li>
-          <li><a href="#">增加用户</a></li>
+          <li><a href="/OurArtbetter/turnToUserManage?manageType=1">管理用户</a></li>
+          <li><a href="/OurArtbetter/turnToUserManage?manageType=2">管理艺术家</a></li>
+          <li><a href="/OurArtbetter/turnToUserManage?manageType=3">管理后台管理员</a></li>
         </ul>
       </li>
       <li class="navhasul"><a href="#" class="firstnav">订单管理</a>

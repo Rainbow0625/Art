@@ -1,13 +1,20 @@
 package com.art.entity;
+import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+
 
 @Entity
 @DynamicInsert
@@ -24,18 +31,33 @@ public class Artwork implements java.io.Serializable
 	@Column(name="artworkName",nullable=false)
 	private String artworkName;
 	
+
+	@JoinColumn(name="csid")
+	@ManyToOne
+	private CategorySecond categorySecond;
 	//artworkType   1 product  2 customization 3 auction
+
+
 	@Column(name="artworkType",nullable=false)
 	private int artworkType;
+
 	
-	@Column(name="artworkKind",nullable=false,updatable=false)
-	private String artworkKind;
+	@Column(name="Pdate")
+	private Date Pdate;  //制作的时间
+
+	@Column(name="quantity")
+	private int quantity;     //库存
+	
 	
 	@Column(name="artworkPrice")
 	private int artworkPrice;
 	
-	@Column(name="artistsName",updatable=false)
-	private int artistsName;
+	@JoinColumn(name="artistid")
+	@ManyToOne(targetEntity=Artist.class,cascade={CascadeType.ALL},fetch=FetchType.EAGER )
+	private Artist artist;
+	
+	@Column(name="hotNum")
+	private int hotNum;
 	
 	@Column(name="artworkInformation")
 	private String artworkInformation;
@@ -44,83 +66,82 @@ public class Artwork implements java.io.Serializable
 	private  String imagesURL;
 	
 	public Artwork(){}
-	public Artwork(int artworkId,String artworkName,int artworkType,String artworkKind,int artworkPrice,int artistsId,String artworkInformation,String imagesURL)
+	public Artwork(int artworkId,String artworkName,int artworkType,int artworkPrice,int hotNum,int artistsId,String artworkInformation,String imagesURL,Artist artist)
 	{
-		setartworkId(artworkId);
-		setartworkName(artworkName);
-		setartworkType(artworkType);
-		setartworkKind(artworkKind);
-		setartworkPrice(artworkPrice);
-		setartistsName(artistsName);
-		setartworkInformation(artworkInformation);
-		setimagesURL(imagesURL);
+		setArtworkId(artworkId);
+		setArtworkId(artworkType);
+		setArtworkPrice(artworkPrice);
+		setHotNum(hotNum);
+		setArtworkInformation(artworkInformation);
+		setImagesURL(imagesURL);
+		setArtist(artist);
 	}
-	public String getimagesURL() 
-   	{
-           return this.imagesURL;
-   	}  
-    public void setimagesURL(String imagesURL) 
-	{
-    	this.imagesURL = imagesURL;
-	}
-
-	public int getartworkId() {
+	public int getArtworkId() {
 		return artworkId;
 	}
-	
-	public void setartworkId(int artworkId) {
+	public void setArtworkId(int artworkId) {
 		this.artworkId = artworkId;
 	}
-
-	public int getartworkType() {
-		return artworkType;
-	}
-	
-	public void setartworkType(int artworkType) {
-		this.artworkType = artworkType;
-	}
-	
-	public String getartworkName() {
+	public String getArtworkName() {
 		return artworkName;
 	}
-
-	public void setartworkName(String artworkName) {
+	public void setArtworkName(String artworkName) {
 		this.artworkName = artworkName;
 	}
-
-	public String getartworkKind() {
-		return artworkKind;
+	public CategorySecond getCategorySecond() {
+		return categorySecond;
 	}
-
-	public void setartworkKind(String artworkKind) {
-		this.artworkKind = artworkKind;
+	public void setCategorySecond(CategorySecond categorySecond) {
+		this.categorySecond = categorySecond;
 	}
-
-	public int getartworkPrice() {
+	public int getArtworkType() {
+		return artworkType;
+	}
+	public void setArtworkType(int artworkType) {
+		this.artworkType = artworkType;
+	}
+	public int getArtworkPrice() {
 		return artworkPrice;
 	}
-
-	public void setartworkPrice(int artworkPrice) {
+	public void setArtworkPrice(int artworkPrice) {
 		this.artworkPrice = artworkPrice;
 	}
-
-	public int getartistsName() {
-		return artistsName;
+	public int getHotNum() {
+		return hotNum;
 	}
-
-	public void setartistsName(int artistsName) {
-		this.artistsName = artistsName;
+	public void setHotNum(int hotNum) {
+		this.hotNum = hotNum;
 	}
-
-	public String getartworkInformation() {
+	
+	public Artist getArtist() {
+		return artist;
+	}
+	public void setArtist(Artist artist) {
+		this.artist = artist;
+	}
+	public String getArtworkInformation() {
 		return artworkInformation;
 	}
-
-	public void setartworkInformation(String artworkInformation) {
+	public void setArtworkInformation(String artworkInformation) {
 		this.artworkInformation = artworkInformation;
 	}
-
-
-
+	public String getImagesURL() {
+		return imagesURL;
+	}
+	public void setImagesURL(String imagesURL) {
+		this.imagesURL = imagesURL;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	public Date getPdate() {
+		return Pdate;
+	}
+	public void setPdate(Date pdate) {
+		Pdate = pdate;
+	}
 
 }

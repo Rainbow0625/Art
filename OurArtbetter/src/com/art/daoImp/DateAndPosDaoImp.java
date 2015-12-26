@@ -1,6 +1,8 @@
 package com.art.daoImp;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -17,8 +19,8 @@ import com.art.entity.DateAndPos;
 import com.art.entity.Information;
 
 /**
- * @author Îâºç
- * @category DateAndPosDaoµÄÊµÏÖ
+ * @author å´è™¹
+ * @category DateAndPosDaoçš„å®ç°
  * */
 @Repository("dateAndPosDao")
 public class DateAndPosDaoImp implements DateAndPosDao
@@ -33,17 +35,24 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 	
 	/**
-	 * ¸ù¾İÀ¸Ä¿ºÅ£¬µÃµ½½ñÌìµÄĞÅÏ¢
+	 * æ ¹æ®æ ç›®å·ï¼Œå¾—åˆ°ä»Šå¤©çš„ä¿¡æ¯
 	 * */
 	@Override
 	public Information getTodayInfoByInfoColumnId(int infoColumnId) {
 		
-		Calendar count = Calendar.getInstance();
-		Date todaydate = new Date();
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+		Calendar count = Calendar.getInstance();//è®¡æ•°
+		
+		Date todaydate = new Date(); //ç”Ÿæˆä»Šå¤©çš„æ—¥æœŸ
+		Calendar todayCalendar = Calendar.getInstance();
+		todayCalendar.setTime(todaydate);
+		String todaydateString = df.format(todaydate);
+		
 		
 		String hql = "from DateAndPos as dateAndPos where dateAndPos.infoColumn.id=?";  
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, infoColumnId); 
+		query.setInteger(0, infoColumnId);
 		List<DateAndPos> dateAndPosList =getDateAndPosByInfoColumnId(infoColumnId);
 		
 		Information todayInfo=new Information();
@@ -54,13 +63,13 @@ public class DateAndPosDaoImp implements DateAndPosDao
 			int days= dateAndPosList.get(i).getDays();
 			count.setTime(dateAndPosList.get(i).getDate());
 			
-			if(count.getTime().equals(todaydate))  //Èç¹ûµÈÓÚ£¬Ö±½Ó·µ»Ø
+			if( df.format(  count.getTime()  ).equals(todaydateString)  )  //å¦‚æœç­‰äºï¼Œç›´æ¥è¿”å›
 			{
 				todayInfo = dateAndPosList.get(i).getInformation();
 				//flag=1;
 				break;
 			}
-			else if( count.getTime().before(todaydate) )  //Èç¹ûĞ¡ÓÚ£¬»¹ÓĞÅĞ¶ÏµÄ±ØÒª
+			else if( count.getTime().before(todaydate) )  //å¦‚æœå°äºï¼Œè¿˜æœ‰åˆ¤æ–­çš„å¿…è¦
 			{
 				for(int j = 0 ; j<days ; j++)
 				{
@@ -75,7 +84,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 				if(flag==1)
 					break;
 			}
-			else     //Èç¹û´óÓÚ£¬Ã»ÓĞÅĞ¶ÏµÄ±ØÒª£¬¼ÌĞø²éÕÒÏÂÒ»¸ö
+			else     //å¦‚æœå¤§äºï¼Œæ²¡æœ‰åˆ¤æ–­çš„å¿…è¦ï¼Œç»§ç»­æŸ¥æ‰¾ä¸‹ä¸€ä¸ª
 				continue;
 		}
 		
@@ -83,7 +92,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * ¸ù¾İÈíÎÄid£¬µÃµ½DateAndPos
+	 * æ ¹æ®è½¯æ–‡idï¼Œå¾—åˆ°DateAndPos
 	 * */
 	@Override  
 	public List<DateAndPos> getDateAndPosByInformationId(int informationId) {
@@ -96,7 +105,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * ¸ù¾İÀ¸Ä¿id£¬µÃµ½DateAndPos
+	 * æ ¹æ®æ ç›®idï¼Œå¾—åˆ°DateAndPos
 	 * */
 	@Override  // not use
 	public List<DateAndPos> getDateAndPosByInfoColumnId(int infoColumnId) {
@@ -109,7 +118,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * Ôö¼ÓÒ»ÌõDateAndPos
+	 * å¢åŠ ä¸€æ¡DateAndPos
 	 * */
 	@Override
 	public Boolean setDateAndPos(DateAndPos dateAndPos) {
@@ -120,7 +129,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * É¾³ıÒ»ÌõDateAndPos
+	 * åˆ é™¤ä¸€æ¡DateAndPos
 	 * */
 	@Override
 	public Boolean deleteDateAndPos(int dateAndPosId) {

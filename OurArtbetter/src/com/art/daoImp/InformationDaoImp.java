@@ -146,7 +146,7 @@ public class InformationDaoImp implements InformationDao
 	@Override
 	public void checkInfoById(int infoId) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "update Information info set info.state='审核通过',info.chiefEditor.id =1  where info.id=?";
+		String hql = "update Information info set info.state='瀹℃牳閫氳繃',info.chiefEditor.id =1  where info.id=?";
 		Query query = session.createQuery(hql);
 		query.setInteger(0, infoId);
 		query.executeUpdate();
@@ -157,7 +157,7 @@ public class InformationDaoImp implements InformationDao
 	public void failInfoById(int infoId) {
 		Session session = sessionFactory.getCurrentSession();
 		//session.beginTransaction();
-		String hql = "update Information info set info.state='审核不通过' ,info.chiefEditor.id =1  where info.id=?";
+		String hql = "update Information info set info.state='瀹℃牳涓嶉�氳繃' ,info.chiefEditor.id =1  where info.id=?";
 		Query query = session.createQuery(hql);
 		query.setInteger(0, infoId);
 		query.executeUpdate();

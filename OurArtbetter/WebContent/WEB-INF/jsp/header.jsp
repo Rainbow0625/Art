@@ -1,4 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--<base href="https://shapebootstrap.net/" />-->
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Joomla! - Open Source Content Management" />
+<title>drinkArt</title>
+
+
+</head>
+<body>
   <header id="sp-header">
     <div class="container">
       <div class="row">
@@ -23,7 +36,7 @@
             <ul>
               <li><a class="btn btn-primary btn-submit-item hidden-sm hidden-xs" href="/login">Start Selling</a></li>
               <li><a class="btn btn-success btn-login hidden-sm hidden-xs" href="/OurArtbetter/TurnToLogin">Login</a></li>
-              <li><a class="btn btn-link btn-login visible-sm visible-xs" href="/login" style="margin-top:40%;"><i style="background:url('images/glyphicons-4-user.png');width:127%;height:40%;" class="fa fa-bars"></i></a></li>
+              <li><a class="btn btn-link btn-login visible-sm visible-xs" href="/OurArtbetter/TurnToLogin?userName=<%=session.getAttribute("userName")%>" style="margin-top:40%;"><i style="background:url('images/glyphicons-4-user.png');width:127%;height:40%;" class="fa fa-bars"></i></a></li>
               <li><a class="btn btn-default btn-registration hidden-sm hidden-xs" href="/login?view=registration">Create an Account</a></li>
               <li><a class="btn btn-link btn-login visible-sm visible-xs" id="offcanvas-toggler" href="#"><i class="fa fa-bars" style="background:url('images/listimg.png');    margin-top:90%;width: 100%;height: 40%;"></i></a></li>
               <li><a class="btn btn-link btn-cart hidden-sm hidden-xs" href="/cart"><i class="sb-icon-purchase"></i> <small class="my-cart">0</small></a></li>
@@ -67,3 +80,5 @@
   </div>
 </section>
 </div>
+</body>
+</html>

@@ -19,9 +19,9 @@ import org.hibernate.annotations.DynamicUpdate;
 @NamedQueries({
 	@NamedQuery(name="@GetAllAdmin", query="from Admin"),
 	@NamedQuery(name="@FindAdminById",query="from Admin a where a.id =?0"),
-	@NamedQuery(name="@FindAdminByTel",query="from Admin a where a.tel =?0"),
+	@NamedQuery(name="@FindAdminByName",query="from Admin a where a.name =?0"),
 	@NamedQuery(name="@FindAdminByIdAndPassword",query="from Admin a where a.id =?0 and a.password=?1"),
-	@NamedQuery(name="@FindAdminByTelAndPassword",query="from Admin a where a.tel =?0 and a.password=?1"),
+	@NamedQuery(name="@FindAdminByNameAndPassword",query="from Admin a where a.name =?0 and a.password=?1"),
 	@NamedQuery(name="@FindAdminByAdminType",query="from Admin a where a.adminType =?0")
 	
 })
@@ -33,18 +33,20 @@ public class Admin implements java.io.Serializable
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="tel")
-	private String tel;
+	@Column(name="name")
+	private String name;
 	
 	@Column(name="password")
 	private String password;
 	
 	@Column(name="adminType")
 	private int adminType;
+	
+	public Admin(){}
 
-	public Admin(String tel,String password,int adminType)
+	public Admin(String name,String password,int adminType)
 	{
-		this.setTel(tel);
+		this.setName(name);
 		this.setPassword(password);
 		this.setAdminType(adminType);
 	}
@@ -55,14 +57,14 @@ public class Admin implements java.io.Serializable
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public String getTel() {
-		return tel;
+	}	
+
+	public String getName() {
+		return name;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPassword() {

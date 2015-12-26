@@ -8,15 +8,14 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/tx
 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
-	
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/DrinkArt" />
 		<property name="username" value="root" />
-		<property name="password" value="weilai951" />
-	</bean>
-	
+		<property name="password" value="root" />
+		
+    </bean>
 	<!-- 配置SessionFactory -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -26,8 +25,13 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
+				<prop key="datasource.validationQuery">select 1 from dual</prop>
+				<prop key="datasource.testOnBorrow">true</prop>
+				<prop key="datasource.testWhileIdle">true</prop>
+				<prop key="hibernate.autoReconnect">true</prop>
 			</props>
 		</property>
+	
 		<property name="packagesToScan">
 			<list>
 				<value>com.art</value>
@@ -40,9 +44,9 @@
 	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	
-		 <!-- 使用annotation定义事务 -->  
-	 <tx:annotation-driven transaction-manager="transactionManager"/>
+
+			 <!-- 使用annotation定义事务 -->  
+	 <tx:annotation-driven transaction-manager="transactionManager"/> 
 	
 	<!-- 配置事务，使用代理的方式 -->
 	<bean id="transactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">  

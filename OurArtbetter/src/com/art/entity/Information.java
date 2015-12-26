@@ -35,11 +35,11 @@ public class Information implements java.io.Serializable
 	private String contentType;
 	
 	@ManyToOne( targetEntity=Editor.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY ,optional=false)
-	@JoinColumn(name="editorId",updatable=false) //Ò»µ©´´½¨È·ÈÏ²»¿ÉĞŞ¸Ä
+	@JoinColumn(name="editorId",updatable=false) //ä¸€æ—¦åˆ›å»ºç¡®è®¤ä¸å¯ä¿®æ”¹
 	private Editor editor;
 	
 	@ManyToOne(targetEntity=ChiefEditor.class,cascade={CascadeType.ALL},fetch=FetchType.LAZY )
-	@JoinColumn(name="chiefEditorId")//Ò»µ©´´½¨È·ÈÏ²»¿ÉĞŞ¸Ä
+	@JoinColumn(name="chiefEditorId")//ä¸€æ—¦åˆ›å»ºç¡®è®¤ä¸å¯ä¿®æ”¹
 	private ChiefEditor chiefEditor;
 	
 	@Column(name="content")

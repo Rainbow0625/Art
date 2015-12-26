@@ -1,12 +1,19 @@
 package com.art.entity;
 
-import java.sql.Date;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -15,6 +22,10 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @DiscriminatorValue(value="artist")
+@NamedQueries(
+		{ 
+			@NamedQuery(name = "@GetAllArtist",query = "from Artist a where a.audit_status != null "),
+		})
 public class Artist extends User
 {
 	private static final long serialVersionUID = 1L;
@@ -35,6 +46,15 @@ public class Artist extends User
 	@Column(name="audit_status")
 	@Enumerated(EnumType.STRING)
 	private AUDIT_STATUS audit_status;
+	/*
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="artist")
+	private Set<Order> order = new HashSet<Order>();
+	*/
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="artist")
+	private Set<Artwork> artwork = new HashSet<Artwork>();
+	
+	@OneToMany(fetch=FetchType.EAGER,mappedBy="artist")
+	private Set<Shop> shop = new HashSet<Shop>();
 	
 	public Artist(String realName,String tel, String password,String gender,Date birthday,String email,String photo,String introduction)
 	{
@@ -53,8 +73,6 @@ public class Artist extends User
 	public void setAudit_status(AUDIT_STATUS audit_status) {
 		this.audit_status = audit_status;
 	}
-
-
 
 	public String getRealName() 
    	{

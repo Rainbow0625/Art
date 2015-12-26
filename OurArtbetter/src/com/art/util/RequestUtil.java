@@ -14,8 +14,8 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * @author Îâºç
- * @category ÇëÇó´¦Àí
+ * @author å´è™¹
+ * @category è¯·æ±‚å¤„ç†
  */
 public class RequestUtil {
 	
@@ -25,21 +25,21 @@ public class RequestUtil {
     
     
     /**
-     * »ñÈ¡µ±Ç°Request¶ÔÏó.
-     * @return µ±Ç°Request¶ÔÏó»ò{@code null}.
-     * @throws IllegalStateException µ±Ç°Ïß³Ì²»ÊÇwebÇëÇóÅ×³ö´ËÒì³£.
+     * è·å–å½“å‰Requestå¯¹è±¡.
+     * @return å½“å‰Requestå¯¹è±¡æˆ–{@code null}.
+     * @throws IllegalStateException å½“å‰çº¿ç¨‹ä¸æ˜¯webè¯·æ±‚æŠ›å‡ºæ­¤å¼‚å¸¸.
      */
     public static HttpServletRequest currentRequest() throws IllegalStateException {
         ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attrs == null) {
-            throw new IllegalStateException("µ±Ç°Ïß³ÌÖĞ²»´æÔÚ Request ÉÏÏÂÎÄ");
+            throw new IllegalStateException("å½“å‰çº¿ç¨‹ä¸­ä¸å­˜åœ¨ Request ä¸Šä¸‹æ–‡");
         }
         return attrs.getRequest();
     }
     
     /**
-     * »ñÈ¡µ±Ç°session¶ÔÏó. Èôµ±Ç°Ïß³Ì²»ÊÇwebÇëÇó»òµ±Ç°ÉĞÎ´´´½¨{@code session}Ôò·µ»Ø{@code null}.
-     * @return µ±Ç°session¶ÔÏó»ò{@code null}.
+     * è·å–å½“å‰sessionå¯¹è±¡. è‹¥å½“å‰çº¿ç¨‹ä¸æ˜¯webè¯·æ±‚æˆ–å½“å‰å°šæœªåˆ›å»º{@code session}åˆ™è¿”å›{@code null}.
+     * @return å½“å‰sessionå¯¹è±¡æˆ–{@code null}.
      */
     public static HttpSession currentSession() {
         ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -50,7 +50,7 @@ public class RequestUtil {
     }
     
     /**
-     * ±£´æµ±Ç°ÇëÇó
+     * ä¿å­˜å½“å‰è¯·æ±‚
      */
     public static void saveRequest() {
         HttpServletRequest request = currentRequest();
@@ -58,7 +58,7 @@ public class RequestUtil {
     }
     
     /**
-     * ¼ÓÃÜÇëÇóÒ³Ãæ
+     * åŠ å¯†è¯·æ±‚é¡µé¢
      * @param request
      * @return
      */
@@ -78,7 +78,7 @@ public class RequestUtil {
     }
     
     /**
-     * È¡³öÖ®Ç°±£´æµÄÇëÇó
+     * å–å‡ºä¹‹å‰ä¿å­˜çš„è¯·æ±‚
      * @return
      */
     public static String retrieveSavedRequest() {
@@ -95,7 +95,7 @@ public class RequestUtil {
     }
 
     /**
-     * ½âÃÜÇëÇóµÄÒ³Ãæ
+     * è§£å¯†è¯·æ±‚çš„é¡µé¢
      * @param targetPage
      * @return
      */

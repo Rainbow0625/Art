@@ -1,5 +1,7 @@
 package com.art.daoImp;
-
+/*
+ * @author 范溢贞 24320132202399
+ */
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,7 +9,6 @@ import javax.annotation.Resource;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
 import com.art.dao.AdminDao;
@@ -33,23 +34,29 @@ public class AdminDaoImp implements AdminDao{
 	}
 
 	@Override
-	public Admin addAdmin(String tel, String password,int adminType) {
+	public Admin addAdmin(String name, String password,int adminType) {
 		// TODO Auto-generated method stub
-		if(checkAdminTelUnique(tel))
-		{
-			Admin admin = new Admin(tel, password, adminType);
-			sessionFactory.getCurrentSession().save(admin);
-			return admin;
+		Admin admin = null;
+		try {
+			if(checkAdminNameUnique(name))
+			{
+				admin = new Admin(name, password, adminType);
+				sessionFactory.getCurrentSession().save(admin);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in find admin by name and password in dao!");//for debug
 		}
-		else
-			return null;
+		
+		return admin;
 	}
 
 	@Override
-	public boolean checkAdminTelUnique(String tel) {
+	public boolean checkAdminNameUnique(String name) {
 		// TODO Auto-generated method stub
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("@FindAdminByTel");
-		query.setString("0", tel);
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("@FindAdminByName");
+		query.setString("0", name);
 		Admin admin=(Admin) query.uniqueResult();//此处待改！
 		return admin==null;
 	}
@@ -65,12 +72,19 @@ public class AdminDaoImp implements AdminDao{
 	}
 
 	@Override
-	public Admin findAdminByTelAndPassword(String tel, String password) {
+	public Admin findAdminByNameAndPassword(String name, String password) {
 		// TODO Auto-generated method stub
-		Query query=sessionFactory.getCurrentSession().getNamedQuery("@FindAdminByTelAndPassword");
-		query.setString("0", tel);
+		Query query=sessionFactory.getCurrentSession().getNamedQuery("@FindAdminByNameAndPassword");
+		query.setString("0", name);
 		query.setString("1", password);
-		Admin admin=(Admin) query.uniqueResult();//此处待改！
+		Admin admin = null;
+		try {
+			admin=(Admin)query.uniqueResult();//此处待改！
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in find admin by name and password in dao!");//for debug
+		}
 		return admin;
 	}
 
@@ -103,18 +117,18 @@ public class AdminDaoImp implements AdminDao{
 	}
 
 	@Override
-	public void deleteAdminByTel(String tel) {
+	public void deleteAdminByName(String name) {
 		// TODO Auto-generated method stub
-		Query query = sessionFactory.getCurrentSession().getNamedQuery("@FindAdminByTel");
-		query.setString("0", tel);
+		Query query = sessionFactory.getCurrentSession().getNamedQuery("@FindAdminByName");
+		query.setString("0", name);
 		Admin admin=(Admin) query.uniqueResult();//此处待改！
 		sessionFactory.getCurrentSession().delete(admin);
 	}
 
 	@Override
-	public Admin updatePassword(String tel, String password, String newPassword) {
+	public Admin updatePassword(String name, String password, String newPassword) {
 		// TODO Auto-generated method stub
-		Admin admin = findAdminByTelAndPassword(tel,password);
+		Admin admin = findAdminByNameAndPassword(name,password);
 		admin.setPassword(newPassword);
 		updateAdmin(admin);
 		return null;
@@ -124,16 +138,58 @@ public class AdminDaoImp implements AdminDao{
 	public void updateAdmin(Admin admin) {
 		// TODO Auto-generated method stub
 		try {
-			Session session = sessionFactory.openSession();
-			Transaction transaction = session.beginTransaction();
+			Session session = sessionFactory.getCurrentSession();
 			session.saveOrUpdate(admin);
-			transaction.commit();
-			//sessionFactory.getCurrentSession().saveOrUpdate(user);
-			//log.logDebug("update userInfo successfully!");
+			session.flush();
 		} catch (Exception e) {
 			// TODO: handle exception
-			//log.logError("update failed!",e);
+			e.printStackTrace();
+			System.out.println("error in updateAdmin in dao!");//for debug
 		}
+	}
+
+	@Override
+	public Admin setAdminType(int id, int adminType) {
+		// TODO Auto-generated method stub
+		Admin admin = null;
+		try {
+			Query query = sessionFactory.getCurrentSession().getNamedQuery("@FindAdminById");
+			query.setInteger("0", id);
+			admin = (Admin) query.uniqueResult();
+			if(admin!=null)
+			{
+				admin.setAdminType(adminType);
+				updateAdmin(admin);
+			}
+			else 
+				System.out.println("error in setAdminType(can not find the admin) in dao!");//for debug
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in setAdminType in dao!");//for debug
+		}
+		return admin;
+	}
+
+	@Override
+	public Admin resetAdminPassword(int id, String newPassword) {
+		// TODO Auto-generated method stub
+		Admin admin = null;
+		try {
+			admin = findAdminById(id);
+			if(admin!=null)
+			{
+				admin.setPassword(newPassword);
+				updateAdmin(admin);	
+			}
+			else 
+				System.out.println("resetUserPassword(can not find the user) in dao!");//for debug
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in resetUserPassword in dao!");//for debug
+		}
+		return admin;
 	}
 
 }

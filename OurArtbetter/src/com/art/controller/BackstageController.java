@@ -1,79 +1,226 @@
 package com.art.controller;
+/*
+ * @author 范溢贞 24320132202399
+ */
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+
+
+
+
+
+
+
 import com.art.backstageService.ManageUserService;
-import com.art.dao.UserDao;
+import com.art.entity.Admin;
+import com.art.entity.Artist;
 import com.art.entity.User;
+import com.art.personalService.AdminPersonalService;
+import com.art.personalService.UserPersonalService;
 
 @Controller
-@RequestMapping(value = "/backstage")
 public class BackstageController 
 {
 	@Resource
 	private ManageUserService manageUserService;
-	
-	/*
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView saveUser1(HttpServletRequest request,
-			ModelMap model){
-		int age = 0;
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String sex = request.getParameter("sex");
-		String str = request.getParameter("birthday");
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-		Date birthday=null;
-		try {
-			
-			birthday = sf.parse(str);
-		} catch (ParseException e) {
-			System.out.println("鏉堟挸鍙嗛弮銉︽埂缁鐎锋稉宥囶儊閸氬牐顫夐懠锟�");
-			return new ModelAndView("redirect:/user/add.html");
-		}catch(NumberFormatException e){
-			age = Integer.valueOf(request.getParameter("age"));
-			
-		}
-		User user = new User();
-		user.setAge(age);
-		user.setBirthday(birthday);
-		user.setPassword(password);
-		user.setSex(sex);
-		user.setUsername(username);
-		userDao.save(user);
-		return new ModelAndView("redirect:/user.html");
-	}
-	*/
-	
-	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView listAllUser()
+	@Resource
+	private UserPersonalService userPersonalService;
+	@Resource
+	private AdminPersonalService adminPersonalService;
+
+	@RequestMapping("/setUserIlleagalOrleagal")
+	public ModelAndView setUserIlleagalOrleagal(HttpServletRequest request)
 	{
-		Map<String,Object> model = new HashMap<String,Object>();
-		model.put("user_list", manageUserService.getAllUser());
-		return new ModelAndView("userList",model);
+		String tel = request.getParameter("cur_tel");
+		int state = Integer.parseInt(request.getParameter("cur_state"));
+		ModelAndView modelAndView = null;
+		try {
+			User user = manageUserService.setUserIlleagal(tel,state);
+			if(user!=null)
+			{
+				List<User> user_list = userPersonalService.getAllUser();
+				request.getSession().setAttribute("user_list", user_list);
+				modelAndView = new ModelAndView("ADMIN_usermanage","user_list",user_list);
+				//				modelAndView = new ModelAndView("xxx","user",user);
+			}
+			//			else 
+			//				System.out.println("error in setUserIlleagal(user is null) in controller!");//for debug
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in backstage setUserIlleagalOrleagal in controller!");//for debug	
+		}
+		return modelAndView;		
 	}
-	
-	/*
-	@RequestMapping(value="/add",method=RequestMethod.GET)
-	public ModelAndView addUser(@ModelAttribute("user") User user,
-			BindingResult result){
-		return new ModelAndView("adduser");
+
+	@RequestMapping("/auditArtist")
+	public ModelAndView auditArtist(HttpServletRequest request)
+	{
+		ModelAndView modelAndView = null;
+		String tel = request.getParameter("tel");
+		String status = request.getParameter("status");
+		try {
+			Artist artist = manageUserService.auditArtist(tel, status);
+			if(artist != null)
+				modelAndView = new ModelAndView("xxx","artist",artist);
+			else 
+			{
+				String message = "审核艺术家失败！";
+				modelAndView = new ModelAndView("error","message",message);
+			}				
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in backstage auditArtist in controller!");//for debug
+		}
+		return modelAndView;		
 	}
-	
-	@RequestMapping(value="/del",method=RequestMethod.GET)
-	public ModelAndView delUser(@ModelAttribute("user") User user){
-		userDao.deleteById(user.getId());		
-		return new ModelAndView("redirect:/user.html");
+
+	@RequestMapping("/setAdminType")
+	public ModelAndView setAdminType(HttpServletRequest request)
+	{
+		ModelAndView modelAndView = null;
+		int id= Integer.parseInt(request.getParameter("id"));
+		int adminType = Integer.parseInt(request.getParameter("adminType"));
+		try {
+			Admin admin = manageUserService.setAdminType(id, adminType);
+			if(admin != null)
+				modelAndView = new ModelAndView("xxx","admin",admin);
+			else 
+			{
+				String message = "设置管理员权限失败！";
+				modelAndView = new ModelAndView("error","message",message);
+			}			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in backstage setAdminType in controller!");//for debug
+		}
+		return modelAndView;		
 	}
-	*/
+
+	@RequestMapping("/addAdmin")
+	public ModelAndView addAdmin(HttpServletRequest request)
+	{
+		ModelAndView modelAndView = null;
+		String name = request.getParameter("name");
+		String password = "123";
+		int  adminType = Integer.parseInt(request.getParameter("adminType"));
+		try {
+			Admin admin = manageUserService.addAdmin(name, password, adminType);
+			if(admin != null)
+				modelAndView = new ModelAndView("xxx","admin",admin);
+			else 
+			{
+				String message = "添加管理员失败！";
+				modelAndView = new ModelAndView("error","message",message);
+			}				
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in backstage addAdmin in controller!");//for debug
+		}
+
+		return modelAndView;
+
+	}
+
+	@RequestMapping("/resetPassword")
+	public ModelAndView resetPassword(HttpServletRequest request)
+	{	
+		int resetType = Integer.parseInt(request.getParameter("resetType"));
+		int id =Integer.parseInt(request.getParameter("cur_id"));
+		System.out.println(id+" hahaha");//for debug	
+		ModelAndView modelAndView = null;
+		switch (resetType) {
+		case 1:
+			try {
+				User user = manageUserService.resetUserPassword(id, "123");
+				if(user!=null)
+				{
+					List<User> user_list = userPersonalService.getAllUser();
+					request.getSession().setAttribute("user_list", user_list);
+					modelAndView = new ModelAndView("ADMIN_usermanage","user_list",user_list);
+					//				modelAndView = new ModelAndView("xxx","user",user);
+				}
+				//			else 
+				//				System.out.println("error in setUserIlleagal(user is null) in controller!");//for debug
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				System.out.println("error in backstage setUserIlleagal in controller!");//for debug	
+			}
+			break;
+
+		case 2:
+			try {
+				Admin admin = manageUserService.resetAdminPassword(id, "123");
+				if(admin!=null)
+				{
+					List<Admin> admin_list = adminPersonalService.getAllAdmin();
+					request.getSession().setAttribute("admin_list",admin_list);
+					modelAndView = new ModelAndView("ADMIN_managermanage","admin_list",admin_list);
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				System.out.println("error in backstage setUserIlleagal in controller!");//for debug	
+			}
+			break;
+		}
+		
+		return modelAndView;	
+
+	}
+
+	//实现后台管理界面的逻辑判断以及跳转
+	@RequestMapping("/turnToUserManage")
+	public ModelAndView turnToUserManage(HttpServletRequest request)
+	{
+		ModelAndView modelAndView = null;
+		Admin admin = (Admin) request.getSession().getAttribute("admin");
+
+		try {
+			if(admin == null)
+			{
+				String message = "对不起，您没有管理用户的权限!";
+				modelAndView = new ModelAndView("error","message",message);	
+			}
+			else {			
+				int manageType = Integer.parseInt(request.getParameter("manageType"));
+				switch (manageType) {
+				case 1:
+					List<User> user_list = userPersonalService.getAllUser();
+					request.getSession().setAttribute("user_list", user_list);
+					modelAndView = new ModelAndView("ADMIN_usermanage","user_list",user_list);
+					break;
+				case 2:
+					List<Artist> artist_list = userPersonalService.getAllArtist();
+					request.getSession().setAttribute("artist_list", artist_list);
+					modelAndView = new ModelAndView("ADMIN_artistmanage","artist_list", artist_list);
+					break;
+				case 3:
+					List<Admin> admin_list = adminPersonalService.getAllAdmin();
+					request.getSession().setAttribute("admin_list", admin_list);
+					modelAndView = new ModelAndView("ADMIN_managermanage","admin_list", admin_list);
+					break;
+				}	
+			}				
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			System.out.println("error in backstage turnToUserManage in controller!");//for debug
+		}
+
+		return modelAndView;	
+	}
 
 }

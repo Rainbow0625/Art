@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.art.util.RequestUtil;
 
 /**
- * µÇÂ½À¹½ØÆ÷
+ * ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * **/
 
@@ -18,16 +18,16 @@ public class LoginInterceptor  implements HandlerInterceptor{
 
 	
 	/** 
-     * ÔÚÒµÎñ´¦ÀíÆ÷´¦ÀíÇëÇóÖ®Ç°±»µ÷ÓÃ 
-     * Èç¹û·µ»Øfalse 
-     *     ´Óµ±Ç°µÄÀ¹½ØÆ÷Íù»ØÖ´ÐÐËùÓÐÀ¹½ØÆ÷µÄafterCompletion(),ÔÙÍË³öÀ¹½ØÆ÷Á´
+     * ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+     * ï¿½ï¿½ï¿½ï¿½false 
+     *     ï¿½Óµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½afterCompletion(),ï¿½ï¿½ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
      *     
-     * Èç¹û·µ»Øtrue 
-     *    Ö´ÐÐÏÂÒ»¸öÀ¹½ØÆ÷,Ö±µ½ËùÓÐµÄÀ¹½ØÆ÷¶¼Ö´ÐÐÍê±Ï 
-     *    ÔÙÖ´ÐÐ±»À¹½ØµÄController 
-     *    È»ºó½øÈëÀ¹½ØÆ÷Á´, 
-     *    ´Ó×îºóÒ»¸öÀ¹½ØÆ÷Íù»ØÖ´ÐÐËùÓÐµÄpostHandle() 
-     *    ½Ó×ÅÔÙ´Ó×îºóÒ»¸öÀ¹½ØÆ÷Íù»ØÖ´ÐÐËùÓÐµÄafterCompletion() 
+     * ï¿½ï¿½ï¿½ï¿½true 
+     *    Ö´ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,Ö±ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ 
+     *    ï¿½ï¿½Ö´ï¿½Ð±ï¿½ï¿½ï¿½ï¿½Øµï¿½Controller 
+     *    È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 
+     *    ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½postHandle() 
+     *    ï¿½ï¿½ï¿½ï¿½ï¿½Ù´ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½afterCompletion() 
      */  
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -42,7 +42,7 @@ public class LoginInterceptor  implements HandlerInterceptor{
         
         String username =  (String)request.getSession().getAttribute("user");   
         if(username == null){  
-            request.getRequestDispatcher("/WEB-INF/JSP/login.jsp").forward(request, response);    //¸Ä
+            request.getRequestDispatcher("/WEB-INF/JSP/login.jsp").forward(request, response);    //ï¿½ï¿½
             return false;  
         }else  
             return true;  
@@ -50,9 +50,9 @@ public class LoginInterceptor  implements HandlerInterceptor{
 
 	
 	/** 
-     * ÔÚDispatcherServletÍêÈ«´¦ÀíÍêÇëÇóºó±»µ÷ÓÃ,¿ÉÓÃÓÚÇåÀí×ÊÔ´µÈ  
+     * ï¿½ï¿½DispatcherServletï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ó±»µï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½  
      *  
-     * µ±ÓÐÀ¹½ØÆ÷Å×³öÒì³£Ê±,»á´Óµ±Ç°À¹½ØÆ÷Íù»ØÖ´ÐÐËùÓÐµÄÀ¹½ØÆ÷µÄafterCompletion() 
+     * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×³ï¿½ï¿½ì³£Ê±,ï¿½ï¿½Óµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½afterCompletion() 
      */
 	@Override
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
@@ -63,8 +63,8 @@ public class LoginInterceptor  implements HandlerInterceptor{
 
 	
 	 /**
-     * ÔÚÒµÎñ´¦ÀíÆ÷´¦ÀíÇëÇóÖ´ÐÐÍê³Éºó,Éú³ÉÊÓÍ¼Ö®Ç°Ö´ÐÐµÄ¶¯×÷   
-     * ¿ÉÔÚmodelAndViewÖÐ¼ÓÈëÊý¾Ý£¬±ÈÈçµ±Ç°Ê±¼ä
+     * ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½ï¿½Éºï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Ö®Ç°Ö´ï¿½ÐµÄ¶ï¿½ï¿½ï¿½   
+     * ï¿½ï¿½ï¿½ï¿½modelAndViewï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½çµ±Ç°Ê±ï¿½ï¿½
      */
 	@Override
 	public void postHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, ModelAndView arg3)

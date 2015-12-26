@@ -17,7 +17,7 @@
             <li class="item-125 deeper parent"><a href="#">艺术资讯</a></li>
 			<li class="item-105"><a href="/items">艺术品展示</a></li>
 			<li class="item-105"><a href="/items">签约艺术家</a></li>
-            <li class="item-111"><a href="/productList">艺术品商城</a></li>
+            <li class="item-111"><a href="/OurArtbetter/productList">艺术品商城</a></li>
             <li class="item-106"><a href="/free-templates">艺术品在线定制</a></li>
             <li class="item-118"><a href="/blog">拍卖商城</a></li>
            <li class="item-131"><a href="/affiliates" >联系我们</a></li>
