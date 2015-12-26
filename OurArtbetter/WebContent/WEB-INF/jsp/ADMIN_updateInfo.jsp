@@ -48,7 +48,15 @@
 		}
 		textarea{
 		width:800px;
-		height:600px;}
+		height:600px;
+		}
+		.admin-l-bar {
+
+    height: 800px;
+}
+.admin-main-r-wrapper {
+    padding: 19px 100px 0;
+}
 		</style>
 </head>
 <body>
@@ -63,39 +71,7 @@
 </div>
 </div>
 <div class="main clearfix">
-  <div class="admin-l-bar">
-    <h2>后台管理系统</h2>
-    <ul>
-      <li><a href="#" class="firstnav">首页</a></li>
-      <li class="navhasul"><a href="#" class="firstnav">用户管理</a>
-        <ul class="secondnav">
-          <li><a href="#">用户列表</a></li>
-          <li><a href="#">艺术家列表</a></li>
-          <li><a href="#">增加用户</a></li>
-        </ul>
-      </li>
-      <li class="navhasul"><a href="#" class="firstnav">订单管理</a>
-        <ul class="secondnav">
-          <li><a href="#">商城订单管理</a></li>
-          <li><a href="#">定制订单管理</a></li>
-          <li><a href="#">拍卖订单管理</a></li>
-        </ul>
-      </li>
-      <li class="navhasul"><a href="#" class="firstnav">资讯广告管理</a>
-        <ul class="secondnav">
-          <li><a href="#">资讯管理</a></li>
-          <li><a href="#">广告管理</a></li>
-        </ul>
-      </li>
-      <li class="navhasul"><a href="#" class="firstnav">业务管理</a>
-        <ul class="secondnav">
-          <li><a href="#">拍卖管理</a></li>
-          <li><a href="#">商城管理</a></li>
-        </ul>
-      </li>
-      <li class="navhasul"><a href="#" class="firstnav">咨询投诉管理</a> </li>
-    </ul>
-  </div>
+<%@include file="ADMIN_lbar.jsp"%> 
   <div class="admin-main-r-wrapper">
   <form action="/OurArtbetter/ADMIN_updateinfo?id=${information.id}"  method="post"  enctype="multipart/form-data">
     <h3>资讯管理</h3>
@@ -128,7 +104,7 @@
     </div>
     
 	<div style="float:left;margin-left:9px;">
-    	<input type="submit" value="确认修改" style="width:100px;height:30px;" />
+    	<input type="submit" value="确认修改" style="width:100px;height:30px;margin-left:7px;margin-top:20px;" />
   	</div>
   	</form>
   </div>

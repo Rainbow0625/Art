@@ -4,6 +4,7 @@
 
 .admin-l-bar {
     float: left;
+    margin-left:10px;
     width: 150px;
     padding-bottom: 10px;
     position: relative;

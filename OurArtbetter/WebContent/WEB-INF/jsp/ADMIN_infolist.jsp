@@ -18,6 +18,12 @@
 		 .lc_prolist input[type="button"]{
 		 margin-left:4px;
 		 }
+.operate-table table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 1004px;
+    position: relative;
+}
 	
 		</style>		
 	</head>
@@ -65,7 +71,7 @@
 			   	 			<th>审核情况</th>
 			   	 			<th>审核的主编</th>
 							<!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
-							<th>操作</th>
+							<th colspan=2>操作</th>
 			   	 		</tr>
 			   	 		</thead>
 			   	 			<c:if test="${! empty myAdver}">
@@ -76,7 +82,7 @@
 			   	 				<td>${adver.nextTime}</td>		   	 			
 			   	 				<td>${adver.state}</td>
 			   	 				<td>${adver.chiefEditor.id}</td>
-			   	 				<td><a href="/OurArtbetter/ADMIN_ToUpdateInfo?id=${adver.id}"> <input type="button" value="修改" /></a>   <a  href="/OurArtbetter/ADMIN_deleteInfo?id=${adver.id}" ><input type="button" value="删除"  />   </a></td>
+			   	 				<td colspan=2><a href="/OurArtbetter/ADMIN_ToUpdateInfo?id=${adver.id}"> <input type="button" value="修改" /></a>   <a  href="/OurArtbetter/ADMIN_deleteInfo?id=${adver.id}" ><input type="button" value="删除"  />   </a></td>
 		   	 			   </tr>
 		   	 			   </c:forEach>
 			   	 		  </c:if>
@@ -102,7 +108,7 @@
 			   	 			<th>审核情况</th>
 			   	 			<th>审核的主编</th>
 							<!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
-							<th>操作</th>
+							<th colspan=2>操作</th>
 			   	 		</tr>
 			   	 		</thead>
 			   	 		<c:if test="${! empty myInfo}">
@@ -113,7 +119,7 @@
 			   	 				<td>${info.nextTime}</td>		   	 			
 			   	 				<td>${info.state}</td>
 			   	 				<td>${info.chiefEditor.id}</td>
-			   	 				<td><a href="/OurArtbetter/ADMIN_ToUpdateInfo?id=${info.id}"><input type="button" value="修改" /></a>    <a  href="/OurArtbetter/ADMIN_deleteInfo?id=${info.id} "><input type="button" value="删除" /> </a> </td>
+			   	 				<td colspan=2><a href="/OurArtbetter/ADMIN_ToUpdateInfo?id=${info.id}"><input type="button" value="修改" /></a>    <a  href="/OurArtbetter/ADMIN_deleteInfo?id=${info.id} "><input type="button" value="删除" /> </a> </td>
 		   	 			   </tr>
 		   	 			   
 		   	 			   </c:forEach>
