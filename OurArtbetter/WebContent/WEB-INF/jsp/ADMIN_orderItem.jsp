@@ -76,21 +76,19 @@
           <tr>
             <th>订单编号</th>
             <th>商品编号</th>
-            <th>艺术品编号</th>
             <th>数量</th>
             <th>小计</th>  
           </tr>
         </thead>
         
         
-   <c:if test="${! empty allAdver}">
-	  <c:forEach var="adver" items="${allAdver}"> 
+   <c:if test="${! empty allItem}">
+	  <c:forEach var="item" items="${allItem}">
 	    <tr>
-	     	<td>订单编号</td>
-            <td>商品编号</td>
-            <td>艺术品编号</td>
-            <td>数量</td>
-            <td>小计</td>
+	     	<td>${item.order.oid}</td>
+            <td>${item.product.artworkId}</td>
+            <td>${item.count}</td>
+            <td>${item.subtotal}</td>
         </tr>
       </c:forEach>
 	 </c:if>

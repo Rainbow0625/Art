@@ -335,7 +335,7 @@ public class InfoController
 	{
 		
 		try {
-			int infoColumnId =Integer.parseInt( request.getParameter("columnId") );    //Ϊʲô��ô�����getParameter ��getAttribute ������
+			int infoColumnId =Integer.parseInt( request.getParameter("columnId") ); 
 			
 			String temp =request.getParameter("days");
 			int days = Integer.parseInt(temp);
@@ -383,7 +383,7 @@ public class InfoController
 		{
 			int message=4;
 			model.addAttribute("message",message);
-		//model.addAttribute("id",infoId);  ����session�󣬾Ϳ��Եõ���
+		//model.addAttribute("id",infoId);  
 		return new ModelAndView("ADMIN_ChiefEditorSuccess"); 
 		}
 		else

@@ -75,28 +75,30 @@
         <thead>
           <tr>
             <th>订单编号</th>
+            <th>订单卖家</th>
             <th>订单状态</th>
             <th>下单时间</th>
             <th>用户昵称</th>
             <th>用户电话</th>
             <th>用户地址</th>
             <th>订单总价</th>
-            <th>订单详情</th>
+            <th>订单详情</th> 
           </tr>
         </thead>
         
         
-   <c:if test="${! empty allAdver}">
-	  <c:forEach var="adver" items="${allAdver}"> 
+   <c:if test="${! empty allOrder}">
+	  <c:forEach var="order" items="${allOrder}"> 
 	    <tr>
-	     	<td>订单编号</td>
-            <td>订单状态</td>
-            <td>下单时间</td>
-            <td>用户昵称</td>
-            <td>用户电话</td>
-            <td>用户地址</td>
-            <td>订单总价</td>
-            <td><a href="#">查看详情</a></td>	
+	     	<td>${ order.oid}</td>
+	     	<td>${ order.user.nickName}</td>
+            <td>${order.state}</td>
+            <td>${ order.ordertime}</td>
+            <td>${order.nickName}</td>
+            <td>${order.tel}</td>
+            <td>${order.address}</td>
+            <td>${order.total}</td>
+            <td><a href="/OurArtbetter/ADMIN_orderItem?id=${order.oid}">查看详情</a></td>	
         </tr>
       </c:forEach>
 	 </c:if>

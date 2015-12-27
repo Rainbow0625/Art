@@ -8,15 +8,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import com.art.dao.OrderDao;
-import com.art.entity.Artwork;
-import com.art.entity.CategorySecond;
 import com.art.entity.Order;
+import com.art.entity.OrderItem;
 @Repository("orderDao")
 public class OrderDaoImp implements OrderDao{
 	@Resource(name="sessionFactory")
@@ -55,7 +51,7 @@ public class OrderDaoImp implements OrderDao{
 	@Override
 	public void delete(int orderId) {
 		Order order=null;
-		  String hql = "delete Order a where a.oid=?";
+		  String hql = "delete Order a where a.oid="+orderId;
 		  try {  
 				Query query=this.sessionFactory.getCurrentSession().createQuery(hql); 
 				query.setInteger(0, orderId);
@@ -119,7 +115,7 @@ public class OrderDaoImp implements OrderDao{
 	
 	@Override
 	public List<Order> findByUserUid(int uid) {
-		String hql = "from Order,User where Order.uid=User.id";
+		String hql = "from Order,User where Order.uid="+uid;
 		@SuppressWarnings("unchecked")
 		List<Order> list = this.sessionFactory.getCurrentSession().createQuery(hql)
 				.list();
@@ -170,4 +166,33 @@ public class OrderDaoImp implements OrderDao{
 			{ throw e; } 
 		    return count; 
 	}
+
+	@Override
+	public Order findOrder(int state) {
+		Order order=null;
+		String hql ="from Order where state="+state;
+		try {  
+			Query query=this.sessionFactory.getCurrentSession().createQuery(hql); 
+			order=(Order)query.uniqueResult();
+		}
+		catch (HibernateException e) 
+		{ 
+			throw e; 
+		}
+		return order; 
+	}
+	
+	
+	
+	@Override
+	public List<OrderItem> findAllItemByOrderId(int id)
+	{
+		String hql = "from OrderItem where oid=?";
+		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
+		query.setInteger(0, id);
+		@SuppressWarnings("unchecked")
+		List<OrderItem> list = query.list();
+		return list;
+	}
+	
 }

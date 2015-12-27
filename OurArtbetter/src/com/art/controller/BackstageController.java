@@ -3,25 +3,24 @@ package com.art.controller;
  * @author 范溢贞 24320132202399
  */
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
-
-
-
-
-
-
+import com.art.backstageService.AdminOrderService;
 import com.art.backstageService.ManageUserService;
 import com.art.entity.Admin;
 import com.art.entity.Artist;
+import com.art.entity.Order;
+import com.art.entity.OrderItem;
 import com.art.entity.User;
 import com.art.personalService.AdminPersonalService;
 import com.art.personalService.UserPersonalService;
@@ -35,6 +34,11 @@ public class BackstageController
 	private UserPersonalService userPersonalService;
 	@Resource
 	private AdminPersonalService adminPersonalService;
+	@Resource
+	private AdminOrderService adminOrderService;
+	
+	
+	public BackstageController(){}
 
 	@RequestMapping("/setUserIlleagalOrleagal")
 	public ModelAndView setUserIlleagalOrleagal(HttpServletRequest request)
@@ -214,8 +218,29 @@ public class BackstageController
 			e.printStackTrace();
 			System.out.println("error in backstage turnToUserManage in controller!");//for debug
 		}
-
 		return modelAndView;	
 	}
+	
+	
+	//管理员查看订单
+	@RequestMapping("/ADMIN_Orderlist")
+	public ModelAndView lookThroughOrder(ModelMap model)
+	{
+		List<Order> allOrder = new ArrayList<Order>();
+		allOrder.addAll( adminOrderService.listOrder() ); 
+		model.addAttribute("allOrder", allOrder);
+		return new ModelAndView("ADMIN_order",model);
+	}
+	
+	//管理员查看订单详情
+		@RequestMapping("/ADMIN_orderItem")
+		public ModelAndView lookThroughOrderItem(@RequestParam int id,ModelMap model)
+		{
+			List<OrderItem> allItem = new ArrayList<OrderItem>();
+			allItem.addAll( adminOrderService.findAllItemByOrderId(id) ); 
+			model.addAttribute("allItem", allItem);
+			return new ModelAndView("ADMIN_orderItem",model);
+		}
+	
 
 }

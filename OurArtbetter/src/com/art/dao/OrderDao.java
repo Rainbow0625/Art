@@ -2,15 +2,8 @@ package com.art.dao;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-
-
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-
 import com.art.entity.Order;
+import com.art.entity.OrderItem;
 
 //管理订单的repository
 public interface OrderDao{
@@ -31,6 +24,8 @@ public interface OrderDao{
 	public List<Order> findAll();
 	public Long count();
 	public List<Order> findByUserUid(int uid);
+	public Order findOrder(int state);
 	
+	public List<OrderItem> findAllItemByOrderId(int id);
 	
 }
