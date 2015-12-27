@@ -10,16 +10,12 @@
 <title>DrinkArt</title>
 <link rel="stylesheet" type="text/css" href="css/admin_style.css" />
 <link rel="stylesheet" type="text/css" href="css/admin.css" />
-<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
-<link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css" type="text/css" />
+
 <script type="text/javascript" src="js/jquery.1.10.2.js"></script>
 <script src="js/jquery.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
-<script src="js/bootstrap-datetimepicker.js" type="text/javascript"></script>
 <script src="ckeditor/ckeditor.js" type="text/javascript"></script>
 <style>
-	   body{
+		   body{
 		font-family:"Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei", sans-serif;
 		}
 		 h3{
@@ -33,6 +29,7 @@
 		 margin-left:20px;
 		 }
 		 .main{
+		 margin-left:176px;
 		height:800px;}
 		h2{
 		margin-top:0px;
@@ -48,15 +45,13 @@
 		}
 		textarea{
 		width:800px;
-		height:600px;
+		height:800px;
 		}
 		.admin-l-bar {
 
     height: 800px;
 }
-.admin-main-r-wrapper {
-    padding: 19px 100px 0;
-}
+
 		</style>
 </head>
 <body>
@@ -75,7 +70,7 @@
   <div class="admin-main-r-wrapper">
   <form action="/OurArtbetter/ADMIN_updateinfo?id=${information.id}"  method="post"  enctype="multipart/form-data">
     <h3>资讯管理</h3>
-    <div class="operate-table clear" style="margin-left:15px;">
+    <div class="operate-table clear">
     	<div class="info-title">
 			<div class="label-control">
 		  	<label>资讯标题：</label>
@@ -104,13 +99,15 @@
     </div>
     
 	<div style="float:left;margin-left:9px;">
-    	<input type="submit" value="确认修改" style="width:100px;height:30px;margin-left:7px;margin-top:20px;" />
+    	<input type="submit" value="确认修改" style="width:100px;height:30px;margin-left:0px;margin-top:20px;" />
   	</div>
   	</form>
   </div>
 </div>
    <script type="text/javascript">
    CKEDITOR.replace('content');
+</script>
+<script type="text/javascript">
 	$(function(){
 		$(".navhasul").hover(function(){
 			$(this).find(".firstnav").addClass("hovertri");

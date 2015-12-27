@@ -77,7 +77,7 @@
 			   	 			<c:if test="${! empty myAdver}">
 				 			<c:forEach var="adver" items="${myAdver}"> 
 			   	 			<tr>
-			   	 				<td>${adver.title}</td>
+			   	 				<td class="thetitle">${adver.title}</td>
 			   	 				<td>${adver.createTime}</td>
 			   	 				<td>${adver.nextTime}</td>		   	 			
 			   	 				<td>${adver.state}</td>
@@ -98,7 +98,7 @@
 			   	 
 			   	 
 			   	  	 <!-- 咨询 -->
-			   	 	<table class="lc_prolist">
+			   	 	<table class="lc_prolist" style="margin-top:50px;">
 			   	 	
 			   	 		<thead>
 			   	 		<tr>
@@ -114,7 +114,7 @@
 			   	 		<c:if test="${! empty myInfo}">
 						<c:forEach var="info" items="${myInfo}"> 
 			   	 			<tr>
-			   	 				<td>${info.title}</td>
+			   	 				<td class="thetitle">${info.title}</td>
 			   	 				<td>${info.createTime}</td>
 			   	 				<td>${info.nextTime}</td>		   	 			
 			   	 				<td>${info.state}</td>
@@ -150,6 +150,18 @@
 			$(this).children("ul").hide();
 		});
 	})
+	
+	$(document).ready(function(){
+//限制字符个数
+$(".thetitle").each(function(){
+var maxwidth=5;
+if($(this).text().length>maxwidth){
+$(this).text($(this).text().substring(0,maxwidth));
+$(this).html($(this).html()+"…");
+}
+});
+});
+
 </script>
 	</body>	
 	</html>	

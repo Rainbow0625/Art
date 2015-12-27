@@ -33,7 +33,9 @@
 		 margin-left:20px;
 		 }
 		 .main{
-		height:800px;}
+		height:800px;
+		margin-left:176px;
+		}
 		h2{
 		margin-top:0px;
 		}
@@ -111,6 +113,9 @@
 </div>
    <script type="text/javascript">
    CKEDITOR.replace('content');		
+</script>
+
+<script type="text/javascript">
 	$(function(){
 		$(".navhasul").hover(function(){
 			$(this).find(".firstnav").addClass("hovertri");

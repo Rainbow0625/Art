@@ -72,7 +72,7 @@ int dayNum =1;
       </form>
     </div>
     <h3>上线设置 :</h3>
-    <h3 id="title">${info.contentType}标题：${info.title } </h3>
+    <h3 id="title" class="thetitle">${info.contentType}标题：${info.title } </h3>
     <div class="operate-table clear">
       <form action="/OurArtbetter/ADMIN_setDateAndPos?id=${ info.id }"  method="post"  id="newDateAndPos">
         <!-- 需要修改 -->
@@ -112,15 +112,16 @@ int dayNum =1;
           </volist>
         </table>
       </form>
-      <h3>该条软文设置记录：</h3>
+      <h3 style="margin-top:50px;">该条软文设置记录：</h3>
       <form action="/OurArtbetter/ADMIN_getDateAndPosByInfoId"  method="post">
-        <table class="lc_prolist" >
+        <table class="lc_prolist history">
           <thead>
             <tr>
-              <th colspan=2>在线时间</th>
+              <th colspan=2>上线时间</th>
+              <th>上线天数</th>
+              <th colspan=2>下线时间</th>
               <th>软文栏目</th>
               <th>价格</th>
-              <!--审核情况就是主编审核是否通过，如果通过了的话，我要把按钮改颜色，说明已经不可修改-->
               <th>操作</th>
             </tr>
           </thead>
@@ -129,6 +130,8 @@ int dayNum =1;
               <volist name="users" id="">
                 <tr>
                   <td colspan=2> ${ dateAndPos.date } <span class="add-on"><i class="icon-th"></i></span> </td>
+                  <td class="historyday">3</td>
+                  <td colspan=2>2000-00-00 00:00:00</td>
                   <td> ${dateAndPos.infoColumn.id}
                     <c:if test="${dateAndPos.infoColumn.id == 1 } "> 广告轮播图1 </c:if>
                     <c:if test="${dateAndPos.infoColumn.id == 2}  "> 广告轮播图2 </c:if>
@@ -162,26 +165,49 @@ int dayNum =1;
 			$(this).children("ul").hide();
 		});
 	})
-	 var mydate = new Date();
-    var str =mydate.getFullYear() + "-";
-    str += (mydate.getMonth()+1) + "-";
-    str += mydate.getDate();
-	document.getElementById("startDate").value=str+" 00:00:00";
-	 document.getElementById("leavedate").innerHTML=str+" 00:00:00";
-	 var title=document.getElementById("title").innerHTML;
-	 var titlearrays=title.split("");
-	 var type=titlearrays[0];
-	 if(type=="A"){
-		 $("#columnId option[value='4']").remove();
-		 $("#columnId option[value='5']").remove();
-		 $("#columnId option[value='6']").remove();
-	 }
-	 else{
-		 $("#columnId option[value='1']").remove();
-		 $("#columnId option[value='2']").remove();
-		 $("#columnId option[value='3']").remove();
-	 }
-	 
+	
+		$(document).ready(function(){
+//限制字符个数
+$(".thetitle").each(function(){
+var maxwidth=13;
+if($(this).text().length>maxwidth){
+$(this).text($(this).text().substring(0,maxwidth));
+$(this).html($(this).html()+"…");
+}
+});
+
+$(".history").each(function() {
+	console.log("history");
+	var historystart=$(this).children('td:eq(0)').text();
+	var historyday=$(this).children('td:eq(1)').text();
+	console.log(historystart+historyday);
+	$(this).children('td:eq(2)').html("a");
+});
+	
+	
+var mydate = new Date();
+var str =mydate.getFullYear() + "-";
+str += (mydate.getMonth()+1) + "-";
+str += mydate.getDate();
+document.getElementById("startDate").value=str+" 00:00:00";
+ document.getElementById("leavedate").innerHTML=str+" 00:00:00";
+ var title=document.getElementById("title").innerHTML;
+ var titlearrays=title.split("");
+ var type=titlearrays[0];
+ if(type=="A"){
+	 $("#columnId option[value='4']").remove();
+	 $("#columnId option[value='5']").remove();
+	 $("#columnId option[value='6']").remove();
+ }
+ else{
+	 $("#columnId option[value='1']").remove();
+	 $("#columnId option[value='2']").remove();
+	 $("#columnId option[value='3']").remove();
+ }
+ 
+});
+	
+
 	 
    $(".input-append").datetimepicker({
    format: 'yyyy-mm-dd 00:00:00',
