@@ -12,7 +12,7 @@
     <div class="container">
       <div class="row">
         <div id="sp-footer1" class="col-sm-12 col-md-12">
-          <div class="sp-column "><span class="sp-copyright"> © 2015 ShapeBootstrap. Some Rights Reserved. A <a target="_blank" href="http://www.joomshaper.com">JoomShaper</a> Family.</span>
+          <div class="sp-column "><span class="sp-copyright"> © 2015 12 28 <a  href="#">DrinkArt</a> 艺术品定制网站</span>
 		 </div>
         </div>
       </div>
