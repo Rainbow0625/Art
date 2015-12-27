@@ -13,6 +13,7 @@
       </li>
       <li class="navhasul"><a href="#" class="firstnav">订单管理</a>
         <ul class="secondnav">
+          <li><a href="/OurArtbetter/ADMIN_Orderlist">订单管理</a></li>
           <li><a href="#">商城订单管理</a></li>
           <li><a href="#">定制订单管理</a></li>
         </ul>

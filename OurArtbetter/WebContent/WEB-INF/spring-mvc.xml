@@ -64,6 +64,7 @@
        		<mvc:mapping path="/turnToUserManage?manageType=1"/> 
        		<mvc:mapping path="/turnToUserManage?manageType=2"/>
        		<mvc:mapping path="/turnToUserManage?manageType=3"/> 
+       		<mvc:mapping path="/ADMIN_Orderlist"/> 
         	<bean class="com.art.interceptor.AdminInterceptor"/>  
     	</mvc:interceptor>
     	
