@@ -168,7 +168,22 @@ int dayNum =1;
     str += mydate.getDate();
 	document.getElementById("startDate").value=str+" 00:00:00";
 	 document.getElementById("leavedate").innerHTML=str+" 00:00:00";
-	$(".input-append").datetimepicker({
+	 var title=document.getElementById("title").innerHTML;
+	 var titlearrays=title.split("");
+	 var type=titlearrays[0];
+	 if(type=="A"){
+		 $("#columnId option[value='4']").remove();
+		 $("#columnId option[value='5']").remove();
+		 $("#columnId option[value='6']").remove();
+	 }
+	 else{
+		 $("#columnId option[value='1']").remove();
+		 $("#columnId option[value='2']").remove();
+		 $("#columnId option[value='3']").remove();
+	 }
+	 
+	 
+   $(".input-append").datetimepicker({
    format: 'yyyy-mm-dd 00:00:00',
    autoclose:true,
    minView:2,//最精确到天
@@ -207,7 +222,7 @@ int dayNum =1;
        var val = d.getFullYear()+"-"+month+"-"+day+" 00:00:00"; 
 
 	   document.getElementById("leavedate").innerHTML=val;
-	   var title=document.getElementById("title").innerHTML;
+	  
 	   console.log(title);
 		  $.ajax({  
 	        data:{message:date+" "+days+" "+title},  
