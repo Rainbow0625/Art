@@ -9,18 +9,24 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-
-
 @Entity
 @DynamicInsert
 @DynamicUpdate
 @Table(name="editor")
+@NamedQueries(
+		{ 
+			@NamedQuery(name= "@GetAllEditor",query = "from Editor"),
+			@NamedQuery(name = "@FindEditorByName", query = "from Editor e where e.name=?0"),
+			@NamedQuery(name = "@FindEditorByNameAndPassword", query = "from Editor e where e.name=?0 and e.password=?1")
+		})
 public class Editor implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -29,12 +35,11 @@ public class Editor implements java.io.Serializable
 	@Column(name="id",nullable=false)
 	private int id;
 	
-	@Column(name="name")
+	@Column(name="name",nullable=false)
 	private String name;
 	
-	@Column(name="password")
+	@Column(name="password",nullable=false)
 	private String password;
-	
 	
 	@OneToMany(targetEntity=Information.class,cascade = {CascadeType.ALL},mappedBy="editor",fetch=FetchType.LAZY)
 	private List<Information> informationListToEdit;

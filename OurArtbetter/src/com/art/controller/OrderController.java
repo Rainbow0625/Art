@@ -61,16 +61,11 @@ public class OrderController {
 	}
 	
 	//保存订单的
-	@SuppressWarnings("null")
+	
 	@RequestMapping(value="/saveOrder")
 	public String saveOrder(HttpSession session,Map<String,Object> map,HttpServletRequest request){
-		//判断用户是否登陆,
 		
 		User user = (User) session.getAttribute("user");
-		if(user == null){
-			map.put("notLogin","noLogin");
-			return "msg";
-		}
 		System.out.println("user's id is :" + user.getId());
 		//从session获取购物车对象
 		Cart cart = (Cart) session .getAttribute("cart");

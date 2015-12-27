@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,6 +21,12 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicInsert
 @DynamicUpdate
 @Table(name="chiefEditor")
+@NamedQueries(
+		{ 
+			@NamedQuery(name= "@GetAllChiefEditor",query = "from ChiefEditor"),
+			@NamedQuery(name = "@FindChiefEditorByName", query = "from ChiefEditor ce where ce.name=?0"),
+			@NamedQuery(name = "@FindChiefEditorByNameAndPassword", query = "from ChiefEditor ce where ce.name=?0 and ce.password=?1")
+		})
 public class ChiefEditor implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;

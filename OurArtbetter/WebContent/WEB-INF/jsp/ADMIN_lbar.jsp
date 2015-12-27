@@ -15,7 +15,6 @@
         <ul class="secondnav">
           <li><a href="#">商城订单管理</a></li>
           <li><a href="#">定制订单管理</a></li>
-          <li><a href="#">拍卖订单管理</a></li>
         </ul>
       </li>
       <li class="navhasul"><a href="#" class="firstnav">资讯广告管理</a>
@@ -24,12 +23,7 @@
           <li><a href="/OurArtbetter/ADMIN_chiefinfo">主编软文管理</a></li>
         </ul>
       </li>
-      <li class="navhasul"><a href="#" class="firstnav">业务管理</a>
-        <ul class="secondnav">
-          <li><a href="#">拍卖管理</a></li>
-          <li><a href="#">商城管理</a></li>
-        </ul>
-      </li>
+      
       <li class="navhasul"><a href="#" class="firstnav">咨询投诉管理</a> </li>
     </ul>
   </div>

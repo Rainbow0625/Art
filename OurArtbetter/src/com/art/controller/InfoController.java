@@ -54,9 +54,9 @@ public class InfoController
 	@RequestMapping("/ADMIN_infolist") 
 	public ModelAndView listAllInfoByEditorId(ModelMap model,HttpSession session)
 	{
-		//Editor editor  = (Editor)session.getAttribute("editor");
-		//int editorId=editor.getId();
-		int editorId=1;
+		Editor editor  = (Editor)session.getAttribute("editor");
+		int editorId=editor.getId();
+		//int editorId=1;
 		
 		List<Information> myInfo = new ArrayList<Information>();
 		List<Information> myAdver = new ArrayList<Information>();
@@ -114,7 +114,7 @@ public class InfoController
 		String ImageDB = "images/"+uploadImage.getOriginalFilename();
 		info.setImage(ImageDB);
 		
-		//����ͼƬ
+		
 		try 
 		{
 			File image = new File(Imagepath);
@@ -126,7 +126,7 @@ public class InfoController
 			e1.printStackTrace();
 		}
 		
-		//HTML���� 
+		//HTML
 		try
 	    { 	
 		    //FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/")+"infoHTML//"+title+".html"); 		    

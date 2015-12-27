@@ -186,33 +186,28 @@ public class BackstageController
 	public ModelAndView turnToUserManage(HttpServletRequest request)
 	{
 		ModelAndView modelAndView = null;
+		@SuppressWarnings("unused")
 		Admin admin = (Admin) request.getSession().getAttribute("admin");
-
-		try {
-			if(admin == null)
-			{
-				String message = "对不起，您没有管理用户的权限!";
-				modelAndView = new ModelAndView("error","message",message);	
-			}
-			else {			
-				int manageType = Integer.parseInt(request.getParameter("manageType"));
-				switch (manageType) {
-				case 1:
-					List<User> user_list = userPersonalService.getAllUser();
-					request.getSession().setAttribute("user_list", user_list);
-					modelAndView = new ModelAndView("ADMIN_usermanage","user_list",user_list);
-					break;
-				case 2:
-					List<Artist> artist_list = userPersonalService.getAllArtist();
-					request.getSession().setAttribute("artist_list", artist_list);
-					modelAndView = new ModelAndView("ADMIN_artistmanage","artist_list", artist_list);
-					break;
-				case 3:
-					List<Admin> admin_list = adminPersonalService.getAllAdmin();
-					request.getSession().setAttribute("admin_list", admin_list);
-					modelAndView = new ModelAndView("ADMIN_managermanage","admin_list", admin_list);
-					break;
-				}	
+		
+		try {			
+			int manageType = Integer.parseInt(request.getParameter("manageType"));
+			switch (manageType) {
+			case 1:
+				List<User> user_list = userPersonalService.getAllUser();
+				request.getSession().setAttribute("user_list", user_list);
+				modelAndView = new ModelAndView("ADMIN_usermanage","user_list",user_list);
+				break;
+			case 2:
+				List<Artist> artist_list = userPersonalService.getAllArtist();
+				request.getSession().setAttribute("artist_list", artist_list);
+				modelAndView = new ModelAndView("ADMIN_artistmanage","artist_list", artist_list);
+				break;
+			case 3:
+				List<Admin> admin_list = adminPersonalService.getAllAdmin();
+				request.getSession().setAttribute("admin_list", admin_list);
+				modelAndView = new ModelAndView("ADMIN_managermanage","admin_list", admin_list);
+				break;
+					
 			}				
 		} catch (Exception e) {
 			// TODO: handle exception

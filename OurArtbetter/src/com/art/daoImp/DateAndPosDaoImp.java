@@ -180,6 +180,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 		
 		for(int i = 1 ; i<=6 ; i++ )
 		{
+			success= 0;
 			String hql= "from DateAndPos as dateAndPos where dateAndPos.infoColumn.id=?";
 			Query query = sessionFactory.getCurrentSession().createQuery(hql);
 			query.setInteger(0,i);
@@ -205,7 +206,9 @@ public class DateAndPosDaoImp implements DateAndPosDao
 				}
 			}
 			
-			if( success !=  dateAndPosList.size() )
+			if(dateAndPosList.size()==0)
+			{}	
+			else if( success !=  dateAndPosList.size() )
 			{
 				if(flag ==1)	
 					result+=" ";

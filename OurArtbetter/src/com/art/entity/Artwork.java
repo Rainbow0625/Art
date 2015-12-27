@@ -25,10 +25,10 @@ public class Artwork implements java.io.Serializable
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy =GenerationType.AUTO)
-	@Column(name="artworkId",nullable=false)
+	@Column(name="artworkId")
 	private int artworkId;
 	
-	@Column(name="artworkName",nullable=false)
+	@Column(name="artworkName")
 	private String artworkName;
 	
 
@@ -38,7 +38,7 @@ public class Artwork implements java.io.Serializable
 	//artworkType   1 product  2 customization 3 auction
 
 
-	@Column(name="artworkType",nullable=false)
+	@Column(name="artworkType")
 	private int artworkType;
 
 	
@@ -62,7 +62,7 @@ public class Artwork implements java.io.Serializable
 	@Column(name="artworkInformation")
 	private String artworkInformation;
 	
-	@Column(name="imagesURL",nullable=false)
+	@Column(name="imagesURL")
 	private  String imagesURL;
 	
 	public Artwork(){}

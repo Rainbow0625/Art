@@ -56,6 +56,9 @@ public class Artist extends User
 	@OneToMany(fetch=FetchType.EAGER,mappedBy="artist")
 	private Set<Shop> shop = new HashSet<Shop>();
 	
+	public Artist(){}
+	
+	
 	public Artist(String realName,String tel, String password,String gender,Date birthday,String email,String photo,String introduction)
 	{
 		super(null,tel,password,gender,birthday,email);

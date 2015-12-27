@@ -33,6 +33,16 @@ public class RegisterAndLoginController
 	private EditorPersonalService editorPersonalService;
 	@Resource
 	private ChiefEditorPersonalService chiefEditorPersonalService;
+	
+	
+	public RegisterAndLoginController(){}
+	
+	@RequestMapping("/ADMIN_login")
+	public ModelAndView toLogin()
+	{
+		return  new ModelAndView("ADMIN_login");
+	}
+	
 
 	@RequestMapping("/Register")//正则表达式的判断放在前端做
 	public ModelAndView Register(HttpServletRequest request)throws Exception
@@ -209,12 +219,14 @@ public class RegisterAndLoginController
 				
 	}
 
+	/*
 	@RequestMapping("TurnToAdminLogin")
 	public ModelAndView TurnToAdminLogin(HttpServletRequest request)throws Exception
 	{
 		return new ModelAndView("ADMIN_login");
 
 	}
+	*/
 
 	@RequestMapping("TurnToRegister")
 	public ModelAndView TurnToRegister(HttpServletRequest request)throws Exception
