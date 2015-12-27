@@ -1,7 +1,7 @@
 package com.art.daoImp;
 
 
-import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,8 +19,8 @@ import com.art.entity.DateAndPos;
 import com.art.entity.Information;
 
 /**
- * @author å´è™¹
- * @category DateAndPosDaoçš„å®ç°
+ * @author Îâºç
+ * @category DateAndPosDaoµÄÊµÏÖ
  * */
 @Repository("dateAndPosDao")
 public class DateAndPosDaoImp implements DateAndPosDao
@@ -35,25 +35,26 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 	
 	/**
-	 * æ ¹æ®æ ç›®å·ï¼Œå¾—åˆ°ä»Šå¤©çš„ä¿¡æ¯
+	 * ¸ù¾İÀ¸Ä¿ºÅ£¬µÃµ½½ñÌìµÄĞÅÏ¢
+	 * @throws ParseException 
 	 * */
 	@Override
-	public Information getTodayInfoByInfoColumnId(int infoColumnId) {
+	public Information getTodayInfoByInfoColumnId(int infoColumnId) throws ParseException {
+		//String date =request.getParameter("startDate");
+		//Date update = sdf.parse(date);
 		
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
-		Calendar count = Calendar.getInstance();//è®¡æ•°
-		
-		Date todaydate = new Date(); //ç”Ÿæˆä»Šå¤©çš„æ—¥æœŸ
-		Calendar todayCalendar = Calendar.getInstance();
-		todayCalendar.setTime(todaydate);
-		String todaydateString = df.format(todaydate);
-		
-		
+		//ok
 		String hql = "from DateAndPos as dateAndPos where dateAndPos.infoColumn.id=?";  
 		Query query = this.sessionFactory.getCurrentSession().createQuery(hql);
-		query.setInteger(0, infoColumnId);
+		query.setInteger(0, infoColumnId); 
 		List<DateAndPos> dateAndPosList =getDateAndPosByInfoColumnId(infoColumnId);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+		Calendar count = Calendar.getInstance();
+		
+		
+		String temp = sdf.format( new Date() );
+		Date todaydate = sdf.parse(temp);
 		
 		Information todayInfo=new Information();
 		int flag=0;
@@ -62,19 +63,21 @@ public class DateAndPosDaoImp implements DateAndPosDao
 		{
 			int days= dateAndPosList.get(i).getDays();
 			count.setTime(dateAndPosList.get(i).getDate());
+			Date compare = sdf.parse( sdf.format(count.getTime()) );
 			
-			if( df.format(  count.getTime()  ).equals(todaydateString)  )  //å¦‚æœç­‰äºï¼Œç›´æ¥è¿”å›
+			if(compare.equals(todaydate))  //Èç¹ûµÈÓÚ£¬Ö±½Ó·µ»Ø
 			{
 				todayInfo = dateAndPosList.get(i).getInformation();
 				//flag=1;
 				break;
 			}
-			else if( count.getTime().before(todaydate) )  //å¦‚æœå°äºï¼Œè¿˜æœ‰åˆ¤æ–­çš„å¿…è¦
+			else if( compare.before(todaydate) )  //Èç¹ûĞ¡ÓÚ£¬»¹ÓĞÅĞ¶ÏµÄ±ØÒª
 			{
 				for(int j = 0 ; j<days ; j++)
 				{
 					count.add(Calendar.DAY_OF_YEAR, 1);
-					if( count.getTime().equals(todaydate))
+					compare = sdf.parse( sdf.format(count.getTime()));
+					if( compare.equals(todaydate))
 					{
 						todayInfo = dateAndPosList.get(i).getInformation();
 						flag=1;
@@ -84,15 +87,15 @@ public class DateAndPosDaoImp implements DateAndPosDao
 				if(flag==1)
 					break;
 			}
-			else     //å¦‚æœå¤§äºï¼Œæ²¡æœ‰åˆ¤æ–­çš„å¿…è¦ï¼Œç»§ç»­æŸ¥æ‰¾ä¸‹ä¸€ä¸ª
+			else     //Èç¹û´óÓÚ£¬Ã»ÓĞÅĞ¶ÏµÄ±ØÒª£¬¼ÌĞø²éÕÒÏÂÒ»¸ö
 				continue;
 		}
-		
+
 		return todayInfo;
 	}
 
 	/**
-	 * æ ¹æ®è½¯æ–‡idï¼Œå¾—åˆ°DateAndPos
+	 * ¸ù¾İÈíÎÄid£¬µÃµ½DateAndPos
 	 * */
 	@Override  
 	public List<DateAndPos> getDateAndPosByInformationId(int informationId) {
@@ -105,7 +108,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * æ ¹æ®æ ç›®idï¼Œå¾—åˆ°DateAndPos
+	 * ¸ù¾İÀ¸Ä¿id£¬µÃµ½DateAndPos
 	 * */
 	@Override  // not use
 	public List<DateAndPos> getDateAndPosByInfoColumnId(int infoColumnId) {
@@ -118,7 +121,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * å¢åŠ ä¸€æ¡DateAndPos
+	 * Ôö¼ÓÒ»ÌõDateAndPos
 	 * */
 	@Override
 	public Boolean setDateAndPos(DateAndPos dateAndPos) {
@@ -129,18 +132,93 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * åˆ é™¤ä¸€æ¡DateAndPos
+	 * É¾³ıÒ»ÌõDateAndPos
 	 * */
 	@Override
 	public Boolean deleteDateAndPos(int dateAndPosId) {
 		Session session = sessionFactory.getCurrentSession();
 		//session.delete(dateAndPos);
-		String hql= "delete DateAndPos where id=?";
+		String hql= "delete DateAndPos from DateAndPos where id=?";
 		Query query = session.createQuery(hql);
 		query.setInteger(0,dateAndPosId);
 		query.executeUpdate();
 		session.flush();
 		return true;
+	}
+	
+	/**
+	 * ÉèÖÃÒ»ÌõDateAndPosÊ±£¬´«Èëµ±Ç°ÒÑÉèÖÃµÄÊ±¼ä£¬·µ»Ø²»¿ÉÓÃµÄÈíÎÄÀ¸Ä¿µÄid
+	 * @throws ParseException 
+	 * */
+
+	@Override
+	public String getUnavailableColumnId(Date date, int days) throws ParseException
+	{
+		//Session session = sessionFactory.getCurrentSession();
+		Date tempDate;
+		
+		String result = null;
+		int success= 0;
+		int flag = 0;
+		
+		Calendar startC = Calendar.getInstance();
+		Calendar endC = Calendar.getInstance();
+		Date start;
+		Date end;
+		//Calendar testEnd = Calendar.getInstance();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String temp = sdf.format(date);
+		Date testStart = sdf.parse(temp);   //testDateÎª²âÊÔDateAndPOSµÄ¿ªÊ¼Ê±¼ä
+		Calendar testEndC = Calendar.getInstance();
+		testEndC.setTime(testStart);
+		testEndC.add(Calendar.DAY_OF_YEAR, days);
+		Date testEnd = testEndC.getTime();
+		
+		
+		System.out.println(temp);
+		
+		for(int i = 1 ; i<=6 ; i++ )
+		{
+			String hql= "from DateAndPos as dateAndPos where dateAndPos.infoColumn.id=?";
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setInteger(0,i);
+			@SuppressWarnings("unchecked")
+			List<DateAndPos> dateAndPosList= query.list();
+			for(int j =0 ; j< dateAndPosList.size(); j++ )
+			{
+				tempDate =dateAndPosList.get(j).getDate();
+				startC.setTime(tempDate);       //startÎªÊı¾İ¿âÖĞ²é³öµÄÒÑ¾­±»Õ¼ÓÃµÄÊ±¼äµÄ¿ªÊ¼Ê±¼ä
+				endC.setTime(tempDate);  
+				endC.add(Calendar.DAY_OF_YEAR, dateAndPosList.get(j).getDays());    //endÎªÊı¾İ¿âÖĞ²é³öµÄÒÑ¾­±»Õ¼ÓÃµÄÊ±¼äµÄ¿ªÊ¼Ê±¼ä
+				start = startC.getTime();
+				end = endC.getTime();
+				
+				//½øĞĞ±È½Ï
+				if( testEnd.before(start) )
+				{
+					success++;
+				}
+				else if( testStart.after(end) )
+				{
+					success++;
+				}
+
+			}
+			
+			if( success ==  dateAndPosList.size())
+			{
+				if(flag ==1)
+					result+=" ";
+				result+=Integer.toString(i);
+				flag=1;
+			}
+		
+		}
+		System.out.println(result);
+		
+		return result;//ifÃ»ÓĞ£¬return null
+		
 	}
 
 }

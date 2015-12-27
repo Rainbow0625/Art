@@ -1,5 +1,6 @@
 package com.art.backstageService;
 
+import java.util.Date;
 import java.util.List;
 
 import com.art.entity.DateAndPos;
@@ -46,7 +47,7 @@ public interface InfoService
 	
 	public String getInforColumnTypeById(int infoColumnById);
 	
-	
+	public String getUnavailableColumnId(Date date, int days);
 	
 	
 	

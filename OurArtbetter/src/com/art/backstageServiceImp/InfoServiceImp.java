@@ -1,8 +1,9 @@
 package com.art.backstageServiceImp;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,21 @@ public class InfoServiceImp implements InfoService
 	@Override
 	public Information getTodayInfoByColumnId(int infoColumnId) {
 	
-		return dateAndPosDao.getTodayInfoByInfoColumnId(infoColumnId);
+		try {
+			
+			Information information =  dateAndPosDao.getTodayInfoByInfoColumnId(infoColumnId);
+			return information;
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+		
+		
+		
 	}
 	
 	@Override
@@ -177,6 +192,18 @@ public class InfoServiceImp implements InfoService
 	public Boolean deleteDateAndPos(int dateAndPosId) {
 		dateAndPosDao.deleteDateAndPos(dateAndPosId);
 		return true;
+	}
+
+	@Override
+	public String getUnavailableColumnId(Date date, int days) {
+		
+		try {
+			return dateAndPosDao.getUnavailableColumnId(date, days);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "";
+		}
 	}
 
 	
