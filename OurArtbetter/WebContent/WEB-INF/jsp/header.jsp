@@ -1,17 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
-<head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<base href="https://shapebootstrap.net/" />-->
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Joomla! - Open Source Content Management" />
-<title>drinkArt</title>
-
-
-</head>
-<body>
   <header id="sp-header">
     <div class="container">
       <div class="row">
@@ -80,5 +67,3 @@
   </div>
 </section>
 </div>
-</body>
-</html>

@@ -11,15 +11,11 @@
 #offcanvas-toggler >i:hover {
   color: #119d55;
 }
-.offcanvas-menu {
-  background: #ec3748;
-}
+
 .offcanvas-menu .offcanvas-inner .sp-module ul > li a {
   color: #fff;
 }
-.offcanvas-menu .offcanvas-inner .sp-module ul > li a:hover {
-  background: #ec3748;
-}
+
 ul.social-icons >li a:hover {
   color: #e83258;
 }

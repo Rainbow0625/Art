@@ -109,6 +109,17 @@
   	</form>
   </div>
 </div>
-   <script type="text/javascript">CKEDITOR.replace('content');</script>
+   <script type="text/javascript">
+   CKEDITOR.replace('content');		
+	$(function(){
+		$(".navhasul").hover(function(){
+			$(this).find(".firstnav").addClass("hovertri");
+			$(this).children("ul").show();
+		},function(){
+			$(this).find(".firstnav").removeClass("hovertri");
+			$(this).children("ul").hide();
+		});
+	})
+</script>
 </body>
 </html>
