@@ -39,7 +39,7 @@ public class InfoController
 	public InfoController(){}
 
 	/**
-	 * ½øÈë»¶Ó­½çÃæ
+	 * è¿›å…¥æ¬¢è¿ç•Œé¢
 	 * **/
 	@RequestMapping("/ADMIN_welcome") 
 	public ModelAndView toadmin()
@@ -49,13 +49,14 @@ public class InfoController
 	
 	
 	/**
-	 * editor¿´µ½µÄËùÓĞ×Ô¼º±à¼­µÄÈíÎÄ
+	 * editorçœ‹åˆ°çš„æ‰€æœ‰è‡ªå·±ç¼–è¾‘çš„è½¯æ–‡
 	 * **/
 	@RequestMapping("/ADMIN_infolist") 
 	public ModelAndView listAllInfoByEditorId(ModelMap model,HttpSession session)
 	{
-		Editor editor  = (Editor)session.getAttribute("editor");
-		int editorId=editor.getId();
+		//Editor editor  = (Editor)session.getAttribute("editor");
+		//int editorId=editor.getId();
+		int editorId=1;
 		
 		List<Information> myInfo = new ArrayList<Information>();
 		List<Information> myAdver = new ArrayList<Information>();
@@ -73,17 +74,18 @@ public class InfoController
 	}
 	
 	/**
-	 * editorĞÂ±àÒ»ÌõÈíÎÄ
+	 * editoræ–°ç¼–ä¸€æ¡è½¯æ–‡
 	 * **/
-	//+Ö±½ÓÌø×ªµÄÒ³Ãæ¡£ºóÆÚÉèÖÃsession  editor idµÈ
+	//+ç›´æ¥è·³è½¬çš„é¡µé¢ã€‚åæœŸè®¾ç½®session  editor idç­‰
 	@RequestMapping("/ADMIN_uploadinfo") 
 	public ModelAndView newInfo()
 	{
 		return new ModelAndView("ADMIN_uploadinfo");
 	}
 	
+
 	/**
-	 * ±£´æÈíÎÄ
+	 * ä¿å­˜è½¯æ–‡
 	 * **/
 	@RequestMapping("/ADMIN_saveInfo")   
 	public ModelAndView saveInfo(@RequestParam("uploadImage") MultipartFile uploadImage,HttpServletRequest request,Model model ,HttpSession session)
@@ -96,7 +98,7 @@ public class InfoController
 		
 		Information info = new Information();
 		info.setTitle(title);
-		info.setState("Î´ÉóºË");
+		info.setState("Î´ï¿½ï¿½ï¿½");
 		Date createTime = new Date();
 		info.setCreateTime(createTime);
 		info.setNextTime(null);	
@@ -112,7 +114,7 @@ public class InfoController
 		String ImageDB = "images/"+uploadImage.getOriginalFilename();
 		info.setImage(ImageDB);
 		
-		//±£´æÍ¼Æ¬
+		//ï¿½ï¿½ï¿½ï¿½Í¼Æ¬
 		try 
 		{
 			File image = new File(Imagepath);
@@ -124,7 +126,7 @@ public class InfoController
 			e1.printStackTrace();
 		}
 		
-		//HTML±£´æ 
+		//HTMLï¿½ï¿½ï¿½ï¿½ 
 		try
 	    { 	
 		    //FileWriter fileWriter = new FileWriter(request.getSession().getServletContext().getRealPath("/")+"infoHTML//"+title+".html"); 		    
@@ -151,7 +153,7 @@ public class InfoController
 	
 	
 	/**
-	 * Ìø×ªµ½¸üĞÂµÄÒ³Ãæ£¬ÄÜ¹»ÏÔÊ¾Ô­À´µÄĞÅÏ¢
+	 * è·³è½¬åˆ°æ›´æ–°çš„é¡µé¢ï¼Œèƒ½å¤Ÿæ˜¾ç¤ºåŸæ¥çš„ä¿¡æ¯
 	 * **/
 	@RequestMapping("/ADMIN_ToUpdateInfo")  
 	public ModelAndView toUpdateInfo(@RequestParam int id,Model model)
@@ -163,7 +165,7 @@ public class InfoController
 	
 	
 	/**
-	 * ¸üĞÂÈíÎÄµÄÒ³Ãæ
+	 * æ›´æ–°è½¯æ–‡çš„é¡µé¢
 	 * **/
 	@RequestMapping("/ADMIN_updateinfo")  
 	public ModelAndView updateinfo(@RequestParam("uploadImage") MultipartFile uploadImage, @RequestParam("id") int id,HttpServletRequest request,Model model)
@@ -174,7 +176,7 @@ public class InfoController
 		String content = request.getParameter("content");
 		/*
 		File db= new File(request.getSession().getServletContext().getRealPath("/")+"images/",uploadImage.getOriginalFilename());
-		String ImageDB = db.getPath();  //±äÎªÏà¶ÔÂ·¾¶
+		String ImageDB = db.getPath();  //ï¿½ï¿½Îªï¿½ï¿½ï¿½Â·ï¿½ï¿½
 		System.out.println(ImageDB);
 		*/
 		Information info = new Information();  	
@@ -187,9 +189,9 @@ public class InfoController
 		Date nextTime = new Date();
 		info.setNextTime(nextTime);
 		info.setContent(content);
-		info.setState("Î´ÉóºË");
+		info.setState("Î´ï¿½ï¿½ï¿½");
 		
-		//±£´æÍ¼Æ¬
+		//ä¿å­˜å›¾ç‰‡
 		try 
 		{
 			File image = new File(Imagepath);
@@ -201,7 +203,7 @@ public class InfoController
 			e1.printStackTrace();
 		}
 
-		//´ÓÎÄ¼şÖĞĞ´Èë
+		//ä»æ–‡ä»¶ä¸­å†™å…¥
 		try 
 		{	
 			FileWriter fileWriter = new FileWriter("C:/Users/Hz/Desktop/Art/OurArtbetter/WebContent/infoHTML//"+title+".html"); 		    
@@ -227,7 +229,7 @@ public class InfoController
 	}
 	
 	/**
-	 * É¾³ıÈíÎÄ
+	 * åˆ é™¤è½¯æ–‡
 	 * **/
 	@RequestMapping("/ADMIN_deleteInfo") 
 	public ModelAndView deleteInfo(@RequestParam int id, Model model) //delete by primary key
@@ -240,7 +242,7 @@ public class InfoController
 
 	
 	/**
-	 * Ö÷±à´ò¿ª¿´µ½ËùÓĞµÄÈíÎÄ
+	 * ä¸»ç¼–æ‰“å¼€çœ‹åˆ°æ‰€æœ‰çš„è½¯æ–‡
 	 * **/
 	/*chiefEditor*/
 	@RequestMapping("/ADMIN_chiefinfo") 
@@ -259,7 +261,7 @@ public class InfoController
 	}
 	
 	/**
-	 * Ö÷±àµ½µ±Ìõ×ÉÑ¯µÄÈíÎÄÉèÖÃÉÏÏßÒ³Ãæ
+	 * ä¸»ç¼–åˆ°å½“æ¡å’¨è¯¢çš„è½¯æ–‡è®¾ç½®ä¸Šçº¿é¡µé¢
 	 * **/
 	@RequestMapping("/ADMIN_chiefInfoDateAndPos") 
 	public ModelAndView chiefInfoDateAndPos(ModelMap model,@RequestParam int id)
@@ -273,8 +275,9 @@ public class InfoController
 	}
 	
 	
+
 	/**
-	 * Ö÷±àÏÔÊ¾µ¥Ìõ×ÉÑ¯µÄÒ³Ãæ£¬½ø¶øÉóºËÒ»ÏÂ
+	 * ä¸»ç¼–æ˜¾ç¤ºå•æ¡å’¨è¯¢çš„é¡µé¢ï¼Œè¿›è€Œå®¡æ ¸ä¸€ä¸‹
 	 * **/
 	@RequestMapping("/ADMIN_chiefLookThrough") 
 	public ModelAndView displayInfoToChiefEditor(@RequestParam int id,Model model )
@@ -285,7 +288,7 @@ public class InfoController
 	}
 	
 	/**
-	 * Ö÷±àÉóºËÍ¨¹ı
+	 * ä¸»ç¼–å®¡æ ¸é€šè¿‡
 	 * **/
 	@RequestMapping("/ADMIN_checkInfo") 
 	public ModelAndView checkInfo(@RequestParam int id,Model model )
@@ -298,7 +301,7 @@ public class InfoController
 	
 	
 	/**
-	 * Ö÷±àÉóºË²»Í¨¹ı
+	 * ä¸»ç¼–å®¡æ ¸ä¸é€šè¿‡
 	 * **/
 	@RequestMapping("/ADMIN_failInfo") 
 	public ModelAndView failInfo(@RequestParam int id,Model model)
@@ -310,7 +313,7 @@ public class InfoController
 	}
 	
 	/**
-	 * Ö÷±àµ½ÉèÖÃDateAndPosµÄÒ³Ãæ
+	 * ä¸»ç¼–åˆ°è®¾ç½®DateAndPosçš„é¡µé¢
 	 * **/
 	@RequestMapping("/ADMIN_TosetDateAndPos") 
 	public ModelAndView TosetDateAndPos(@RequestParam int id,ModelMap model)
@@ -325,14 +328,14 @@ public class InfoController
 	}
 	
 	/**
-	 * Ö÷±àÉèÖÃDateAndPos
+	 * ä¸»ç¼–è®¾ç½®DateAndPos
 	 * **/
 	@RequestMapping("/ADMIN_setDateAndPos")   
 	public ModelAndView setDateAndPos(HttpServletRequest request,@RequestParam int id,Model model)
 	{
 		
 		try {
-			int infoColumnId =Integer.parseInt( request.getParameter("columnId") );    //ÎªÊ²Ã´ÕâÃ´ÓÃÏê¼ûgetParameter ÓëgetAttribute µÄÇø±ğ£¡
+			int infoColumnId =Integer.parseInt( request.getParameter("columnId") );    //ÎªÊ²Ã´ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½getParameter ï¿½ï¿½getAttribute ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			
 			String temp =request.getParameter("days");
 			int days = Integer.parseInt(temp);
@@ -370,7 +373,7 @@ public class InfoController
 	
 	
 	/**
-	 * Ö÷±àÉ¾³ıÉèÖÃµÄDateAndPos
+	 * ä¸»ç¼–åˆ é™¤è®¾ç½®çš„DateAndPos
 	 * **/
 	@RequestMapping("/ADMIN_deleteDateAndPos")   
 	public ModelAndView deleteDateAndPos(@RequestParam int id,Model model )
@@ -380,7 +383,7 @@ public class InfoController
 		{
 			int message=4;
 			model.addAttribute("message",message);
-		//model.addAttribute("id",infoId);  ¼ÓÈësessionºó£¬¾Í¿ÉÒÔµÃµ½ÁË
+		//model.addAttribute("id",infoId);  ï¿½ï¿½ï¿½ï¿½sessionï¿½ó£¬¾Í¿ï¿½ï¿½ÔµÃµï¿½ï¿½ï¿½
 		return new ModelAndView("ADMIN_ChiefEditorSuccess"); 
 		}
 		else
@@ -395,11 +398,11 @@ public class InfoController
 	public void ajaxInfo(HttpServletRequest request,HttpServletResponse response) throws IOException
 	{
 		System.out.println(request.getParameter("message"));
-		String info=request.getParameter("message");//ÊÇÊ±¼äºÍÌìÊı
+		String info=request.getParameter("message");//æ˜¯æ—¶é—´å’Œå¤©æ•°
 		String []message=info.split(" ");
-		String date=message[0];//¿ªÊ¼Ê±¼ä
-		String day=message[1];//ÌìÊı
-		String title=message[2];//±êÌâ
+		String date=message[0];//å¼€å§‹æ—¶é—´
+		String day=message[1];//å¤©æ•°
+		String title=message[2];//æ ‡é¢˜
 		
 		System.out.println(date+day+title);
 		
@@ -408,7 +411,7 @@ public class InfoController
 		try {
 			Date realDate = sdf.parse(date);
 			int days =  Integer.parseInt(day);
-			String result= infoService.getUnavailableColumnId(realDate,days) ; //resultÀï·Å²»¿ÉÓÃµÄ×ÉÑ¯Î»ÖÃµÄvalue
+			String result= infoService.getUnavailableColumnId(realDate,days) ; //resulté‡Œæ”¾ä¸å¯ç”¨çš„å’¨è¯¢ä½ç½®çš„value 123456é‚£ä¸ªï¼ä¸å¯ç”¨çš„å‘€ï¼
 			
 			response.getWriter().write(result);
 			

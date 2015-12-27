@@ -19,8 +19,9 @@ import com.art.entity.DateAndPos;
 import com.art.entity.Information;
 
 /**
- * @author Îâºç
- * @category DateAndPosDaoµÄÊµÏÖ
+ 
+   @author å´è™¹
+ * @category DateAndPosDaoçš„å®ç°
  * */
 @Repository("dateAndPosDao")
 public class DateAndPosDaoImp implements DateAndPosDao
@@ -35,8 +36,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 	
 	/**
-	 * ¸ù¾İÀ¸Ä¿ºÅ£¬µÃµ½½ñÌìµÄĞÅÏ¢
-	 * @throws ParseException 
+	 * æ ¹æ®æ ç›®å·ï¼Œå¾—åˆ°ä»Šå¤©çš„ä¿¡æ¯
 	 * */
 	@Override
 	public Information getTodayInfoByInfoColumnId(int infoColumnId) throws ParseException {
@@ -65,13 +65,13 @@ public class DateAndPosDaoImp implements DateAndPosDao
 			count.setTime(dateAndPosList.get(i).getDate());
 			Date compare = sdf.parse( sdf.format(count.getTime()) );
 			
-			if(compare.equals(todaydate))  //Èç¹ûµÈÓÚ£¬Ö±½Ó·µ»Ø
+			if(compare.equals(todaydate))  //å¦‚æœç­‰äºï¼Œç›´æ¥è¿”å›
 			{
 				todayInfo = dateAndPosList.get(i).getInformation();
 				//flag=1;
 				break;
 			}
-			else if( compare.before(todaydate) )  //Èç¹ûĞ¡ÓÚ£¬»¹ÓĞÅĞ¶ÏµÄ±ØÒª
+			else if( compare.before(todaydate) ) //å¦‚æœå°äºï¼Œè¿˜æœ‰åˆ¤æ–­çš„å¿…è¦
 			{
 				for(int j = 0 ; j<days ; j++)
 				{
@@ -87,7 +87,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 				if(flag==1)
 					break;
 			}
-			else     //Èç¹û´óÓÚ£¬Ã»ÓĞÅĞ¶ÏµÄ±ØÒª£¬¼ÌĞø²éÕÒÏÂÒ»¸ö
+			else      //å¦‚æœå¤§äºï¼Œæ²¡æœ‰åˆ¤æ–­çš„å¿…è¦ï¼Œç»§ç»­æŸ¥æ‰¾ä¸‹ä¸€ä¸ª
 				continue;
 		}
 
@@ -95,7 +95,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * ¸ù¾İÈíÎÄid£¬µÃµ½DateAndPos
+	 *æ ¹æ®è½¯æ–‡idï¼Œå¾—åˆ°DateAndPos
 	 * */
 	@Override  
 	public List<DateAndPos> getDateAndPosByInformationId(int informationId) {
@@ -108,7 +108,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * ¸ù¾İÀ¸Ä¿id£¬µÃµ½DateAndPos
+	 *  æ ¹æ®æ ç›®idï¼Œå¾—åˆ°DateAndPos
 	 * */
 	@Override  // not use
 	public List<DateAndPos> getDateAndPosByInfoColumnId(int infoColumnId) {
@@ -121,7 +121,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * Ôö¼ÓÒ»ÌõDateAndPos
+	 * è®¾ç½®DateAndPos
 	 * */
 	@Override
 	public Boolean setDateAndPos(DateAndPos dateAndPos) {
@@ -132,7 +132,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 
 	/**
-	 * É¾³ıÒ»ÌõDateAndPos
+	 *  åˆ é™¤ä¸€æ¡DateAndPos
 	 * */
 	@Override
 	public Boolean deleteDateAndPos(int dateAndPosId) {
@@ -147,7 +147,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 	}
 	
 	/**
-	 * ÉèÖÃÒ»ÌõDateAndPosÊ±£¬´«Èëµ±Ç°ÒÑÉèÖÃµÄÊ±¼ä£¬·µ»Ø²»¿ÉÓÃµÄÈíÎÄÀ¸Ä¿µÄid
+	 * æ ¹æ®å½“å‰æƒ³è¦è®¾ç½®è½¯æ–‡çš„æ—¶é—´ï¼Œå¾—åˆ°å¯ç”¨çš„æ ç›®ç¼–å·
 	 * @throws ParseException 
 	 * */
 
@@ -157,7 +157,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 		//Session session = sessionFactory.getCurrentSession();
 		Date tempDate;
 		
-		String result = null;
+		String result="";
 		int success= 0;
 		int flag = 0;
 		
@@ -169,7 +169,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String temp = sdf.format(date);
-		Date testStart = sdf.parse(temp);   //testDateÎª²âÊÔDateAndPOSµÄ¿ªÊ¼Ê±¼ä
+		Date testStart = sdf.parse(temp);   //testDateÎªï¿½ï¿½ï¿½ï¿½DateAndPOSï¿½Ä¿ï¿½Ê¼Ê±ï¿½ï¿½
 		Calendar testEndC = Calendar.getInstance();
 		testEndC.setTime(testStart);
 		testEndC.add(Calendar.DAY_OF_YEAR, days);
@@ -188,13 +188,13 @@ public class DateAndPosDaoImp implements DateAndPosDao
 			for(int j =0 ; j< dateAndPosList.size(); j++ )
 			{
 				tempDate =dateAndPosList.get(j).getDate();
-				startC.setTime(tempDate);       //startÎªÊı¾İ¿âÖĞ²é³öµÄÒÑ¾­±»Õ¼ÓÃµÄÊ±¼äµÄ¿ªÊ¼Ê±¼ä
+				startC.setTime(tempDate);       //startä¸ºæ•°æ®åº“ä¸­å·²ç»è®¾ç½®å¥½çš„å¼€å§‹æ—¶é—´
 				endC.setTime(tempDate);  
-				endC.add(Calendar.DAY_OF_YEAR, dateAndPosList.get(j).getDays());    //endÎªÊı¾İ¿âÖĞ²é³öµÄÒÑ¾­±»Õ¼ÓÃµÄÊ±¼äµÄ¿ªÊ¼Ê±¼ä
+				endC.add(Calendar.DAY_OF_YEAR, dateAndPosList.get(j).getDays());    //endÎªä¸ºæ•°æ®åº“ä¸­å·²ç»è®¾ç½®å¥½çš„ç»“æŸæ—¶é—´
 				start = startC.getTime();
 				end = endC.getTime();
 				
-				//½øĞĞ±È½Ï
+				//è¿›è¡Œæ¯”è¾ƒ
 				if( testEnd.before(start) )
 				{
 					success++;
@@ -203,12 +203,11 @@ public class DateAndPosDaoImp implements DateAndPosDao
 				{
 					success++;
 				}
-
 			}
 			
-			if( success ==  dateAndPosList.size())
+			if( success !=  dateAndPosList.size() )
 			{
-				if(flag ==1)
+				if(flag ==1)	
 					result+=" ";
 				result+=Integer.toString(i);
 				flag=1;
@@ -217,7 +216,7 @@ public class DateAndPosDaoImp implements DateAndPosDao
 		}
 		System.out.println(result);
 		
-		return result;//ifÃ»ÓĞ£¬return null
+		return result;
 		
 	}
 
