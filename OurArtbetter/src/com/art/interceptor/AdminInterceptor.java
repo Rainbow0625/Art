@@ -10,7 +10,7 @@ import com.art.entity.Admin;
 import com.art.util.RequestUtil;
 
 /**
- * 主编权限拦截器
+ * 管理员权限拦截器
  * 
  * **/
 
@@ -38,8 +38,8 @@ public class AdminInterceptor  implements HandlerInterceptor
         } 
 		
 		Admin admin =  (Admin)request.getSession().getAttribute("admin");   
-	        if(admin == null)
-	        {  
+	        if(admin == null )
+	        {
 				//再在no中返回到刚才的welcome	
 	            request.getRequestDispatcher("/WEB-INF/JSP/no.jsp").forward(request, response);    
 	            return false;  

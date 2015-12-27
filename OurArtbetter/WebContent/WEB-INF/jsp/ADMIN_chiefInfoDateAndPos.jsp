@@ -93,7 +93,7 @@ int dayNum =1;
               <td colspan=2><div class="input-append date" id="datetimepicker" data-date="" data-date-format="dd-mm-yyyy 00:00:00" style="width:40px;">
                   <input class="span2" size="16" type="text" value=""  id="startDate" name="startDate"/>
                   <span class="add-on"><i class="icon-th"></i></span> </div></td>
-              <td colspan=2><input type="text" class="daycss"/></td>
+              <td colspan=2><input id ="days" name="days" type="text" class="daycss"/></td>
               <td colspan=2><label id="leavedate">2222222222</label></td>
               <td><select name="columnId" id="columnId">
                   <!-- 需要用Ajax即时显示出来，这个时段哪些栏目已经被设置过了 -->

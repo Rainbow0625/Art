@@ -44,8 +44,8 @@ a:hover {
               <tr>
                 <td height=8></td>
               <tr>
-                <td><p><font color=#000000>
-                <br>对不起！您没有权限</font>! </p></td>
+                <td>
+                <p><font color=#000000 ><br>对不起！您没有权限！</font> </p></td>
               </tr>
             </tbody>
           </table>
@@ -54,15 +54,15 @@ a:hover {
     <tr>
       <td height=5></td>
     <tr>
-      <td align=middle><center>
+      <td align=middle>
+      <center>
           <table cellspacing=0 cellpadding=0 width=480 border=0>
             <tbody>
               <tr>
                 <td width=6>
                 <img height=26 src="images/left.gif" width=7></td>
-                <td background=images/bg.gif><div align=center><font class=p6><a  href="http://www.yelangsem.com/">返回首页</a>　 
-				　|　　 <a href="javascript:history.go(-1)">返回出错页</a>　 　|　　 <a 
-            href="http://www.yelangsem.com/">关闭本页</a></font> </div></td>
+                <td background=images/bg.gif><div align=center><font class=p6><a  href="/OurArtbetter/ADMIN_welcome">返回首页</a>　 
+				　|　　 <a href="javascript:history.go(-1)">返回出错页</a>　 　</font> </div></td>
                 <td width=7>
                 <img  src="images/right.gif"></td>
               </tr>
