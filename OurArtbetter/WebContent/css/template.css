@@ -998,7 +998,7 @@ body.offcanvas .offcanvas-overlay {
   top: 0;
   opacity: 0;
   z-index: 99999;
-  background-color:#e83258;
+    background-color: #f3acb3;
 }
 .offcanvas-menu .offcanvas-inner {
   padding: 20px;

@@ -12,7 +12,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Joomla! - Open Source Content Management" />
-<title>drinkArt</title>
+<title>DrinkArt</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/template.css" type="text/css" />
 <link rel="stylesheet" href="css/style.css">
@@ -111,7 +111,6 @@ padding-right:0px;}
 <body class="site com-sppagebuilder view-page no-layout no-task itemid-101 en-gb ltr  sticky-header layout-fluid">
 <div class="body-innerwrapper">
 <%@include file="header.jsp"%>
-
 <section  class="sppb-section section-intro" style="margin:0px;padding:20px 0;">
 <div class="sppb-container">
        	    <div id="myCarousel" class="carousel slide" style="width:100%;height:100%;background-color:#ffffff;">
@@ -236,7 +235,7 @@ padding-right:0px;}
 	                     </form>
               </div>
             </section>
-            <!-- 定制 -->
+            <!-- 定制 
             <section class="section appear clearfix">
               <div class="container">
                 <div class="row mar-bot40">
@@ -269,7 +268,7 @@ padding-right:0px;}
               </div>
             </section>
             <!--end-->
-            <!-- 拍卖-->
+            <!-- 拍卖
             <section id="section-works" class="section appear clearfix" style="background-color:#ffffff;">
               <div class="container">
                 <div class="row mar-bot40">
@@ -302,7 +301,7 @@ padding-right:0px;}
                 </c:forEach>
               </div>
             </section>
-          <!--end 拍卖-->
+        end 拍卖-->
 
   <!--把footer开头的那个块替换成下面的-->
   <%@include file="footer.jsp"%>

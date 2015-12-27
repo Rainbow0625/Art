@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
 <head>
@@ -9,10 +10,11 @@
 <!--<base href="https://shapebootstrap.net/" />-->
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Joomla! - Open Source Content Management" />
-<title>Art</title>
+<title>DrinkArt</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 <link rel="stylesheet" href="css/template.css" type="text/css" />
 <link rel="stylesheet" href="css/preset1.css" type="text/css" class="preset" />
+
 <script>
 	function saveCart() {
 		document.getElementById("cartForm").submit();
@@ -42,15 +44,7 @@ h6{font-family:Open Sans, sans-serif; font-weight:600; }
 .sp-megamenu-parent >li.active>a, .sp-megamenu-parent >li:hover>a {
 color:#e8394a;
 }
-.offcanvas-menu {
-    background-color:#e83258;
-}
-.offcanvas-menu .offcanvas-inner .sp-module ul > li a {
-    color: #ffffff;
-}
-.offcanvas-menu .offcanvas-inner .sp-module ul > li{
-/*border-bottom:1px solid #e83258;*/
-}
+
 
 .section,.sppb-section{
 background-color:#ffffff;}
@@ -72,11 +66,21 @@ padding-right:5%;
 color:#e83258;
 font-size:20px;
 }
-.icon{
-float:right;
-background:url('images/glyphicons-203-shopping-cart.png');
-height:23px;
-width:26px;
+
+.fa {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.fa-bars:before {
+    content: "\f0c9";
+}
+article{
+margin-top:10%;
 }
   </style>
 <script src="js/jquery.min.js" type="text/javascript"></script>
@@ -95,61 +99,7 @@ width:26px;
 </head>
 <body class="site com-sppagebuilder view-page no-layout no-task itemid-101 en-gb ltr  sticky-header layout-fluid">
 <div class="body-innerwrapper">
-<header id="sp-header">
-  <div class="container">
-    <div class="row">
-      <div id="sp-logo" class="col-xs-8 col-sm-3 col-md-2">
-        <div class="sp-column "><a class="logo" href="/">
-          <h1 style="color:#913334;">Art</h1>
-          </a></div>
-      </div>
-	  
-      <div id="sp-account" class="col-xs-4 col-sm-5 col-md-4">
-        <div class="sp-column ">
-          <ul>
-            <li><a class="btn btn-primary btn-submit-item hidden-sm hidden-xs" href="/login">Start Selling</a></li>
-              <li><a class="btn btn-success btn-login hidden-sm hidden-xs" href="/login">Login</a></li>
-              <li><a class="btn btn-link btn-login visible-sm visible-xs" href="/login"><i class="fa fa-user"></i></a></li>
-              <li><a class="btn btn-default btn-registration hidden-sm hidden-xs" href="/login?view=registration">Create an Account</a></li>
-              <li><a class="btn btn-link btn-login visible-sm visible-xs" href="#"><i class="fa fa-bars" style="background:url('images/search.png')no-repeat;    margin-top:90%;width: 100%;height: 100%;"></i></a></li>
-			  <li><a class="btn btn-link btn-login visible-sm visible-xs" id="offcanvas-toggler" href="#"><i class="fa fa-bars" style="background:url('images/listimg.png');    margin-top:90%;width: 100%;height: 40%;"></i></a></li>
-              <li><a class="btn btn-link btn-cart hidden-sm hidden-xs" href="/cart"><i class="sb-icon-purchase"></i> <small class="my-cart">0</small></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-<section id="sp-navbar" class="hidden-xs">
-  <div class="container">
-    <div class="row">
-      <div id="sp-categories" class="col-sm-4 col-md-2">
-        <div class="sp-column ">
-          <div class="sp-module "> </div>
-        </div>
-      </div>
-      <div id="sp-menu" class="col-sm-8 col-md-7">
-        <div class="sp-column ">
-          <div class='sp-megamenu-wrapper'>
-            <ul class="sp-megamenu-parent menu-fade hidden-xs">
-              <li class="sp-menu-item current-item active"><a  href="/" >首页</a></li>
-              <li class="sp-menu-item hidden"><a  href="/free-templates" >艺术资讯</a></li>
-              <li class="sp-menu-item"><a  href="artistList" >签约艺术家</a></li>
-              <li class="sp-menu-item"><a  href="/items" >艺术品商城</a></li>
-              <li class="sp-menu-item"><a  href="/popular-items" >艺术品在线定制</a></li>
-              <li class="sp-menu-item"><a  href="/blog" >拍卖商城</a></li>
-              <li class="sp-menu-item sp-has-child"><a  href="#" ><i class="fa fa-support"></i> 联系我们</a></li>
-		
-            </ul>
-          </div>
-        </div>
-      </div>
-     
-      </div>
-    </div>
-  </div>
-</section>
-
+<%@include file="header.jsp"%>
 <section style="height:20%;">
 <div id="myCarousel" class="carousel slide" style="width:100%;height:100%;background-color:#ffffff;">
               <!--<div id="myCarousel" class="carousel slide">-->
@@ -184,8 +134,7 @@ width:26px;
 					</div>
 					<c:forEach items="${sessionScope.cList}" var="c">
 					<div class="item-typedrop" style="z-index:100;display:block;width:100%;height:20%;display:none;" id="item-typedrop">
-		   <li><a
-				href="${ pageContext.request.contextPath }/findByCid/<c:out value="${c.cid}"/>/1">
+		   <li><a href="${ pageContext.request.contextPath }/findByCid/<c:out value="${c.cid}"/>/1">
 				<c:out value="${c.cname}"></c:out> 
 			  </a>
 		   </li>
@@ -195,18 +144,14 @@ width:26px;
                   </div>
                 </div>
             <!-- 艺术品商城 -->
-                      <section id="section-works" class="section appear clearfix" style="background-color:#e5e5e5;">
+            <section id="section-works" class="section appear clearfix" style="background-color:#e5e5e5;">
               <div class="container">
                 <div class="row">
-                  <div class="col-md-12">
-                    <div class="row">
-                      <div class="portfolio-items isotopeWrapper clearfix" id="3">
-						
-						  <div id="result" class="result table clearfix">
-					           <ul>
-						        <c:forEach var="p" items="${artwork_list}">
-						        <form id="cartForm"action="${ pageContext.request.contextPath }/addCart"method="post">
-						<article class="col-md-4 isotopeItem webdesign" style="border:1px solid #000000;border-radius:10px;background-color:#ffffff;padding-left:0;padding-right:0;">
+                  <div class="col-md-12 col-xs-12">
+                    <div class="row">     
+					  <c:forEach var="p" items="${artwork_list}">
+					    <form id="cartForm"action="${ pageContext.request.contextPath }/addCart"method="post">
+						 <article class="col-md-4 col-xs-12 isotopeItem webdesign" style="border:1px solid #000000;border-radius:10px;background-color:#ffffff;padding-left:0;padding-right:0;padding-bottom:5%;">
                           <div class="portfolio-item" style="width:100%;height:85%;"> 
 						   <img src="${p.imagesURL}" alt="找不到图片" style="border:1px solid #d6d3d3;border-radius:10px;"/>
                             <div class="portfolio-desc align-center">
@@ -224,61 +169,32 @@ width:26px;
 					value="<c:out value="${p.artworkId }"/>" />
 				
 				<dl class="quantity">
-						<dt>购买数量:</dt>
+						<dt style="float:left">购买数量:</dt>
 						<dd>
-							<input id="count" name="count" value="1" maxlength="4"
-								onpaste="return false;" type="text" />
+							<input id="count" name="count" value="1" maxlength="4" style="float:left;width:25%;margin-left:5%;height:26px;min-height:10px;"onpaste="return false;" type="text" />
 						</dd>
-						<dd>件</dd>
+						<dd style="float:left;">件</dd>
 					</dl>
 					<div class="buy">
-					<input type="submit" value="加入购物车" onclick="saveCart()" />
+					<input type="submit" value="加入购物车" style="float:right;margin-left:3%;margin-top:5%;background-color:#e83258;color:#ffffff;border:1px solid #e83258;border-radius:4px;" onclick="saveCart()" />
 					</div>
 					</div>					
 						  </div>
                         </article>
                         </form>
 						</c:forEach>
-					</ul>
+			
 					</div>
 				</div>
 				
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
             </section>
           
-    <footer id="sp-footer">
-    <div class="container">
-      <div class="row">
-        <div id="sp-footer1" class="col-sm-12 col-md-12">
-          <div class="sp-column "><span class="sp-copyright"> © 2015 ShapeBootstrap. Some Rights Reserved. A <a target="_blank" href="http://www.joomshaper.com">JoomShaper</a> Family.</span>
-		 </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  
-  <div class="offcanvas-menu"> <a href="#" class="close-offcanvas"><i class="fa fa-remove" style="background:url('images/close.png');width:65%;height:65%;margin-left:-18%;margin-top:13%;"></i></a>
-    <div class="offcanvas-inner">
-      <div class="sp-module ">
-        <h3 class="sp-module-title">Art</h3>
-        <div class="sp-module-content">
-          <ul class="nav menu">
-            <li class="item-101 current active"><a href="/">首页</a></li>
-			<li class="item-105"><a href="/items">签约艺术家</a></li>
-            <li class="item-111"><a href="/popular-items">艺术品商城</a></li>
-            <li class="item-106"><a href="/free-templates">艺术品在线定制</a></li>
-            <li class="item-118"><a href="/blog">拍卖商城</a></li>
-            <li class="item-125 deeper parent"><a href="#">艺术资讯</a></li>
-           <li class="item-131"><a href="/affiliates" >联系我们</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <%@include file="footer.jsp"%>
+  <%@include file="canvasmenu.jsp"%>
   <script>
    $("#myCarousel").carousel('cycle');
    $("#item-type").click(function(){
