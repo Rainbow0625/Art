@@ -5,7 +5,7 @@
 <head>
 <title>DrinkArt</title>
 <meta http-equiv=content-type content="text/html; charset=gb2312">
-<meta http-equiv=refresh content="10;url = http://www.yelangsem.com/goods-7.html">
+<meta http-equiv=refresh content="10;url =/OurArtbetter/ADMIN_welcome">
 <style type=text/css>
 input {
 	font-size: 12px
@@ -41,11 +41,11 @@ a:hover {
           <br>
           <table cellspacing=0 cellpadding=0 width="80%" border=0>
             <tbody>
+           
               <tr>
-                <td height=8></td>
-              <tr>
-                <td>
-                <p><font color=#000000 ><br>对不起！您没有权限！</font> </p></td>
+                <td align=middle>
+                <h1 style="font-weight:bold;"><font color=#000000 ><br>对不起！您没有权限！</font> </h1>
+                </td>
               </tr>
             </tbody>
           </table>
