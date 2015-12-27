@@ -235,6 +235,7 @@ int dayNum =1;
 	        success:function(data){  
 	            console.log("success:"+data); 
 	            var array=data.split(" ");
+	            
 	            for(var i=0;i<data.length;i++){
 	            	if(array[i]==1)
 	            	$("#columnId option[value='1']").remove();
