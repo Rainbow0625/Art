@@ -114,7 +114,7 @@ int dayNum =1;
       </form>
       <h3 style="margin-top:50px;">该条软文设置记录：</h3>
       <form action="/OurArtbetter/ADMIN_getDateAndPosByInfoId"  method="post">
-        <table class="lc_prolist history">
+        <table class="lc_prolist">
           <thead>
             <tr>
               <th colspan=2>上线时间</th>
@@ -128,9 +128,9 @@ int dayNum =1;
           <c:if test="${! empty dateAndPosList}">
             <c:forEach var="dateAndPos" items="${dateAndPosList}">
               <volist name="users" id="">
-                <tr>
+                <tr class=" history">
                   <td colspan=2> ${ dateAndPos.date } <span class="add-on"><i class="icon-th"></i></span> </td>
-                  <td class="historyday">3</td>
+                  <td class="historyday">${ dateAndPos.days } </td>
                   <td colspan=2>2000-00-00 00:00:00</td>
                   <td> ${dateAndPos.infoColumn.id}
                     <c:if test="${dateAndPos.infoColumn.id == 1 } "> 广告轮播图1 </c:if>
@@ -178,10 +178,27 @@ $(this).html($(this).html()+"…");
 
 $(".history").each(function() {
 	console.log("history");
-	var historystart=$(this).children('td:eq(0)').text();
-	var historyday=$(this).children('td:eq(1)').text();
-	console.log(historystart+historyday);
-	$(this).children('td:eq(2)').html("a");
+	var historystart=$(this).find('td:eq(0)').text();
+	var historyday=$(this).find('td:eq(1)').text();
+	//console.log(historystart+historyday);
+	 var date=historystart.substr(0,11);
+	 console.log(date);
+	 if((date!=null)&&(historyday!=null)){
+	  var d=new Date(date); 
+	 var day=parseInt(historyday);
+     d.setDate(d.getDate()+day); 
+     var month=d.getMonth()+1; 
+     var day = d.getDate(); 
+     if(month<10){ 
+        month = "0"+month; 
+      } 
+     if(day<10){ 
+     day = "0"+day; 
+     } 
+     var val = d.getFullYear()+"-"+month+"-"+day+" 00:00:00"; 
+     console.log(val);
+	$(this).find('td:eq(2)').html(val);
+	 }
 });
 	
 	
